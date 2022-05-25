@@ -20,7 +20,9 @@ def commit():
     os.system(f"git branch -M {branch_name}")
     os.system(f"git push -u  -f  origin {branch_name}")
 
+# 命令使用 : python gitutils.py [命令]
 
+# 命令 :
 # init 初始化此目录的git
 # push 上传目录文件
 if __name__ =="__main__":
