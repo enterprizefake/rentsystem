@@ -1,8 +1,11 @@
 import sys,os
 from datetime import datetime
 #config begin
+#分支名字 每个人不一样
 branch_name="back_end"
+#git项目地址
 origin_address="git@github.com:enterprizefake/rentsystem.git"
+#上传者名字 任意
 user_name="fanyujie"
 #config end
 
@@ -16,7 +19,10 @@ def commit():
     os.system(f"git commit -m {user_name}_{int(datetime.timestamp(datetime.now()))}")
     os.system(f"git branch -M {branch_name}")
     os.system(f"git push -u  -f  origin {branch_name}")
-    
+
+
+# init 初始化此目录的git
+# push 上传目录文件
 if __name__ =="__main__":
     print("cmd :",sys.argv)
     type_=sys.argv[1]
