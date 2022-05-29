@@ -4,7 +4,7 @@ from flask_cors import *
 import traceback
 import logging
 from ServerConfig import databaseconfig
-from database.models import db
+
 
 
 app =Flask(__name__)
@@ -24,13 +24,33 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS']={
     'pool_recycle':120,
     'pool_pre_ping': True
 }
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config["MONGO_URI"] = MONGODB_URI
 app.config["SECRET_KEY"] = "sdfsdfssefe"
 app.config["JSON_AS_ASCII"] = False
 
+db=SQLAlchemy(app)
 
-#导入blueprint
 
+
+
+
+# 自动导入blueprint 
+from Blueprintautoimport import getImportdict
+import_lists= getImportdict()
+for _combine in import_lists:
+    print("execute importing .... on",_combine)
+    exec(f"from {_combine[0]} import {_combine[1]}")
+    exec(f"app.register_blueprint({_combine[1]})")
+    pass 
+
+
+
+
+#手动导入blueprint
+
+print("check reloading")
+from router.test.test import testblueprint
 # from template.template import appblueprint
 # from router.file_module.file import fileblueprint
 # from router.director.alldirector import alldirectorblueprint
@@ -43,11 +63,14 @@ app.config["JSON_AS_ASCII"] = False
 # from router.form.form import formblueprint
 
 #--------------------------------------------
+
+
 #加载blueprint
 
+
+# app.register_blueprint(test)
 # app.register_blueprint(appblueprint)
 # app.register_blueprint(fileblueprint)
-# app.register_blueprint(llr)
 # # app.register_blueprint(alldirectorblueprint,url_prefix="/director")
 # # app.register_blueprint(allfrontprint,url_prefix="/front")
 # app.register_blueprint(monitorblueprint,url_prefix="/moniterapi")

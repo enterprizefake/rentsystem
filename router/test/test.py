@@ -1,54 +1,60 @@
+
 from flask import Blueprint
 from flask import jsonify
 from flask import request
+
+
+
 import traceback
-appblueprint = Blueprint('_blueprint', __name__)
-#appblueprint注意改名xx..x(自定义)blueprint 不然大家都用appblueprint会造成重复导入
+# appblueprint = Blueprint('_blueprint', __name__)
+testblueprint = Blueprint('llr', __name__)
 
-
-
-
-# 这句话必须在blueprint最后
 from Starter import db
-
+#appblueprint注意改名xx..x(自定义)blueprint 不然大家都用appblueprint会造成重复导入
 
 #数据库模型导入
 # from database.models import User
 
+@testblueprint.route("/test")
+def h1():
+    print(db)
+    print(45514)
+    data=request.get_json()
+    print(data)
 
 
-@appblueprint.route("/hellob/<name>")
-def hellob(name):
-    return "hellob! "+name
+# @appblueprint.route("/hellob/<name>")
+# def hellob(name):
+#     return "hellob! "+name
 
-@appblueprint.route("/hellojson/<string:name>")
-def hellojson(name):
-    test={"name":name}
-    return jsonify(test)
+# @appblueprint.route("/hellojson/<string:name>")
+# def hellojson(name):
+#     test={"name":name}
+#     return jsonify(test)
 
-@appblueprint.route("/api/test",methods=["POST"])
-def test():
-    try:
-        # json_= request.get_json()
+# @appblueprint.route("/api/test",methods=["POST"])
+# def test():
+#     try:
+#         # json_= request.get_json()
             
 
-        return jsonify(
-            {
+#         return jsonify(
+#             {
               
-            }
-        )
-    except Exception as e:
-        traceback.print_exc()
-        #返回错误信息
-        return jsonify(
-            {
-                "state":"no",
-                "info":str(e)
-            }
-        )
-    finally:
-        #关闭本次链接 释放
-        db.session.close()
+#             }
+#         )
+#     except Exception as e:
+#         traceback.print_exc()
+#         #返回错误信息
+#         return jsonify(
+#             {
+#                 "state":"no",
+#                 "info":str(e)
+#             }
+#         )
+#     finally:
+#         #关闭本次链接 释放
+#         db.session.close()
 
 # @appblueprint.route("/alljson")
 # def sqlall():
