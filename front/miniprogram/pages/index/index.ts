@@ -20,6 +20,27 @@ Page({
   onLoad() {
     // @ts-ignore
     if (wx.getUserProfile) {
+      wx.request(
+        {
+          url: "http://127.0.0.1:5500/miniprogram/sitemap.json",
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          // data: {
+          //   "a": 0
+          // },
+          // method: "POST",
+          method:"GET",
+          success: function (res) {
+            console.log(res.data)
+          },
+          fail()
+          {
+            console.log(15)
+          }
+        }
+      )
+
       this.setData({
         canIUseGetUserProfile: true
       })
