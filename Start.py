@@ -4,7 +4,7 @@ from flask_cors import *
 import traceback
 import logging
 from ServerConfig import databaseconfig
-
+from database.models import db
 
 
 app =Flask(__name__)

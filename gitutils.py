@@ -15,8 +15,9 @@ def initgit():
     os.system(f"git remote set-url {origin_address}")
 
 def commit():
+    time_=datetime.now().strftime("%Y:%m:%d:%H:%M");
     os.system(f"git add ./")
-    os.system(f"git commit -m {user_name}_{int(datetime.timestamp(datetime.now()))}")
+    os.system(f"git commit -m {user_name}_{time_}")
     os.system(f"git branch -M {branch_name}")
     os.system(f"git push -u  -f  origin {branch_name}")
 
