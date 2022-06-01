@@ -11,6 +11,9 @@ helloworldprint = Blueprint('_blueprint', __name__)
 # 这句话必须在blueprint最后
 from Starter import db
 
+
+
+
 @helloworldprint.route("/api/helloworld",methods=["POST",'GET'])
 def helloworld():
     try:
@@ -19,7 +22,8 @@ def helloworld():
 
         return jsonify(
             {
-              "info":'success'
+              "info":'success',
+              "iffff":'fail'
             }
         )
     except Exception as e:
