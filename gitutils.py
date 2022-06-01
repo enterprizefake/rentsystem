@@ -1,7 +1,7 @@
 import sys,os
 from datetime import datetime
 #config begin
-#分支名字 每个人不一样
+#分支名字 大家共用此分支
 branch_name="back_end"
 #git项目地址
 origin_address="git@github.com:enterprizefake/rentsystem.git"
@@ -19,7 +19,10 @@ def commit():
     os.system(f"git add ./")
     os.system(f"git commit -m {user_name}_{time_}")
     os.system(f"git branch -M {branch_name}")
-    os.system(f"git push -u  -f  origin {branch_name}")
+    os.system(f"git push -u  origin {branch_name}")
+    #git push -u -f origin {branch_name}
+def pull():
+    os.system(f"git pull origin {branch_name}")
 
 # 命令使用 : python gitutils.py [命令]
 
@@ -34,5 +37,7 @@ if __name__ =="__main__":
         initgit()
     elif type_=="push" :
         commit()
+    elif type_=="pull" :
+        pull()
     
     

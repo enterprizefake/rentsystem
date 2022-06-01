@@ -1,3 +1,3 @@
-./installpacks
+python gitutils.py pull
 
 pause
