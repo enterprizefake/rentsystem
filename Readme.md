@@ -18,3 +18,4 @@ pip install -r requirements.txt
 再创建 router/你的项目文件/config.yml 请参考 router.test.test config的yml设置自动导入blueprint  
 ### 更新日志
 - 2022529 更新自动导入blueprint 需要yml支持 所以请使用 installpacks.bat 对依赖进行更新
+- 测试 pull
