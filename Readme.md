@@ -10,9 +10,6 @@
 pip install -r requirements.txt  
 或者运行 installpacks.bat
 ## 配置git文件(如果你有更好的git方案可以忽视)
-首先删除./git文件夹
-
-
 详见gitutils.py文件  
 配置完成后   
 首先运行 rungitinit.bat  
