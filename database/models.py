@@ -1,10 +1,9 @@
 # coding: utf-8
-from sqlalchemy import Column, Float, ForeignKey, Integer, String, Text
-from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
+
 
 
 class Audit(db.Model):
@@ -16,6 +15,7 @@ class Audit(db.Model):
     audit_info = db.Column(db.Text)
 
     user = db.relationship('User', primaryjoin='Audit.phone == User.phone', backref='audits')
+
 
 
 class Booking(db.Model):
@@ -33,6 +33,7 @@ class Booking(db.Model):
     user = db.relationship('User', primaryjoin='Booking.phone == User.phone', backref='bookings')
 
 
+
 class Collection(db.Model):
     __tablename__ = 'collection'
 
@@ -44,6 +45,7 @@ class Collection(db.Model):
     user = db.relationship('User', primaryjoin='Collection.phone == User.phone', backref='collections')
 
 
+
 class HPicture(db.Model):
     __tablename__ = 'h_picture'
 
@@ -52,6 +54,7 @@ class HPicture(db.Model):
     picture_address = db.Column(db.String(800))
 
     h = db.relationship('House', primaryjoin='HPicture.h_id == House.h_id', backref='h_pictures')
+
 
 
 class House(db.Model):
@@ -73,6 +76,7 @@ class House(db.Model):
     user = db.relationship('User', primaryjoin='House.phone == User.phone', backref='houses')
 
 
+
 class Message(db.Model):
     __tablename__ = 'message'
 
@@ -84,6 +88,7 @@ class Message(db.Model):
     content = db.Column(db.Text)
 
     user = db.relationship('User', primaryjoin='Message.phone == User.phone', backref='messages')
+
 
 
 class Order(db.Model):
@@ -99,6 +104,7 @@ class Order(db.Model):
 
     h = db.relationship('House', primaryjoin='Order.h_id == House.h_id', backref='orders')
     user = db.relationship('User', primaryjoin='Order.phone == User.phone', backref='orders')
+
 
 
 class User(db.Model):
