@@ -1,7 +1,11 @@
 from flask import Blueprint
 from flask import jsonify
 from flask import request
+
 import traceback
+
+from ...database.models import *
+
 llr = Blueprint('llrblueprint', __name__)
 #appblueprint注意改名xx..x(自定义)blueprint 不然大家都用appblueprint会造成重复导入
 
@@ -12,6 +16,9 @@ from Starter import db
 
 @llr.route("/test",methods=["POST",'GET'])
 def helloworld():
+    db.session(Orders)
+    print(db)
+
     try:
         # json_= request.get_json()
             

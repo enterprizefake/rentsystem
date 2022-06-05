@@ -91,7 +91,7 @@ class Message(db.Model):
 
 
 
-class Order(db.Model):
+class Orders(db.Model):
     __tablename__ = 'orders'
 
     order_id = db.Column(db.Integer, primary_key=True)
@@ -110,7 +110,7 @@ class Order(db.Model):
 class User(db.Model):
     __tablename__ = 'user'
 
-    user_nickname = db.Column(db.String(50))
+    user_nickname = db.Column(db.Integer)
     user_name = db.Column(db.String(50))
     type = db.Column(db.String(50))
     phone = db.Column(db.Integer, primary_key=True)
