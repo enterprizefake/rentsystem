@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2022/6/5 18:28:18                            */
+/* Created on:     2022/6/5 18:45:04                            */
 /*==============================================================*/
 
 
@@ -18,7 +18,7 @@ drop table if exists message;
 
 drop table if exists orders;
 
-drop table if exists uesr;
+drop table if exists user;
 
 /*==============================================================*/
 /* Table: audit                                                 */
@@ -118,9 +118,9 @@ create table orders
 );
 
 /*==============================================================*/
-/* Table: uesr                                                  */
+/* Table: user                                                  */
 /*==============================================================*/
-create table uesr
+create table user
 (
    user_nickname        varchar(50),
    user_name            varchar(50),
@@ -133,16 +133,16 @@ create table uesr
 );
 
 alter table audit add constraint FK_10 foreign key (phone)
-      references uesr (phone) on delete restrict on update restrict;
+      references user (phone) on delete restrict on update restrict;
 
 alter table booking add constraint FK_4 foreign key (phone)
-      references uesr (phone) on delete restrict on update restrict;
+      references user (phone) on delete restrict on update restrict;
 
 alter table booking add constraint FK_7 foreign key (h_id)
       references house (h_id) on delete restrict on update restrict;
 
 alter table collection add constraint FK_2 foreign key (phone)
-      references uesr (phone) on delete restrict on update restrict;
+      references user (phone) on delete restrict on update restrict;
 
 alter table collection add constraint FK_5 foreign key (h_id)
       references house (h_id) on delete restrict on update restrict;
@@ -151,16 +151,16 @@ alter table h_picture add constraint FK_8 foreign key (h_id)
       references house (h_id) on delete restrict on update restrict;
 
 alter table house add constraint FK_1 foreign key (phone)
-      references uesr (phone) on delete restrict on update restrict;
+      references user (phone) on delete restrict on update restrict;
 
 alter table house add constraint FK_11 foreign key (audit_id)
       references audit (audit_id) on delete restrict on update restrict;
 
 alter table message add constraint FK_9 foreign key (phone)
-      references uesr (phone) on delete restrict on update restrict;
+      references user (phone) on delete restrict on update restrict;
 
 alter table orders add constraint FK_3 foreign key (phone)
-      references uesr (phone) on delete restrict on update restrict;
+      references user (phone) on delete restrict on update restrict;
 
 alter table orders add constraint FK_6 foreign key (h_id)
       references house (h_id) on delete restrict on update restrict;
