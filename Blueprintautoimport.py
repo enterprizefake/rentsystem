@@ -22,8 +22,6 @@ def getImportdict():
             print(str(filepath))
             import_lang= '.'.join(str(filepath).replace("./","").split('\\')[0:-1]);
             for key,value in dic_["blueprints"].items():
-                data_.append([ import_lang+"."+key,value])
-                
-            
+                data_.append([ import_lang+"."+key,value])        
     return data_
     pass

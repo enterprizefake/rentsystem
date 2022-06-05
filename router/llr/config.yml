@@ -1,0 +1,9 @@
+blueprints :
+# py文件名(同级目录) : blueprint名字
+  llr : llr
+
+#示例:
+# blueprints :
+#   test : testblueprint #换行  : 两边有空格
+#   test2 :  xxxblueprint #类似的
+ 
