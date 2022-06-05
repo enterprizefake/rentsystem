@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2022/6/5 19:25:42                            */
+/* Created on:     2022/6/5 21:39:46                            */
 /*==============================================================*/
 
 
@@ -26,7 +26,7 @@ drop table if exists user;
 create table audit
 (
    audit_id             int not null auto_increment,
-   phone                int,
+   phone                varchar(40),
    audit_state          varchar(50),
    audit_info           text,
    primary key (audit_id)
@@ -38,7 +38,7 @@ create table audit
 create table booking
 (
    booking_id           int not null auto_increment,
-   phone                int,
+   phone                varchar(40),
    h_id                 int,
    visit_time           varchar(250),
    visit_number         int,
@@ -53,7 +53,7 @@ create table booking
 create table collection
 (
    collection_id        int not null auto_increment,
-   phone                int,
+   phone                varchar(40),
    h_id                 int,
    primary key (collection_id)
 );
@@ -75,7 +75,7 @@ create table h_picture
 create table house
 (
    h_id                 int not null auto_increment,
-   phone                int,
+   phone                varchar(40),
    audit_id             int,
    h_name               varchar(300),
    h_state              varchar(20),
@@ -94,7 +94,7 @@ create table house
 create table message
 (
    message_id           int not null auto_increment,
-   phone                int,
+   phone                varchar(40),
    user_type            varchar(20),
    message_type         varchar(100),
    isread               int,
@@ -108,7 +108,7 @@ create table message
 create table orders
 (
    order_id             int not null auto_increment,
-   phone                int,
+   phone                varchar(40),
    h_id                 int,
    begin_date           varchar(500),
    end_date             varchar(500),
@@ -122,10 +122,10 @@ create table orders
 /*==============================================================*/
 create table user
 (
-   user_nickname        int,
+   user_nickname        varchar(50),
    user_name            varchar(50),
    type                 varchar(50),
-   phone                int not null,
+   phone                varchar(40) not null,
    avatar               varchar(200),
    u_longitude          float,
    u_latitude           float,
