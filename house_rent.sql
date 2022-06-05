@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2022/6/5 18:45:04                            */
+/* Created on:     2022/6/5 19:25:42                            */
 /*==============================================================*/
 
 
@@ -122,7 +122,7 @@ create table orders
 /*==============================================================*/
 create table user
 (
-   user_nickname        varchar(50),
+   user_nickname        int,
    user_name            varchar(50),
    type                 varchar(50),
    phone                int not null,
