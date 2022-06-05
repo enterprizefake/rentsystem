@@ -110,10 +110,10 @@ class Order(db.Model):
 class User(db.Model):
     __tablename__ = 'user'
 
-    user_nickname = db.Column(db.Integer)
+    user_nickname = db.Column(db.String(50))
     user_name = db.Column(db.String(50))
     type = db.Column(db.String(50))
-    phone = db.Column(db.Integer, primary_key=True)
+    phone = db.Column(db.String(40), primary_key=True)
     avatar = db.Column(db.String(200))
     u_longitude = db.Column(db.Float)
     u_latitude = db.Column(db.Float)
