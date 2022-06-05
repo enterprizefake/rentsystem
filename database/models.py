@@ -91,7 +91,7 @@ class Message(db.Model):
 
 
 
-class Orders(db.Model):
+class Order(db.Model):
     __tablename__ = 'orders'
 
     order_id = db.Column(db.Integer, primary_key=True)
