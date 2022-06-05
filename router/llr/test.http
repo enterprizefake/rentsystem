@@ -1,1 +1,9 @@
-POST "http://localhost:8086/test"
+POST http://127.0.0.1:8086/test
+
+### 发送form-urlencoded数据
+
+POST https://httpbin.org/post
+Content-Type: application/x-www-form-urlencoded
+//这里必须有一空行
+
+a=1&b=2

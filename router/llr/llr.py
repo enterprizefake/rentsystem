@@ -10,12 +10,12 @@ llr = Blueprint('llrblueprint', __name__)
 from Starter import db
 
 
-@llr.route("/api/helloworld",methods=["POST",'GET'])
+@llr.route("/test",methods=["POST",'GET'])
 def helloworld():
     try:
         # json_= request.get_json()
             
-
+        
         return jsonify(
             {
               "info":'success',
