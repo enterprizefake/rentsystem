@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2022/6/5 21:39:46                            */
+/* Created on:     2022/6/7 16:09:15                            */
 /*==============================================================*/
 
 
@@ -85,6 +85,7 @@ create table house
    h_latitude           float,
    max_renttime         int,
    max_relettime        int,
+   h_detail             text,
    primary key (h_id)
 );
 
