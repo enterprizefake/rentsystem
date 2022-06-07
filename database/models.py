@@ -71,6 +71,7 @@ class House(db.Model):
     h_latitude = db.Column(db.Float)
     max_renttime = db.Column(db.Integer)
     max_relettime = db.Column(db.Integer)
+    h_detail = db.Column(db.Text)
 
     audit = db.relationship('Audit', primaryjoin='House.audit_id == Audit.audit_id', backref='houses')
     user = db.relationship('User', primaryjoin='House.phone == User.phone', backref='houses')

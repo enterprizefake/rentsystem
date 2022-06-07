@@ -5,7 +5,136 @@ Content-Type: application/json
 	"phone": 18030931611,
 	"user_name": "wefd",
 	"avatar": "vswef",
-	"type": "小程序使用者",
 	"user_nickname": "ffff"
 }
+###
 
+POST http://127.0.0.1:8086/test
+Content-Type: application/json
+
+{
+	"type":"house"
+}
+
+###
+POST  http://127.0.0.1:8086/index
+Content-Type: application/json
+
+###
+POST  http://127.0.0.1:8086/index/detail
+Content-Type: application/json
+
+{
+	"h_id":2
+}
+
+
+###
+POST  http://127.0.0.1:8086/index/detail/pay
+Content-Type: application/json
+
+{
+  "begin_date": null,
+  "end_date": null,
+  "h_id": 3,
+  "phone": "18030931611",
+  "rent_time": 4
+}
+
+###
+POST  http://127.0.0.1:8086/index/detail/collection
+Content-Type: application/json
+
+{
+
+  "h_id": 2,
+  "phone": "18030931611"
+}
+
+###
+POST  http://127.0.0.1:8086/index/detail/cancelcollection
+Content-Type: application/json
+
+{
+  "h_id": 2,
+  "phone": "18030931611"
+}
+
+###
+POST  http://127.0.0.1:8086/index/detail/book
+Content-Type: application/json
+
+{
+  "booking_id": 1,
+  "h_id": 2,
+  "phone": "2",
+  "visit_number": 3,
+  "visit_time": null
+}
+
+###
+POST  http://127.0.0.1:8086/tenants/orders
+Content-Type: application/json
+
+{
+  "phone": "2"
+}
+
+###
+POST  http://127.0.0.1:8086/tenants/orders/relet
+Content-Type: application/json
+
+{
+  "order_id": 1,
+  "relet_time": 4
+}
+
+###
+POST  http://127.0.0.1:8086/tenants/collections
+Content-Type: application/json
+
+{
+  "phone": "2"
+}
+
+###
+POST  http://127.0.0.1:8086/landlord/orders
+Content-Type: application/json
+
+{
+  "phone": "1"
+}
+
+
+###
+
+POST  http://127.0.0.1:8086/landlord/rentnew
+Content-Type: application/json
+
+{
+  "address": "江南皮革厂",
+  "h_detail": null,
+  "h_latitude": null,
+  "h_longitude": null,
+  "h_name": "大别野vfsrwf",
+  "max_relettime": null,
+  "max_renttime": null,
+  "phone": "1",
+  "price": 999
+}
+
+###
+POST  http://127.0.0.1:8086/landlord/rentold
+Content-Type: application/json
+
+{
+  "address": "江南皮革厂",
+  "h_detail": null,
+  "h_latitude": null,
+  "h_longitude": null,
+  "h_name": "大别野vfsrwf",
+  "max_relettime": null,
+  "max_renttime": null,
+  "phone": "1",
+  "price": 999
+}

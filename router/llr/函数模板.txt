@@ -1,0 +1,14 @@
+@llr.route("/", methods=["POST", 'GET'])
+def x():
+    dic = {'sucess': 'yes'}
+    try:
+        data=request.get_json()
+        print(data)
+
+        db.session.commit()
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
