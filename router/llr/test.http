@@ -2,10 +2,10 @@ POST http://127.0.0.1:8086/login
 Content-Type: application/json
 
 {
-	"phone": 18030931611,
-	"user_name": "wefd",
-	"avatar": "vswef",
-	"user_nickname": "ffff"
+	"phone": 250,
+	"user_name": "hhh",
+	"avatar": "wrfvrvwr",
+	"user_nickname": "regrg"
 }
 ###
 
@@ -66,7 +66,7 @@ Content-Type: application/json
 
 {
   "booking_id": 1,
-  "h_id": 2,
+  "h_id": 3,
   "phone": "2",
   "visit_number": 3,
   "visit_time": null
@@ -86,7 +86,7 @@ Content-Type: application/json
 
 {
   "order_id": 1,
-  "relet_time": 4
+  "relet_time": 1
 }
 
 ###
@@ -151,7 +151,7 @@ POST  http://127.0.0.1:8086/landlord/deleteold
 Content-Type: application/json
 
 {
-  "h_id":5
+  "h_id":3
 }
 
 ###
@@ -159,7 +159,7 @@ POST  http://127.0.0.1:8086/landlord/book
 Content-Type: application/json
 
 {
-  "phone":1
+  "phone":2
 }
 
 ###

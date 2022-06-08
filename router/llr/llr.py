@@ -275,7 +275,7 @@ def tenants_orders_relet():
     dic = {'sucess': 'yes'}
     try:
         data = request.get_json()
-
+        print(data)
         order_id = data["order_id"]
 
         h_id = db.session.query(Order).filter(
@@ -287,7 +287,7 @@ def tenants_orders_relet():
         max_relettime = db.session.query(House).filter(
             House.h_id == h_id)[0].max_relettime
 
-        if(max_relettime is not None and add_time+has_time <= max_relettime):
+        if(max_relettime is None or add_time+has_time <= max_relettime):
             db.session.query(Order).filter(Order.order_id == order_id)[
                 0].relet_time += add_time
             db.session.commit()
@@ -428,7 +428,7 @@ def landlord_rentold():
         db.session.close()
         return dic
 
-# 出租旧房信息删除(仅能删除未出租)
+# 出租旧房信息删除(仅能删除未出租)(数据库级联删除)
 
 
 @llr.route("/landlord/deleteold", methods=["POST", 'GET'])
@@ -462,6 +462,7 @@ def landlord_book():
         data = request.get_json()
         print(data)
         num = data['phone']
+
         houses = db.session.query(House).filter(House.phone == num).all()
 
         dic['bookings'] = []
