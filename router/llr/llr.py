@@ -79,7 +79,7 @@ def g():
         db.session.close()
         return dic
 
-###首页
+# 首页
 # 首页房屋展示
 
 
@@ -146,9 +146,10 @@ def index_detail_pay():
         data = request.get_json()
         print(data)
 
-        max_renttime=db.session.query(House).filter(House.h_id==data['h_id'])[0].max_renttime
+        max_renttime = db.session.query(House).filter(
+            House.h_id == data['h_id'])[0].max_renttime
 
-        if(max_renttime is None or data['rent_time']<=max_renttime):
+        if(max_renttime is None or data['rent_time'] <= max_renttime):
             new_order = Order(
                 phone=data['phone'],
                 h_id=data['h_id'],
@@ -156,7 +157,7 @@ def index_detail_pay():
                 end_date=data['end_date'],
                 rent_time=data['rent_time'],
                 relet_time=0,
-                )
+            )
 
             db.session.add(new_order)
 
@@ -230,12 +231,12 @@ def index_detail_book():
         data = request.get_json()
         print(data)
 
-        new_booking=Booking(
-        h_id=data['h_id'],
-        phone=data['phone'],
-        visit_time=data['visit_time'],
-        visit_number=data['visit_number'],
-        booking_state="预约已提交"
+        new_booking = Booking(
+            h_id=data['h_id'],
+            phone=data['phone'],
+            visit_time=data['visit_time'],
+            visit_number=data['visit_number'],
+            booking_state="预约已提交"
         )
         db.session.add(new_booking)
         db.session.commit()
@@ -247,43 +248,48 @@ def index_detail_book():
         return dic
 
 
-###个人中心(租客)
-#查看所有租房订单
+# 个人中心(租客)
+# 查看所有租房订单
 @llr.route("/tenants/orders", methods=["POST", 'GET'])
 def tenants_orders():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
-        num=data['phone']
-        orders=to_list(db.session.query(Order).filter(Order.phone==num).all())
-        dic['orders']=orders
+        num = data['phone']
+        orders = to_list(db.session.query(
+            Order).filter(Order.phone == num).all())
+        dic['orders'] = orders
     except Exception as e:
         dic = {'sucess': 'no'}
 
     finally:
         db.session.close()
         return dic
-    
-#订单续租
+
+# 订单续租
+
+
 @llr.route("/tenants/orders/relet", methods=["POST", 'GET'])
 def tenants_orders_relet():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
 
-        order_id=data["order_id"]
+        order_id = data["order_id"]
 
+        h_id = db.session.query(Order).filter(
+            Order.order_id == order_id)[0].h_id
 
-        h_id=db.session.query(Order).filter(Order.order_id==order_id)[0].h_id
+        add_time = data['relet_time']
+        has_time = db.session.query(Order).filter(
+            Order.order_id == order_id)[0].relet_time
+        max_relettime = db.session.query(House).filter(
+            House.h_id == h_id)[0].max_relettime
 
-        add_time=data['relet_time']
-        has_time=db.session.query(Order).filter(Order.order_id==order_id)[0].relet_time
-        max_relettime=db.session.query(House).filter(House.h_id==h_id)[0].max_relettime
-        
-
-        if(max_relettime is not None and add_time+has_time<=max_relettime):
-            db.session.query(Order).filter(Order.order_id==order_id)[0].relet_time+=add_time
+        if(max_relettime is not None and add_time+has_time <= max_relettime):
+            db.session.query(Order).filter(Order.order_id == order_id)[
+                0].relet_time += add_time
             db.session.commit()
         else:
             dic = {'sucess': 'no'}
@@ -295,55 +301,81 @@ def tenants_orders_relet():
         return dic
 
 
-#查看所有收藏
+# 查看所有收藏
 @llr.route("/tenants/collections", methods=["POST", 'GET'])
 def tenants_collections():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
-        num=data['phone']
-        orders=to_list(db.session.query(Collection).filter(Collection.phone==num).all())
-        dic['collections']=orders
+        num = data['phone']
+        orders = to_list(db.session.query(Collection).filter(
+            Collection.phone == num).all())
+        dic['collections'] = orders
     except Exception as e:
         dic = {'sucess': 'no'}
     finally:
         db.session.close()
         return dic
 
-###个人中心(房东)
+# 个人中心(房东)
 
-#查看所有出租订单
+# 查看所有出租订单
+
+
 @llr.route("/landlord/orders", methods=["POST", 'GET'])
 def landlord_orders():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
-        num=data['phone']
+        num = data['phone']
 
-        houses=db.session.query(House).filter(House.phone==num).all()
-        orders=[]
+        houses = db.session.query(House).filter(House.phone == num).all()
+        orders = []
         for house in houses:
-            h_id=house.h_id
-            orders+=to_list(db.session.query(Order).filter(Order.h_id==h_id).all())
-        dic['orders']=orders
+            h_id = house.h_id
+            orders += to_list(db.session.query(Order).filter(Order.h_id == h_id).all())
+        dic['orders'] = orders
     except Exception as e:
         dic = {'sucess': 'no'}
 
     finally:
         db.session.close()
         return dic
-    
-#出租新房
+
+# 查看所有出租旧房
+
+
+@llr.route("/landlord/allold", methods=["POST", 'GET'])
+def landlord_allold():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+        print(data)
+        num = data['phone']
+
+        houses = to_list(db.session.query(
+            House).filter(House.phone == num).all())
+        dic['orders'] = houses
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+# 出租新房
+
+
 @llr.route("/landlord/rentnew", methods=["POST", 'GET'])
 def landlord_rentnew():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
-        
-        new_house=House(
+
+        new_house = House(
             address=data['address'],
             h_detail=data['h_detail'],
             h_latitude=data['h_latitude'],
@@ -366,18 +398,264 @@ def landlord_rentnew():
         return dic
 
 
-#出租旧房信息修改
+# 出租旧房信息修改(仅能修改未出租)
 @llr.route("/landlord/rentold", methods=["POST", 'GET'])
 def landlord_rentold():
     dic = {'sucess': 'yes'}
     try:
+        data = request.get_json()
+        print(data)
+
+        house = db.session.query(House).filter(House.h_id == data['h_id'])[0]
+        if(house.h_state == '未出租'):
+            house.address = data['address']
+            house.h_detail = data['h_detail']
+            house.h_latitude = data['h_latitude']
+            house.h_longitude = data['h_longitude']
+            house.h_name = data['h_name']
+            house.max_relettime = data['max_relettime']
+            house.max_renttime = data['max_renttime']
+            house.price = data['price']
+
+            db.session.commit()
+        else:
+            dic = {'sucess': 'no'}
+
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+# 出租旧房信息删除(仅能删除未出租)
+
+
+@llr.route("/landlord/deleteold", methods=["POST", 'GET'])
+def landlord_deleteold():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+        print(data)
+
+        house = db.session.query(House).filter(House.h_id == data['h_id'])[0]
+        if(house.h_state == '未出租'):
+            db.session.delete(house)
+            db.session.commit()
+        else:
+            dic = {'sucess': 'no'}
+
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+# 预约看房管理
+
+
+@llr.route("/landlord/book", methods=["POST", 'GET'])
+def landlord_book():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+        print(data)
+        num = data['phone']
+        houses = db.session.query(House).filter(House.phone == num).all()
+
+        dic['bookings'] = []
+        for house in houses:
+            house_bookings = to_list(db.session.query(
+                Booking).filter(Booking.h_id == house.h_id).all())
+            dic['bookings'] += house_bookings
+
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+# 管理员
+# 我审核的
+
+
+@llr.route("/root/audited", methods=["POST", 'GET'])
+def root_audited():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+        print(data)
+        num=data['phone']
+        audited=to_list(db.session.query(Audit).filter(Audit.phone==num).all())
+        dic['audited']=audited
+
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+
+#下架已通过的审核
+
+
+@llr.route("/root/delaudited", methods=["POST", 'GET'])
+def root_delaudited():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+        print(data)
+
+        audit_id=data['audit_id']
+
+        h_state=db.session.query(House).filter(House.audit_id==audit_id)[0].h_state
+
+        if(h_state=='未出租'):
+            audited=db.session.query(Audit).filter(Audit.audit_id==audit_id)[0]
+            audited.audit_info=data['audit_info']
+            audited.audit_state=data['audit_state']
+            db.session.commit()
+        else:
+            dic = {'sucess': 'no'}
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+#所有未审核房源
+
+
+@llr.route("/root/audits", methods=["POST", 'GET'])
+def root_audits():
+    dic = {'sucess': 'yes'}
+    try:
+
+        dic['audits']=[]
+
+        houses=db.session.query(House).all()
+        print(56)
+        for house in houses:
+            if(house.audit_id is None):
+                dic['audits'].append(to_dict(house))       
+            else:
+                audit=db.session.query(Audit).filter(Audit.audit_id==house.audit_id)[0]
+
+                if(audit.audit_state=='未审核'):
+                    dic['audits'].append(to_dict(house))
+        
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+#提交审核
+
+
+@llr.route("/root/audit", methods=["POST", 'GET'])
+def root_audit():
+    dic = {'sucess': 'yes'}
+    try:
+
+        data=request.get_json()
+        h_id=data['h_id']
+        house=db.session.query(House).filter(House.h_id==h_id)[0]
+
+        if(house.audit_id is None):
+            new_audit=Audit(
+            audit_info=data['audit_info'],
+            audit_state=data["audit_state"]
+            )
+            db.session.add(new_audit)
+            
+            db.session.flush()
+
+            house.audit_id=new_audit.audit_id
+
+            db.session.commit()
+        else:
+            audit_id=house.audit_id
+            audit=db.session.query(Audit).filter(Audit.audit_id==audit_id)[0]
+            audit.phone=data['phone']
+            audit.audit_state=data['audit_state']
+            audit.audit_info=data['audit_info']
+            db.session.commit()
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+#获取所有消息通知
+
+
+@llr.route("/messages", methods=["POST", 'GET'])
+def messages():
+    dic = {'sucess': 'yes'}
+    try:
         data=request.get_json()
         print(data)
-        
-        num=data['phone']
-        houses=db.session.query(House).filter(House.phone==num).all()
-        
+        phone=data['phone']
+        user_type=data['user_type']
 
+        messages=db.session.query(Message).filter(Message.user_type==user_type).filter(Message.phone==phone).all()
+        dic['messages']=to_list(messages)
+
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+#已读某个消息
+
+
+@llr.route("/messages/read", methods=["POST", 'GET'])
+def messages_read():
+    dic = {'sucess': 'yes'}
+    try:
+        data=request.get_json()
+        print(data)
+        message_id=data['message_id']
+        message=db.session.query(Message).filter(Message.message_id==message_id)[0]
+        message.isread=1
+
+        db.session.commit()
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+#发送消息
+
+
+@llr.route("/messages/send", methods=["POST", 'GET'])
+def messages_send():
+    dic = {'sucess': 'yes'}
+    try:
+        data=request.get_json()
+        print(data)
+
+        new_message=Message(
+            isread=0,
+            content=data['content'],
+            message_type=data['message_type'],
+            phone=data['phone'],
+            user_type=data['user_type']
+        )
+
+        db.session.add(new_message)
+        db.session.commit()
     except Exception as e:
         dic = {'sucess': 'no'}
 
