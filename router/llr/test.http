@@ -218,8 +218,8 @@ POST  http://127.0.0.1:8086/messages/send
 Content-Type: application/json
 
 {
-  "content": null,
-  "message_type": null,
-  "phone": null,
-  "user_type": null
+  "content": "您以支付成功",
+  "message_type": "支付成功通知",
+  "phone": "1",
+  "user_type": ""
 }
