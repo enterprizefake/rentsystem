@@ -14,6 +14,7 @@ pip install -r requirements.txt
 配置完成后   
 首先运行 rungitinit.bat  
 成功每次上传时就可以运行 rungitpush.bat  
+**缺失依赖的话可能会导致 import某些包报错**  
 ## 数据库生成
 运行codegen.bat完成数据库schema models的更新
 ## 添加自己的文件夹和文件项目

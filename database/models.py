@@ -1,10 +1,9 @@
 # coding: utf-8
-from sqlalchemy import Column, Float, ForeignKey, Integer, String, Text
-from sqlalchemy.orm import relationship
 from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
+
 
 
 class Audit(db.Model):
@@ -16,6 +15,7 @@ class Audit(db.Model):
     audit_info = db.Column(db.Text)
 
     user = db.relationship('User', primaryjoin='Audit.phone == User.phone', backref='audits')
+
 
 
 class Booking(db.Model):
@@ -33,6 +33,7 @@ class Booking(db.Model):
     user = db.relationship('User', primaryjoin='Booking.phone == User.phone', backref='bookings')
 
 
+
 class Collection(db.Model):
     __tablename__ = 'collection'
 
@@ -44,6 +45,7 @@ class Collection(db.Model):
     user = db.relationship('User', primaryjoin='Collection.phone == User.phone', backref='collections')
 
 
+
 class HPicture(db.Model):
     __tablename__ = 'h_picture'
 
@@ -52,6 +54,7 @@ class HPicture(db.Model):
     picture_address = db.Column(db.String(800))
 
     h = db.relationship('House', primaryjoin='HPicture.h_id == House.h_id', backref='h_pictures')
+
 
 
 class House(db.Model):
@@ -68,9 +71,11 @@ class House(db.Model):
     h_latitude = db.Column(db.Float)
     max_renttime = db.Column(db.Integer)
     max_relettime = db.Column(db.Integer)
+    h_detail = db.Column(db.Text)
 
     audit = db.relationship('Audit', primaryjoin='House.audit_id == Audit.audit_id', backref='houses')
     user = db.relationship('User', primaryjoin='House.phone == User.phone', backref='houses')
+
 
 
 class Message(db.Model):
@@ -84,6 +89,7 @@ class Message(db.Model):
     content = db.Column(db.Text)
 
     user = db.relationship('User', primaryjoin='Message.phone == User.phone', backref='messages')
+
 
 
 class Order(db.Model):
@@ -101,13 +107,14 @@ class Order(db.Model):
     user = db.relationship('User', primaryjoin='Order.phone == User.phone', backref='orders')
 
 
+
 class User(db.Model):
     __tablename__ = 'user'
 
     user_nickname = db.Column(db.String(50))
     user_name = db.Column(db.String(50))
     type = db.Column(db.String(50))
-    phone = db.Column(db.Integer, primary_key=True)
+    phone = db.Column(db.String(40), primary_key=True)
     avatar = db.Column(db.String(200))
     u_longitude = db.Column(db.Float)
     u_latitude = db.Column(db.Float)
