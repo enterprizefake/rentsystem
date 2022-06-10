@@ -1,1 +1,1 @@
-python3 Starter.py
+nohup python3 Starter.py > log &
