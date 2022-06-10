@@ -10,7 +10,7 @@ helloworldprint = Blueprint('_blueprint', __name__)
 
 # 这句话必须在blueprint最后
 from Starter import db
-
+from database.models import *
 
 
 
