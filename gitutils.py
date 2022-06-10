@@ -6,7 +6,7 @@ branch_name="back_end"
 #git项目地址
 origin_address="git@github.com:enterprizefake/rentsystem.git"
 #上传者名字 任意
-user_name="liuzhiyuan"
+user_name="fanyujie"
 #config end
 
 def initgit():
