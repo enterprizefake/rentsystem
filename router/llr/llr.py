@@ -420,9 +420,9 @@ def landlord_rentold():
     dic = {'sucess': 'yes'}
     try:
         data = request.get_json()
-        print(data)
-
-        house = db.session.query(House).filter(House.h_id == data['h_id'])[0]
+        # print(data)
+        h_id=data['h_id']
+        house = db.session.query(House).filter(House.h_id == h_id)[0]
         if(house.h_state == '未出租'):
             house.address = data['address']
             house.h_detail = data['h_detail']
@@ -432,6 +432,19 @@ def landlord_rentold():
             house.max_relettime = data['max_relettime']
             house.max_renttime = data['max_renttime']
             house.price = data['price']
+
+            
+            dels=db.session.query(HPicture).filter(HPicture.h_id==h_id).all()
+            db.session.delete(dels)
+
+            pictures=data['pictures']
+            for picture in pictures:
+                new_picture=HPicture(
+                    h_id=h_id,
+                    picture=picture
+                )
+            db.session.add(new_picture)
+
 
             db.session.commit()
         else:
