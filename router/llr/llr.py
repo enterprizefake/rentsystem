@@ -1,3 +1,5 @@
+import base64
+
 from router.llr.dict import *
 from database.models import *
 from Starter import db
@@ -6,6 +8,8 @@ from flask import jsonify
 from flask import request
 
 import traceback
+import os
+import shutil
 
 llr = Blueprint('llrblueprint', __name__)
 # appblueprint注意改名xx..x(自定义)blueprint 不然大家都用appblueprint会造成重复导入
@@ -373,7 +377,7 @@ def landlord_rentnew():
     dic = {'sucess': 'yes'}
     try:
         data = request.get_json()
-        print(data)
+        # print(data)
 
         new_house = House(
             address=data['address'],
@@ -389,8 +393,20 @@ def landlord_rentnew():
         )
 
         db.session.add(new_house)
+        db.session.flush()
+        
+        h_id=new_house.h_id
+        print(h_id)
+        pictures=data['pictures']
+        for picture in pictures:
+            new_picture=HPicture(
+                h_id=h_id,
+                picture=picture
+            )
+            db.session.add(new_picture)
         db.session.commit()
     except Exception as e:
+        traceback.print_exc()
         dic = {'sucess': 'no'}
 
     finally:
@@ -661,5 +677,39 @@ def messages_send():
         dic = {'sucess': 'no'}
 
     finally:
+        db.session.close()
+        return dic
+
+# 图片上传测试
+
+#模拟修改
+@llr.route("/test/picture", methods=["POST", 'GET'])
+def test_picture():
+    dic = {'sucess': 'yes'}
+    try:
+        data=request.get_json()
+        h_id=data['h_id']
+        team_images=data['images']
+        # h_id=request.form.get("h_id")
+        # team_images =request.form.get("images") #队base64进行解码还原。
+
+        
+        shutil.rmtree('image/{}'.format(h_id))    #递归删除文件夹
+
+        os.makedirs('image/{}'.format(h_id), exist_ok=True)
+
+        print(489648)
+        for i in range(len(team_images)):
+            with open("image/{}/{}.jpg".format(h_id,i),"wb") as f:#存入图片，存入地址为服务器中的项目地址。
+                f.write( base64.b64decode(team_images[i]) )
+            test=Test(picture=team_images[i])
+            db.session.add(test)
+            db.session.commit()
+    except Exception as e:
+        traceback.print_exc()
+        # 返回错误信息
+        dic = {'sucess': 'no'}
+    finally:
+        # 关闭本次链接 释放
         db.session.close()
         return dic
