@@ -39,7 +39,7 @@ class Collection(db.Model):
 
     collection_id = db.Column(db.Integer, primary_key=True)
     phone = db.Column(db.ForeignKey('user.phone'), index=True)
-    h_id = db.Column(db.ForeignKey('house.h_id'), index=True)
+    h_id = db.Column(db.ForeignKey('house.h_id', ondelete='CASCADE'), index=True)
 
     h = db.relationship('House', primaryjoin='Collection.h_id == House.h_id', backref='collections')
     user = db.relationship('User', primaryjoin='Collection.phone == User.phone', backref='collections')
@@ -51,7 +51,7 @@ class HPicture(db.Model):
 
     picture_id = db.Column(db.Integer, primary_key=True)
     h_id = db.Column(db.ForeignKey('house.h_id'), index=True)
-    picture_address = db.Column(db.String(800))
+    picture = db.Column(db.String)
 
     h = db.relationship('House', primaryjoin='HPicture.h_id == House.h_id', backref='h_pictures')
 
