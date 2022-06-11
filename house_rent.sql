@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2022/6/7 16:09:15                            */
+/* Created on:     2022/6/11 13:08:12                           */
 /*==============================================================*/
 
 
@@ -65,7 +65,7 @@ create table h_picture
 (
    picture_id           int not null auto_increment,
    h_id                 int,
-   picture_address      varchar(800),
+   picture              text,
    primary key (picture_id)
 );
 
