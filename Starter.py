@@ -4,7 +4,7 @@ from flask_cors import *
 import traceback
 import logging
 from ServerConfig import databaseconfig
-
+from sys import platform
 
 
 app =Flask(__name__)
@@ -13,7 +13,11 @@ CORS(app,supports_credentials=True,max_age=36000,resources={r"*": {"origins": "*
 
 
 #配置sql地址
-SQLALCHEMY_DATABASE_URI = f'''mysql://{databaseconfig["user_password"]}@{databaseconfig["ip_port"]}/{databaseconfig["databasename"]}'''
+
+if platform=="linux":
+    SQLALCHEMY_DATABASE_URI = f'''mysql+pymysql://{databaseconfig["user_password"]}@{databaseconfig["ip_port"]}/{databaseconfig["databasename"]}'''
+else:
+    SQLALCHEMY_DATABASE_URI = f'''mysql://{databaseconfig["user_password"]}@{databaseconfig["ip_port"]}/{databaseconfig["databasename"]}'''
 # SQLALCHEMY_DATABASE_URI = '''mysql://enteam:123456@1.15.184.52:3306/flasktest'''
 # MONGODB_URI="mongodb://superuser:superadmin@1.15.184.52:27017/test?authSource=admin"
 
@@ -102,7 +106,11 @@ socketio = SocketIO(app,ping_interval=25,cors_allowed_origins="*")
 
 if __name__=="__main__":
     try:
-        socketio.run(app,debug=True,port=8086,use_reloader=True);
+        
+        if platform=="linux":
+            socketio.run(app,debug=True,port=8086,use_reloader=True,host="0.0.0.0")
+        else:
+            socketio.run(app,debug=True,port=8086,use_reloader=True);
         # app.run(debug=True,port=8086,use_reloader=True)
     except Exception :
         traceback.print_exc()
