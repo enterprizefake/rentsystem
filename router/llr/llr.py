@@ -92,6 +92,7 @@ def index():
     dic = {'sucess': 'yes'}
     try:
         all_houses = db.session.query(House).all()
+        print(all_houses)
         all_pictures = db.session.query(HPicture).all()
         houses = to_list(all_houses)
         pictures = to_list(all_pictures)
@@ -99,7 +100,7 @@ def index():
             i['index_picture'] = None
             for j in pictures:
                 if(i['h_id'] == j['h_id']):
-                    i['index_picture'] = j['picture_address']
+                    i['index_picture'] = j['picture']
                     break
 
         dic['house'] = houses
