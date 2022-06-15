@@ -18,20 +18,20 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "./image/首页0.png",
-        "selectedIconPath": "./image/首页1.png",
+        "iconPath": "./pages/image/导航栏/首页0.png",
+        "selectedIconPath": "./pages/image/导航栏/首页1.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/me/index",
-        "iconPath": "./image/个人中心0.png",
-        "selectedIconPath": "./image/个人中心1.png",
+        "iconPath": "./pages/image/导航栏/个人中心0.png",
+        "selectedIconPath": "./pages/image/导航栏/个人中心1.png",
         "text": "个人中心"
       },
       {
         "pagePath": "pages/more/index",
-        "iconPath": "./image/更多0.png",
-        "selectedIconPath": "./image/更多1.png",
+        "iconPath": "./pages/image/导航栏/更多0.png",
+        "selectedIconPath": "./pages/image/导航栏/更多1.png",
         "text": "更多"
       }
     ]
