@@ -1,0 +1,7 @@
+<van-cell-group inset>
+<van-cell icon="cluster" title="版本号" value="1.0.0"></van-cell>
+
+<van-cell icon="info-o" title="小程序名称" value="房屋租赁系统">
+</van-cell>
+
+</van-cell-group>

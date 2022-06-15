@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/me/index",
     "pages/more/index",
-    "pages/index/detail/index"
+    "pages/index/detail/index",
+    "pages/more/team/index",
+    "pages/more/about/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
