@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/me/index",
+    "pages/more/index",
+    "pages/index/detail/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#008000",
+    "navigationBarTitleText": "房屋招租",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#008000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "./image/首页0.png",
+        "selectedIconPath": "./image/首页1.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "iconPath": "./image/个人中心0.png",
+        "selectedIconPath": "./image/个人中心1.png",
+        "text": "个人中心"
+      },
+      {
+        "pagePath": "pages/more/index",
+        "iconPath": "./image/更多0.png",
+        "selectedIconPath": "./image/更多1.png",
+        "text": "更多"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

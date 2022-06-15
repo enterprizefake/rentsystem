@@ -1,0 +1,5 @@
+<!--pages/index/detail/index.wxml-->
+<text>{{house_id}}</text>
+<swiper>
+<swiper></swiper>
+</swiper>
