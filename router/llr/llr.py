@@ -119,10 +119,7 @@ def index_detail():
             House).filter(House.h_id == data)[0].phone
         print(data)
 
-        allpictures = db.session.query(HPicture)\
-            .filter(HPicture.h_id == data).all()
 
-        dic['pictures'] = to_list(allpictures)
         dic['landlord'] = to_dict(db.session.query(
             User).filter(User.phone == landlord_phone)[0])
 
