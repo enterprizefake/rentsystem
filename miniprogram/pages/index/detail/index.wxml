@@ -10,4 +10,9 @@
 
 <text>房源名称:{{house.h_name}}\n</text>
 <text>联系电话:{{house.phone}}\n</text>
-<text>{{house.h_address}}\n</text>
+<text>地址:{{house.address}}\n</text>
+<text>价格:{{house.price}}\n</text>
+
+<button type="default">收藏</button>
+<button type="primary">预约</button>
+<button type="warn">租赁</button>
