@@ -1,4 +1,9 @@
 /* pages/index/detail/index.wxss */
+.big
+{
+  height: 300px;
+}
+
 .all
 {
 padding: 10px;

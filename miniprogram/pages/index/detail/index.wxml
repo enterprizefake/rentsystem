@@ -1,12 +1,13 @@
 <!--pages/index/detail/index.wxml-->
-<text>{{house.h_name}}</text>
 <!-- 轮播图 -->
-<swiper indicator-dots autoplay circular>
+<swiper indicator-dots autoplay circular class="big">
 <block class="item">
 <swiper-item wx:for="{{house.picture_number}}" wx:key="index" wx:for-item="item">
 <image src="http://127.0.0.1:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
 </swiper-item>
-
 </block>
 </swiper>
 
+<text>房源名称:{{house.h_name}}\n</text>
+<text>联系电话:{{house.phone}}\n</text>
+<text>{{house.h_address}}\n</text>
