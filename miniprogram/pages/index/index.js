@@ -11,9 +11,11 @@ Page({
     list:null
   },
   to_detail(index){
-    console.log(index.currentTarget.dataset.name)
+    var house=index.currentTarget.dataset.name
+  
+    var house=JSON.stringify(index.currentTarget.dataset.name)
     wx.navigateTo({
-      url:"/pages/index/detail/index?house_id="+index.currentTarget.dataset.name
+      url:"/pages/index/detail/index?house="+house
     })
   },
 
@@ -44,7 +46,8 @@ Page({
       }
     )
     wx.request({
-      url: 'http://1.15.184.52:8086/index',
+      // url: 'http://1.15.184.52:8086/index',
+      url: 'http://127.0.0.1:8086/index',
       data: {
 
       },

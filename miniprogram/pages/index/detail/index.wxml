@@ -1,5 +1,12 @@
 <!--pages/index/detail/index.wxml-->
-<text>{{house_id}}</text>
-<swiper>
-<swiper></swiper>
+<text>{{house.h_name}}</text>
+<!-- 轮播图 -->
+<swiper indicator-dots autoplay circular>
+<block class="item">
+<swiper-item wx:for="{{house.picture_number}}" wx:key="index" wx:for-item="item">
+<image src="http://127.0.0.1:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
+</swiper-item>
+
+</block>
 </swiper>
+
