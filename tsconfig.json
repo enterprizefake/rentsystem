@@ -25,6 +25,6 @@
     "./**/*.ts"
 , "miniprogram/pages/index/index.js"  ],
   "exclude": [
-    "node_modules"
+    "miniprogram/node_modules"
   ]
 }

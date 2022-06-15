@@ -8,6 +8,8 @@
   "compileType": "miniprogram",
   "projectname": "ts-demo",
   "setting": {
+    "packNpmManually": false,
+    "packNpmRelationList": [],
     "useCompilerPlugins": [
       "typescript"
     ],
@@ -24,8 +26,6 @@
     "enhance": true,
     "useMultiFrameRuntime": true,
     "showShadowRootInWxmlPanel": true,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
     "minifyWXSS": true,
     "useStaticServer": true,
     "showES6CompileOption": false,
