@@ -46,17 +46,6 @@ class Collection(db.Model):
 
 
 
-class HPicture(db.Model):
-    __tablename__ = 'h_picture'
-
-    picture_id = db.Column(db.Integer, primary_key=True)
-    h_id = db.Column(db.ForeignKey('house.h_id'), index=True)
-    picture = db.Column(db.String)
-
-    h = db.relationship('House', primaryjoin='HPicture.h_id == House.h_id', backref='h_pictures')
-
-
-
 class House(db.Model):
     __tablename__ = 'house'
 
@@ -72,6 +61,7 @@ class House(db.Model):
     max_renttime = db.Column(db.Integer)
     max_relettime = db.Column(db.Integer)
     h_detail = db.Column(db.Text)
+    picture_number = db.Column(db.Integer, server_default=db.FetchedValue())
 
     audit = db.relationship('Audit', primaryjoin='House.audit_id == Audit.audit_id', backref='houses')
     user = db.relationship('User', primaryjoin='House.phone == User.phone', backref='houses')

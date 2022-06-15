@@ -111,6 +111,8 @@ if __name__=="__main__":
             socketio.run(app,debug=True,port=8086,use_reloader=True,host="0.0.0.0")
         else:
             socketio.run(app,debug=True,port=8086,use_reloader=True);
+        
+
         # app.run(debug=True,port=8086,use_reloader=True)
     except Exception :
         traceback.print_exc()

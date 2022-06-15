@@ -224,3 +224,14 @@ Content-Type: application/json
   "phone": "1",
   "user_type": ""
 }
+
+###
+POST  http://127.0.0.1:8086/test/picture
+Content-Type: application/json
+
+{
+  "h_id":1,
+  "pictures":[
+    
+  ]
+}
