@@ -1,6 +1,11 @@
 <!--pages/me/index.wxml-->
-<view class="{{user_type}}">
+<view wx:if="{{!user}}">
+  <van-empty description="请先登录" />
+  <button bindtap="login">登录</button>
+</view>
 
-<button bindtap="change"></button>
+<view wx:else class="{{user_type}}">
+
+<button bindtap="change">切换</button>
 
 </view>
