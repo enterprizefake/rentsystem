@@ -39,14 +39,14 @@ db=SQLAlchemy(app)
 
 
 
-# 自动导入blueprint 
+# 自动导入blueprint
 from Blueprintautoimport import getImportdict
 import_lists= getImportdict()
 for _combine in import_lists:
     print("execute importing .... on",_combine)
     exec(f"from {_combine[0]} import {_combine[1]}")
     exec(f"app.register_blueprint({_combine[1]})")
-    pass 
+    pass
 
 
 
@@ -110,7 +110,7 @@ if __name__=="__main__":
         if platform=="linux":
             socketio.run(app,debug=True,port=8086,use_reloader=True,host="0.0.0.0")
         else:
-            socketio.run(app,debug=True,port=8086,use_reloader=True);
+            socketio.run(app,debug=True,port=8086,use_reloader=True)
         
 
         # app.run(debug=True,port=8086,use_reloader=True)
