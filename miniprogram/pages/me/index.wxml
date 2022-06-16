@@ -6,6 +6,12 @@
 
 <view wx:else class="{{user_type}}">
 
-<button bindtap="change">切换</button>
+  <van-button round class="{{user_type}}" bind:click="change"
+  size="mini" >圆形按钮</van-button>
+
+<van-cell title="个人资料" is-link></van-cell>
+<van-cell title="我的订单" is-link></van-cell>
+<van-cell title="我的收藏" is-link></van-cell>
+
 
 </view>
