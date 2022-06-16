@@ -1,1 +1,16 @@
-/* pages/me/index.wxss */
+
+.tenant
+{
+  background-color: aqua;
+  height: 100vh ;
+}
+.landlord
+{
+  background-color:chartreuse;
+  height: 100vh ;
+}
+
+.custom-class
+{
+  height: 105px;
+}

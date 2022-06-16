@@ -1,2 +1,6 @@
 <!--pages/me/index.wxml-->
-<text>pages/me/index.wxml</text>
+<view class="{{user_type}}">
+
+<button bindtap="change"></button>
+
+</view>

@@ -5,9 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    user_type:"tenant"
   },
-
+  change() {
+    if(this.data.user_type=="tenant")
+    {
+      this.setData({
+        user_type:"landlord"
+      })
+    }
+    else{
+      this.setData({
+        user_type:"tenant"
+      })
+    }
+},
   /**
    * 生命周期函数--监听页面加载
    */
