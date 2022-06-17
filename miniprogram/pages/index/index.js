@@ -51,6 +51,7 @@ Page({
       data: {
 
       },
+      
       success: (res) => {
         var datas = res.data
        // console.log(datas)

@@ -1,18 +1,20 @@
 <!--pages/index/detail/index.wxml-->
 <!-- 轮播图 -->
+
 <swiper indicator-dots autoplay circular class="big">
 <block class="item">
 <swiper-item wx:for="{{house.picture_number}}" wx:key="index" wx:for-item="item">
 <image src="http://127.0.0.1:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
 </swiper-item>
 </block>
-</swiper>
+</swiper><view class="card1"><text>{{house.h_name}}<text>{{house.address}}</text></text>
+</view>
 
-<text>房源名称:{{house.h_name}}\n</text>
 <text>联系电话:{{house.phone}}\n</text>
-<text>地址:{{house.address}}\n</text>
-<text>价格:{{house.price}}\n</text>
 
-<button type="default">收藏</button>
-<button type="primary">预约</button>
-<button type="warn">租赁</button>
+<text>价格:{{house.price}}\n</text>
+<view class="buttonclass">
+<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump1">收藏</button>
+<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump2">预约</button>
+<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump3">租赁</button>
+</view>

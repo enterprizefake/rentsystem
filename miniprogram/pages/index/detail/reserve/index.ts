@@ -1,38 +1,20 @@
-// pages/index/detail/index.ts
+// pages/index/detail/reserve/index.ts
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    house: null
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) { 
-    var house=JSON.parse(option.house)
-    console.log(house)
-    // console.log(option)
-    this.setData({
-      house: house
-    })
-    // wx.request({
+  onLoad() {
 
-    // })
-    //   console.log(option.house_id)
   },
-jump2(){
-  wx.navigateTo({
-    url:"/pages/index/detail/reserve/index"
-  })
-},
-jump3(){
-  wx.navigateTo({
-    url:"/pages/index/detail/rent/index"
-  })
-},
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

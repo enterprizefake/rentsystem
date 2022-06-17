@@ -1,0 +1,6 @@
+<!--pages/index/detail/reserve/index.wxml-->
+<van-cell-group>
+  <van-cell title="预约id" value="内容" />
+  <van-cell title="房子id" value="内容" label="描述信息" border="{{ false }}" />
+</van-cell-group>
+
