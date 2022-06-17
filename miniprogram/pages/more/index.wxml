@@ -1,5 +1,17 @@
 <!--pages/more/index.wxml-->
-<van-cell title="单元格" is-link />
-<van-cell title="单元格" is-link value="内容" />
-<van-cell title="单元格" is-link value="内容" arrow-direction="down" />
+<image src="../image/更多/1.jpg" mode="scaleToFill"></image>
+<van-cell
+  icon="friends-o"
+  is-link
+  title="开发团队"
+  link-type="navigateTo"
+  url="team/index"
+/>
 
+<van-cell
+  icon="weapp-nav"
+  is-link
+  title="关于"
+  link-type="navigateTo"
+  url="about/index"
+/>

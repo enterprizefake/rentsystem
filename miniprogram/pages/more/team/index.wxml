@@ -1,0 +1,43 @@
+<van-cell-group inset>
+  <van-cell title="刘彻" label="QQ:2693016187" icon="manager">
+
+<view>
+  <van-tag type="success">公司老板</van-tag>
+</view>
+
+</van-cell>
+
+
+  <van-cell title="樊宇杰" label="QQ:1789239032" icon="manager">
+
+    <view>
+      <van-tag type="primary">部门主管</van-tag>
+    </view>
+
+  </van-cell>
+
+  <van-cell title="李梁瑞" label="QQ:1229563042" icon="manager">
+
+<view>
+  <van-tag type="primary">项目总监</van-tag>
+</view>
+
+</van-cell>
+
+<van-cell title="刘志远" label="QQ:1016798809" icon="manager">
+
+<view>
+  <van-tag type="primary">技术总监</van-tag>
+</view>
+
+</van-cell>
+
+<van-cell title="李劲霖" label="QQ:1484862618" icon="manager">
+
+<view>
+  <van-tag type="primary">项目经理</van-tag>
+</view>
+
+</van-cell>
+
+</van-cell-group>

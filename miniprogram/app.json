@@ -4,8 +4,13 @@
     "pages/me/index",
     "pages/more/index",
     "pages/index/detail/index",
+<<<<<<< HEAD
     "pages/index/detail/reserve/index",
     "pages/index/detail/rent/index"
+=======
+    "pages/more/team/index",
+    "pages/more/about/index"
+>>>>>>> 187e3c0f5d2ec3d2fc027f0522d97f59392f1349
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,20 +25,20 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "./image/首页0.png",
-        "selectedIconPath": "./image/首页1.png",
+        "iconPath": "./pages/image/导航栏/首页0.png",
+        "selectedIconPath": "./pages/image/导航栏/首页1.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/me/index",
-        "iconPath": "./image/个人中心0.png",
-        "selectedIconPath": "./image/个人中心1.png",
+        "iconPath": "./pages/image/导航栏/个人中心0.png",
+        "selectedIconPath": "./pages/image/导航栏/个人中心1.png",
         "text": "个人中心"
       },
       {
         "pagePath": "pages/more/index",
-        "iconPath": "./image/更多0.png",
-        "selectedIconPath": "./image/更多1.png",
+        "iconPath": "./pages/image/导航栏/更多0.png",
+        "selectedIconPath": "./pages/image/导航栏/更多1.png",
         "text": "更多"
       }
     ]

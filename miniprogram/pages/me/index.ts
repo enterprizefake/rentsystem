@@ -1,18 +1,50 @@
 // pages/me/index.ts
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-
+    user_type:"tenant",
+    user:null,
+    root:false
   },
-
+  login()
+  {
+      wx.getUserProfile({
+        desc: '用于登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+          this.setData({
+            user: res.userInfo
+          })
+          wx.setStorageSync("user",res.userInfo)
+        }
+      })
+  },
+  change() {
+    if(this.data.user_type=="tenant")
+    {
+      this.setData({
+        user_type:"landlord"
+      })
+    }
+    else{
+      this.setData({
+        user_type:"tenant"
+      })
+    }
+},
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    var user=wx.getStorageSync("user")
+    console.log("user:"+user)
+    if(user)
+    {
+      this.setData({
+        user: user
+      })
+    }
   },
 
   /**

@@ -1,2 +1,39 @@
-<!--pages/me/index.wxml-->
-<text>pages/me/index.wxml</text>
+<!-- 未登录 -->
+<view wx:if="{{!user}}">
+  <van-empty description="请先登录" />
+  <button bindtap="login">登录</button>
+</view>
+
+<!-- 已登录 -->
+<view wx:else class="{{user_type}}">
+<!-- 共有部分 -->
+<text wx:if="{{user_type=='tenant'}}">租客模式</text>
+<text wx:else>房东模式</text>
+
+<van-button round bind:click="change"
+size="mini">切换</van-button>
+
+<image></image>
+
+<!-- 租客部分 -->
+<view wx:if="{{user_type=='tenant'}}">
+
+<van-cell title="个人资料" is-link></van-cell>
+<van-cell title="我的订单" is-link></van-cell>
+<van-cell title="我的收藏" is-link></van-cell>
+
+</view>
+
+<!-- 房东部分 -->
+<view wx:else>
+</view>
+
+<!-- 管理员部分 -->
+<view wx:if="{{root}}">
+
+  <van-cell title="我审核的" is-link></van-cell>
+  <van-cell title="审核房源" is-link></van-cell>
+</view>
+
+
+</view>
