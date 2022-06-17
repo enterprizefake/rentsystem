@@ -5,8 +5,8 @@ Page({
    */
   data: {
     user_type:"tenant",
-    // login:false,
-    user:null
+    user:null,
+    root:false
   },
   login()
   {
