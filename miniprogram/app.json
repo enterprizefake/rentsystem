@@ -4,13 +4,13 @@
     "pages/me/index",
     "pages/more/index",
     "pages/index/detail/index",
-<<<<<<< HEAD
+
     "pages/index/detail/reserve/index",
-    "pages/index/detail/rent/index"
-=======
+    "pages/index/detail/rent/index",
+
     "pages/more/team/index",
     "pages/more/about/index"
->>>>>>> 187e3c0f5d2ec3d2fc027f0522d97f59392f1349
+
   ],
   "window": {
     "backgroundTextStyle": "light",
