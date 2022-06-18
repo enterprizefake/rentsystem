@@ -1,5 +1,5 @@
 <!--pages/more/index.wxml-->
-<image src="../image/更多/1.jpg" mode="scaleToFill"></image>
+<image src="../image/更多/1.jpg" style="width: 100%;"></image>
 <van-cell
   icon="friends-o"
   is-link

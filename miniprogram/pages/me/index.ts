@@ -16,6 +16,8 @@ Page({
           this.setData({
             user: res.userInfo
           })
+          
+          
           wx.setStorageSync("user",res.userInfo)
         }
       })
@@ -38,6 +40,7 @@ Page({
    */
   onLoad() {
     var user=wx.getStorageSync("user")
+    console.log("user"+user.avatarUrl)
     console.log("user:"+user)
     if(user)
     {
