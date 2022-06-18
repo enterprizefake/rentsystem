@@ -23,9 +23,11 @@ Page({
     // })
     //   console.log(option.house_id)
   },
-jump2(){
+jump2(index){
+  var house=index.currentTarget.dataset.name
+  var house=JSON.stringify(index.currentTarget.dataset.name)
   wx.navigateTo({
-    url:"/pages/index/detail/reserve/index"
+    url:"/pages/index/detail/reserve/index?house="+house
   })
 },
 jump3(){

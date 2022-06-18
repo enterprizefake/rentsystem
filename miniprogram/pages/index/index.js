@@ -12,7 +12,6 @@ Page({
   },
   to_detail(index){
     var house=index.currentTarget.dataset.name
-  
     var house=JSON.stringify(index.currentTarget.dataset.name)
     wx.navigateTo({
       url:"/pages/index/detail/index?house="+house
@@ -22,8 +21,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-
+  onLoad:function(option) {
+    var house=JSON.parse(option.house)
+    console.log(house)
+    // console.log(option)
+    this.setData({
+      house: house
+    })
 
 
     // wx.getStorageInfoSync

@@ -5,16 +5,78 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+       house:null,
+       information:[],
+       modalHidden:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad: function (option) { 
+    var house=JSON.parse(option.house)
+    // console.log(option)
+    this.setData({
+      house: house
+    })
+    // wx.request({
 
+    // })
+    //   console.log(option.house_id)
   },
 
+  formSubmit(e){
+    //console.log(e);
+    var information= e.detail.value;
+    this.setData({
+      information: e.detail.value,
+      modalHidden:false
+    });
+    console.log(information);
+  },
+  modalCancel(){
+    wx.showToast({
+      title: '取消提交',
+      icon:'none'
+    })
+    this.setData({
+      modalHidden:true,
+    })
+  },
+  //模态框确定
+  modalConfirm:function(e) {
+    wx.showToast({
+      title: '提交成功',
+      icon:'success',
+    })
+   console.log(this.data.information.name),
+    wx.request({
+      // url: 'http://1.15.184.52:8086/index',
+      url: 'http://127.0.0.1:8086/index/detail/book',
+      method: 'POST',
+      data: {
+        'h_id':this.data.house.h_id,
+        //'name':this.data.information.name,
+        'phone':this.data.information.phone,
+        'visit_number':this.data.information.vnumber,
+        'visit_time':this.data.information.vtime,
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      success: (res) => {
+        var datas = res.data
+        console.log(res)
+       // console.log(datas)
+        if (datas.sucess == 'no') {
+          console.log("???")
+        }
+      },
+    })  
+    this.setData({
+      modalHidden: true
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
