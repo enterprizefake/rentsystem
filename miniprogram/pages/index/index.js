@@ -1,5 +1,5 @@
 // pages/index/index.ts
-const app = getApp()
+var app = getApp()
 
 Page({
 

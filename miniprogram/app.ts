@@ -1,12 +1,29 @@
 // app.ts
 App<IAppOption>({
-  globalData: {},
-  
+  globalData: {
+    user:null
+  },
+  login()
+  {
+      wx.getUserProfile({
+        desc: '用于登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+          this.setData({
+            user: res.userInfo
+          })
+          
+          
+          wx.setStorageSync("user",res.userInfo)
+        }
+      })
+  },
   onLaunch() {
     // // 展示本地存储能力
-    // const logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs)
+    const user = wx.getStorageSync('user')
+    if(user)
+    {
+      this.globalData.user=user
+    }
 
     // // 登录
     // wx.login({

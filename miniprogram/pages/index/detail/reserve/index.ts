@@ -55,20 +55,17 @@ Page({
       url: 'http://127.0.0.1:8086/index/detail/book',
       method: 'POST',
       data: {
-        'h_id':this.data.house.h_id,
-        //'name':this.data.information.name,
-        'phone':this.data.information.phone,
-        'visit_number':this.data.information.vnumber,
-        'visit_time':this.data.information.vtime,
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
+        h_id:this.data.house.h_id,
+        phone:this.data.information.phone,
+        visit_number:this.data.information.vnumber,
+        visit_time:this.data.information.vtime,
       },
       success: (res) => {
         var datas = res.data
         console.log(res)
        // console.log(datas)
         if (datas.sucess == 'no') {
+          console.log("h_id:"+this.data.house.h_id)
           console.log("???")
         }
       },

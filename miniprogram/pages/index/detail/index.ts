@@ -1,4 +1,5 @@
-// pages/index/detail/index.ts
+import Dialog from "../../../miniprogram_npm/@vant/weapp/dialog/dialog"
+var app = getApp()
 Page({
 
   /**
@@ -11,8 +12,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) { 
-    var house=JSON.parse(option.house)
+  onLoad: function (option) {
+    var house = JSON.parse(option.house)
     console.log(house)
     // console.log(option)
     this.setData({
@@ -23,18 +24,32 @@ Page({
     // })
     //   console.log(option.house_id)
   },
-jump2(index){
-  var house=index.currentTarget.dataset.name
-  var house=JSON.stringify(index.currentTarget.dataset.name)
-  wx.navigateTo({
-    url:"/pages/index/detail/reserve/index?house="+house
-  })
-},
-jump3(){
-  wx.navigateTo({
-    url:"/pages/index/detail/rent/index"
-  })
-},
+  jump2(index) {
+    if (app.globalData.user) {
+      var house = index.currentTarget.dataset.name
+      var house = JSON.stringify(index.currentTarget.dataset.name)
+      wx.navigateTo({
+        url: "/pages/index/detail/reserve/index?house=" + house
+      })
+    }
+    else {
+
+      Dialog.alert({
+        title: '登录提醒',
+        message: '您好，请先登录',
+        theme: 'round-button',
+      }).then(() => {
+        app.login()
+        // on close
+      });
+
+    }
+  },
+  jump3() {
+    wx.navigateTo({
+      url: "/pages/index/detail/rent/index"
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
