@@ -6,34 +6,44 @@
 
 <!-- 已登录 -->
 <view wx:else class="{{user_type}}">
-<!-- 共有部分 -->
-<text wx:if="{{user_type=='tenant'}}">租客模式</text>
-<text wx:else>房东模式</text>
+  <!-- 共有部分 -->
 
-<van-button round bind:click="change"
-size="mini">切换</van-button>
+  <van-image width="15vh" height="15vh" round src="{{user.avatarUrl}}" />
 
-<image></image>
+  <text>\n{{user.nickName}}</text>
 
-<!-- 租客部分 -->
-<view wx:if="{{user_type=='tenant'}}">
+  <!-- <van-tag plain type="primary" 
+size="medium"
+title="租客模式"></van-tag> -->
 
-<van-cell title="个人资料" is-link></van-cell>
-<van-cell title="我的订单" is-link></van-cell>
-<van-cell title="我的收藏" is-link></van-cell>
+  <!-- <text wx:if="{{user_type=='tenant'}}">租客模式</text>
+<text wx:else>房东模式</text> -->
 
-</view>
-
-<!-- 房东部分 -->
-<view wx:else>
-</view>
-
-<!-- 管理员部分 -->
-<view wx:if="{{root}}">
-
-  <van-cell title="我审核的" is-link></van-cell>
-  <van-cell title="审核房源" is-link></van-cell>
-</view>
+  <!-- <van-button round bind:click="change"
+size="mini">切换</van-button> -->
 
 
-</view>
+
+
+  <!-- 租客部分 -->
+  <view wx:if="{{user_type=='tenant'}}">
+
+    <van-cell title="个人资料" is-link></van-cell>
+    <van-cell title="我的订单" is-link></van-cell>
+    <van-cell title="我的收藏" is-link></van-cell>
+
+  </view>
+
+  <!-- 房东部分 -->
+  <view wx:else>
+  </view>
+
+  <!-- 管理员部分 -->
+  <view wx:if="{{root}}">
+
+    <van-cell title="我审核的" is-link></van-cell>
+    <van-cell title="审核房源" is-link></van-cell>
+  </view>
+
+  
+  </view>

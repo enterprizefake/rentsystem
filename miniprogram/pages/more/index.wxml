@@ -1,6 +1,10 @@
 <!--pages/more/index.wxml-->
+<<<<<<< HEAD
 <image src="../image/更多/1.jpg" class="img">
  </image>
+=======
+<image src="../image/更多/1.jpg" style="width: 100%;"></image>
+>>>>>>> ee630913d9195a342c267db5b2be0ee56e9f6c4d
 <van-cell
   icon="friends-o"
   is-link
