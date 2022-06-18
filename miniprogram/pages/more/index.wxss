@@ -1,1 +1,5 @@
 /* pages/more/index.wxss */
+.img
+{
+  width: 100%;
+}

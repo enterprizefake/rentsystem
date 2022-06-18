@@ -14,7 +14,7 @@
 
 <text>价格:{{house.price}}\n</text>
 <view class="buttonclass">
-<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump1">收藏</button>
-<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump2">预约</button>
+<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump1" >收藏</button>
+<button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump2" data-name="{{house}}">预约</button>
 <button style="width:25vw;height: 50px;" type="primary" class="buttontype" bindtap="jump3">租赁</button>
 </view>
