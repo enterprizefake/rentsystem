@@ -233,9 +233,11 @@ def index_detail_book():
             visit_number=data['visit_number'],
             booking_state="预约已提交"
         )
+
         db.session.add(new_booking)
         db.session.commit()
     except Exception as e:
+        traceback.print_exc()
         dic = {'sucess': 'no'}
 
     finally:
