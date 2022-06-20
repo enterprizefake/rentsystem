@@ -4,13 +4,11 @@
     "pages/me/index",
     "pages/more/index",
     "pages/index/detail/index",
-
     "pages/index/detail/reserve/index",
     "pages/index/detail/rent/index",
-
     "pages/more/team/index",
-    "pages/more/about/index"
-
+    "pages/more/about/index",
+    "pages/me/myinfo/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

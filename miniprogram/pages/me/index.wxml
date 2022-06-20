@@ -17,34 +17,31 @@
   <!-- 昵称 -->
   <view class="v1">
   <view class="v2">{{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})</view>
-  <view class="v3" bindtap="change">切换</view>
+
+  <!-- 消息通知和切换 -->
+  <view class="v3"> 
+    <text bindtap="change">切换</text> 
+  </view>
   </view>
 
 </view>
-  <!-- <van-tag plain type="primary" 
-size="medium"
-title="租客模式"></van-tag> -->
 
-  <!-- <text wx:if="{{user_type=='tenant'}}">租客模式</text>
-<text wx:else>房东模式</text> -->
+<van-cell title="个人资料" is-link bindtap="jump1"></van-cell>
 
-  <!-- <van-button round bind:click="change"
-size="mini">切换</van-button> -->
-
-
-
+<van-cell title="消息通知" is-link>
+  <van-icon  name="chat" info="9" class="custom-icon" />
+</van-cell>
 
   <!-- 租客部分 -->
   <view wx:if="{{user_type=='tenant'}}">
-
-    <van-cell title="个人资料" is-link></van-cell>
     <van-cell title="我的订单" is-link></van-cell>
     <van-cell title="我的收藏" is-link></van-cell>
-
   </view>
 
   <!-- 房东部分 -->
   <view wx:else>
+    <van-cell title="我的订单" is-link></van-cell>
+    <van-cell title="我的收藏" is-link></van-cell>
   </view>
 
   <!-- 管理员部分 -->
