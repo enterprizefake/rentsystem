@@ -5,13 +5,22 @@
 </view>
 
 <!-- 已登录 -->
-<view wx:else class="{{user_type}}">
+<view wx:else>
   <!-- 共有部分 -->
 
-  <van-image width="15vh" height="15vh" round src="{{user.avatarUrl}}" />
+  <!-- 顶部框架 -->
+<view class="{{user_type}}">
 
-  <text>\n{{user.nickName}}</text>
+  <!-- 头像 -->
+  <van-image class="v0" width="120rpx" height="120rpx" round src="{{user.avatarUrl}}" />
 
+  <!-- 昵称 -->
+  <view class="v1">
+  <view class="v2">{{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})</view>
+  <view class="v3" bindtap="change">切换</view>
+  </view>
+
+</view>
   <!-- <van-tag plain type="primary" 
 size="medium"
 title="租客模式"></van-tag> -->

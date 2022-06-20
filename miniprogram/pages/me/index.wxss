@@ -1,16 +1,43 @@
 
 .tenant
 {
-  background-color: aqua;
-  height: 100vh ;
+  width: 100%;
+  background-image: url("https://ts2.cn.mm.bing.net/th?id=OIP-C.2rQ25qnSMQHXGcHz3Rp2pAHaEo&w=316&h=197&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2");
+  background-size: cover;
+  display: flex;
 }
 .landlord
 {
-  background-color:chartreuse;
-  height: 100vh ;
+  width:100%;
+  background-image: url("https://ts1.cn.mm.bing.net/th?id=OIP-C.nfC2tVNM9TgwQ5QuqECd6wHaFj&w=288&h=216&c=8&rs=1&qlt=90&o=6&dpr=1.25&pid=3.1&rm=2");
+  display: flex;
 }
 
 .custom-class
 {
   height: 105px;
+}
+
+.v0{
+  width: 18%;
+}
+.v1
+{
+  width: 82%;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.v2
+{
+  margin-top: 10%;
+  color:aliceblue;
+  font-weight: bold;
+}
+
+.v3
+{
+  font-weight: bold;
+  font-size:small;
 }
