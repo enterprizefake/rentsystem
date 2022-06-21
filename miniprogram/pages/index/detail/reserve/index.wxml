@@ -3,8 +3,7 @@
   <van-cell title="房子id" value="{{house.h_id}}" label="描述信息" border="{{ false }}"/><van-cell title="访客电话" value="内容" />
 </van-cell-group> -->
 <view class='baseInfo'>
-  <image src='../../../image/titleTag.png'></image>
-  <text>基本信息</text>
+  <text>房屋预约基本信息</text>
 </view>
  
 <form bindsubmit="formSubmit">
@@ -31,7 +30,7 @@
   </view>
 </view>
  
-<button form-type='submit'>提交</button>
+<button form-type='submit' >提交</button>
 </form>
  
 <!-- 模态框 -->

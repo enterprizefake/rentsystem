@@ -5,6 +5,7 @@ App<IAppOption>({
   },
   login()
   {
+
     wx.navigateTo({
       url:"/pages/login/index"
     })
@@ -15,9 +16,20 @@ App<IAppOption>({
       //     wx.setStorageSync("user",res.userInfo)
       //   }
       // })
+
+      wx.getUserProfile({
+        desc: '用于登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+        success: (res) => {
+
+          
+            this.globalData.user=res.userInfo        
+
+          wx.setStorageSync("user",res.userInfo)
+        }
+      })
+
   },
   onLaunch() {
-    // // 展示本地存储能力
     const user = wx.getStorageSync('user')
     if(user)
     {

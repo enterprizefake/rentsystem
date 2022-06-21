@@ -34,6 +34,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+<<<<<<< HEAD
+    
+    console.log(app.globalData.user)
+    var user=wx.getStorageSync("user")
+    if(user)
+    {
+      this.setData({
+        user: user
+      })
+    }
+=======
     this.setData({
       user:app.globalData.user
     })
@@ -46,6 +57,7 @@ Page({
     //     user: user
     //   })
     // }
+>>>>>>> bac46cb5b8badac8dd69eec136c9b5dfba025fe5
   },
 
 jump1()
