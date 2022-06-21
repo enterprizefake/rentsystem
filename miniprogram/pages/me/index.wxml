@@ -16,8 +16,17 @@
 
   <!-- 昵称 -->
   <view class="v1">
-  <view class="v2">{{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})</view>
+  <view class="v2">
+    <text>
+      {{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})
+    </text>
 
+    <text>
+      {{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})
+    </text>
+    
+  </view>
+  
   <!-- 消息通知和切换 -->
   <view class="v3"> 
     <text bindtap="change">切换</text> 

@@ -1,0 +1,23 @@
+
+  <van-field
+    required
+    
+    model:value="{{user_name}}"
+    placeholder="请输入姓名"
+    bind:change="check1"
+    error-message="{{e1}}"
+  />
+
+  <van-field
+    type="digit"
+    maxlength="11"
+    required
+    model:value="{{phone}}"
+    placeholder="请输入手机号"
+    bind:change="check2"
+    error-message="{{e2}}"
+    
+  />
+
+
+<button class="b" bindtap="commit">确认</button>
