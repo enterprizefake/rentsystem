@@ -20,7 +20,6 @@
     <text>
       {{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})
     </text>
-    {{user.phone}}
   </view>
   
   <!-- 消息通知和切换 -->
