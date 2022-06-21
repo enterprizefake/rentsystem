@@ -16,8 +16,7 @@
     "pages/me/rent/index",
     "pages/me/delrent/index",
     "pages/me/bookmanage/index",
-    "pages/me/message/index",
-    "pages/login/index"
+    "pages/me/message/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
