@@ -13,15 +13,17 @@ App<IAppOption>({
           type: 'wgs84',
           success: (res)=> {
             temp_user={...temp_user,...res}
-            this.globalData.user=temp_user
+            
 
             wx.navigateTo({
-              url:"/pages/login/index"
+              url:"/pages/login/index",
+              success: function(res)=>{
+                this.globalData.user=temp_user
+              }
             })
 
           }
          })
-        console.log("temp_user"+temp_user)
       }
     })
 
