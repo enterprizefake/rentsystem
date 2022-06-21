@@ -33,7 +33,6 @@ Page({
       })
     }
     else {
-
       Dialog.alert({
         title: '登录提醒',
         message: '您好，请先登录',
