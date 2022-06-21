@@ -8,40 +8,12 @@ Page({
     user_type: "tenant",
     user: null,
     root: true,
-    user_name:null,
-    phone:null
+    user_name: null,
+    phone: null
   },
   login() {
-
-    wx.getUserProfile({
-      desc: '用于登录', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData({
-          user:res.userInfo
-        })
-        wx.getLocation({
-          type: 'wgs84',
-          success: (res)=> {
-            this.setData({
-              user:{...this.data.user,...res}
-            })
-            console.log(this.data.user)
-
-            wx.navigateTo({
-              url:"pages/login/index"
-            })
-            
-            wx.setStorageSync("user",this.data.user)
-          }
-         })
-        console.log(this.data.user)
-      }
-    })
-
-
+    app.login()
   },
-  
-  
   change() {
     if (this.data.user_type == "tenant") {
       this.setData({
@@ -54,24 +26,11 @@ Page({
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
-    console.log(app.globalData.user)
-    var user = wx.getStorageSync("user")
-    if (user) {
-      this.setData({
-        user: user
-      })
-    }
-
+  onShow() {
     this.setData({
       user: app.globalData.user
     })
-
   },
-
   jump1() {
     wx.navigateTo({
       url: "/pages/me/myinfo/index"

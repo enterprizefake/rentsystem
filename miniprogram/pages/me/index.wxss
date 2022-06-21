@@ -31,7 +31,7 @@
 
 .v2
 {
-  /* margin-top: 10%; */
+  margin-bottom: 3%;
   color:aliceblue;
   font-weight: bold;
 }
