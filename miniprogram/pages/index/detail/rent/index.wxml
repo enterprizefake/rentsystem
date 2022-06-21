@@ -9,20 +9,27 @@
  <text>{{house.h_id}}</text>
  </view>
   <view class='name'>
-    <text>开始时间</text>
-    <input name="name" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入起始时间'></input>
+    <!-- <text>开始时间</text> -->
+    <picker mode="date" value="{{begindate}}" bindchange="bindbeginDateChange" >
+    <view class="picker">
+      选择起始日期: <view>{{begindate}}</view>
+    </view>
+  </picker>
   </view>
   <view class='phone'>
-    <text>结束时间</text>
-    <input name="phone" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入结束时间'></input>
+    <picker mode="date" value="{{enddate}}" bindchange="bindendDateChange" start="{{begindate}}">
+    <view class="picker">
+      选择结束日期: <view>{{enddate}}</view>
+    </view>
+  </picker>
   </view>
   <view class='phone'>
     <text>联系电话</text>
-    <input name="vnumber" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入联系电话'></input>
+    <input name="phone" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入联系电话'></input>
   </view>
   <view class='phone'>
-    <text>访问时间</text>
-    <input name="vtime" type='text' placeholder-style='font-size:28rpx;' placeholder='出租时间'></input>
+    <text>出租时间</text>
+    <input name="rtime" type='text' placeholder-style='font-size:28rpx;' placeholder='出租时间'></input>
   </view>
 </view>
  

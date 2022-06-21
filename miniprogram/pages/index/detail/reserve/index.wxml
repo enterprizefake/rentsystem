@@ -26,7 +26,11 @@
   </view>
   <view class='phone'>
     <text>访问时间</text>
-    <input name="vtime" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入访问时间'></input>
+    <picker mode="date" value="{{begindate}}" bindchange="bindbeginDateChange" >
+    <view class="picker">
+   <view>{{begindate}}</view>
+    </view>
+  </picker>
   </view>
 </view>
  

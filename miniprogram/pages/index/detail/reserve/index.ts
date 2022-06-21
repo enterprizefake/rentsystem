@@ -7,7 +7,8 @@ Page({
   data: {
        house:null,
        information:[],
-       modalHidden:true
+       modalHidden:true,
+       begindate:null
   },
 
   /**
@@ -24,7 +25,13 @@ Page({
     // })
     //   console.log(option.house_id)
   },
-
+  bindbeginDateChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      begindate: e.detail.value
+    })
+    console.log("开始时间"+this.data.begindate)
+  },
   formSubmit(e){
     //console.log(e);
     var information= e.detail.value;
@@ -58,7 +65,7 @@ Page({
         h_id:this.data.house.h_id,
         phone:this.data.information.phone,
         visit_number:this.data.information.vnumber,
-        visit_time:this.data.information.vtime,
+        visit_time:this.data.begindate,
       },
       success: (res) => {
         var datas = res.data
