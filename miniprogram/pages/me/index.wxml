@@ -27,29 +27,29 @@
 </view>
 
 <van-cell title="个人资料" is-link bindtap="jump1"></van-cell>
-
-<van-cell title="消息通知" is-link>
-  <van-icon  name="chat" info="9" class="custom-icon" />
-</van-cell>
+<van-cell title="我的订单" is-link bindtap="jump2"></van-cell>
 
   <!-- 租客部分 -->
   <view wx:if="{{user_type=='tenant'}}">
-    <van-cell title="我的订单" is-link></van-cell>
-    <van-cell title="我的收藏" is-link></van-cell>
+    <van-cell title="我的收藏" is-link bindtap="jump3"></van-cell>
   </view>
 
   <!-- 房东部分 -->
   <view wx:else>
-    <van-cell title="我的订单" is-link></van-cell>
-    <van-cell title="我的收藏" is-link></van-cell>
+    <van-cell title="我要出租" is-link bindtap="jump4"></van-cell>
+    <van-cell title="不想租了" is-link bindtap="jump5"></van-cell>
+    <van-cell title="租客预约管理" is-link bindtap="jump6"></van-cell>
   </view>
 
   <!-- 管理员部分 -->
   <view wx:if="{{root}}">
-
-    <van-cell title="我审核的" is-link></van-cell>
-    <van-cell title="审核房源" is-link></van-cell>
+    <van-cell title="我审核的" is-link bindtap="jump7"></van-cell>
+    <van-cell title="审核房源" is-link bindtap="jump8"></van-cell>
   </view>
 
   
+  <view class="message">
+  <van-icon name="chat-o" info="99+" size="2rem" bindtap="jump9"></van-icon>
   </view>
+
+</view>

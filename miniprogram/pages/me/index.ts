@@ -7,7 +7,7 @@ Page({
   data: {
     user_type:"tenant",
     user:null,
-    root:false
+    root:true
   },
   login()
   {
@@ -52,6 +52,54 @@ jump1()
 {
   wx.navigateTo({
     url:"/pages/me/myinfo/index"
+  })
+},
+jump2()
+{
+  wx.navigateTo({
+    url:"/pages/me/order/index?user_type="+this.data.user_type
+  })
+},
+jump3()
+{
+  wx.navigateTo({
+    url:"/pages/me/collection/index"
+  })
+},
+jump4()
+{
+  wx.navigateTo({
+    url:"/pages/me/rent/index"
+  })
+},
+jump5()
+{
+  wx.navigateTo({
+    url:"/pages/me/delrent/index"
+  })
+},
+jump6()
+{
+  wx.navigateTo({
+    url:"/pages/me/bookmanage/index"
+  })
+},
+jump7()
+{
+  wx.navigateTo({
+    url:"/pages/me/audited/index"
+  })
+},
+jump8()
+{
+  wx.navigateTo({
+    url:"/pages/me/audit/index"
+  })
+},
+jump9()
+{
+  wx.navigateTo({
+    url:"/pages/me/message/index?user_type="+this.data.user_type
   })
 }
 })

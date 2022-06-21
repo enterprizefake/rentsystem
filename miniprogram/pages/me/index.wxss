@@ -41,3 +41,10 @@
   font-weight: bold;
   font-size:small;
 }
+
+.message
+{
+  position:absolute;
+  bottom:0;
+  right:30rpx;
+}
