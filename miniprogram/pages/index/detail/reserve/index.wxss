@@ -75,3 +75,15 @@ button{
 .modal view{
   text-align: center;
 }
+.wx_7_button{
+  width: 240rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: white;
+  display:block;
+  margin:0 auto;
+  margin-top: 80rpx;
+  background-color: #E84951;
+  border-radius: 6rpx;
+  font-size: 32rpx;
+}

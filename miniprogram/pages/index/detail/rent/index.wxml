@@ -1,2 +1,40 @@
 <!--pages/index/detail/rent/index.wxml-->
-<text>欢迎来到租赁页面</text>
+<view class='baseInfo'>
+  <text>租赁页面订单信息</text>
+</view>
+<form bindsubmit="formSubmit">
+<view class='list'>
+ <view class="name">
+ <text>房屋编号</text>
+ <text>{{house.h_id}}</text>
+ </view>
+  <view class='name'>
+    <text>开始时间</text>
+    <input name="name" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入起始时间'></input>
+  </view>
+  <view class='phone'>
+    <text>结束时间</text>
+    <input name="phone" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入结束时间'></input>
+  </view>
+  <view class='phone'>
+    <text>联系电话</text>
+    <input name="vnumber" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入联系电话'></input>
+  </view>
+  <view class='phone'>
+    <text>访问时间</text>
+    <input name="vtime" type='text' placeholder-style='font-size:28rpx;' placeholder='出租时间'></input>
+  </view>
+</view>
+ 
+<button form-type='submit' >提交</button>
+</form>
+ 
+<!-- 模态框 -->
+<modal class="modal" title='要提交的信息' hidden="{{modalHidden}}" bindcancel='modalCancel' bindconfirm='modalConfirm'>
+    <view name="fw">房屋编号:{{house.h_id}}</view>
+    <view name="nm">开始时间:{{information.name}}</view>
+    <view name="ph">手机:{{information.phone}}</view>
+    <view name="nm1">访客数量:{{information.vnumber}}</view>
+    <view name="tm">访问时间：{{information.vtime}}</view>
+</modal>
+<!-- /模态框 -->

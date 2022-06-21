@@ -45,10 +45,26 @@ Page({
 
     }
   },
-  jump3() {
-    wx.navigateTo({
-      url: "/pages/index/detail/rent/index"
-    })
+  jump3(index) {
+    if (app.globalData.user) {
+      var house = index.currentTarget.dataset.name1
+      var house = JSON.stringify(index.currentTarget.dataset.name1)
+      wx.navigateTo({
+        url: "/pages/index/detail/rent/index?house=" + house
+      })
+    }
+    else {
+
+      Dialog.alert({
+        title: '登录提醒',
+        message: '您好，请先登录',
+        theme: 'round-button',
+      }).then(() => {
+        app.login()
+        // on close
+      });
+
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

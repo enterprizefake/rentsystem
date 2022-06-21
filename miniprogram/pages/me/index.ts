@@ -43,15 +43,13 @@ Page({
   onLoad() {
     
     console.log(app.globalData.user)
-    // var user=wx.getStorageSync("user")
-    // console.log("user"+user.avatarUrl)
-    // console.log("user:"+user)
-    // if(user)
-    // {
-    //   this.setData({
-    //     user: user
-    //   })
-    // }
+    var user=wx.getStorageSync("user")
+    if(user)
+    {
+      this.setData({
+        user: user
+      })
+    }
   },
 
   /**

@@ -5,14 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+   house:null,
+   modalHidden:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad: function (option) { 
+    var house=JSON.parse(option.house)
+    // console.log(option)
+    this.setData({
+      house: house
+    })
+    // wx.request({
 
+    // })
+  // console.log(house)
   },
 
   /**
