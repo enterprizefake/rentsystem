@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    house: null
+    house: null,
+    iscollect:false
   },
 
   /**
@@ -23,6 +24,41 @@ Page({
 
     // })
     //   console.log(option.house_id)
+  },
+  jump1(){
+    var app = getApp()
+    console.log(app.globalData.user.phone)
+  if(this.data.iscollect)
+  {
+    wx.showToast({
+      title: '取消收藏',
+      icon:'none'
+    })
+    
+    this.setData({
+      iscollect:false
+    });
+  }
+  else
+  {
+    wx.showToast({
+      title: '收藏成功',
+      icon:'none'
+    })
+    this.setData({
+      iscollect:true
+    })
+  }
+  // if(this.data.iscollect)
+  // {
+  //   wx.request({
+  //     url: 'http://127.0.0.1:8086/index/detail/collection',
+  //     method: 'POST',
+  //     data:{
+  //     h_id:this.data.house.h_id
+  //     }
+  //   })   
+  // }
   },
   jump2(index) {
     if (app.globalData.user) {
