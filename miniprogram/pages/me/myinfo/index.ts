@@ -1,18 +1,21 @@
-// pages/me/myinfo/index.ts
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+   user: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    this.setData({
+      user: app.globalData.user
+    })
+    console.log(this.data.user)
   },
 
   /**

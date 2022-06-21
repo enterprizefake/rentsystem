@@ -14,11 +14,9 @@ App<IAppOption>({
           success: (res) => {
 
             temp_user = { ...temp_user, ...res }
+            this.globalData.user = temp_user
             wx.navigateTo({
-              url: "/pages/login/index",
-              success: (res) => {
-                this.globalData.user = temp_user
-              }
+              url: "/pages/login/index"
             })
 
           }
@@ -27,7 +25,8 @@ App<IAppOption>({
     })
   },
   onLaunch() {
-    const user = wx.getStorageSync('user')
+    const user = wx.getStorageSync("user")
+    console.log("app user:" + user)
     if (user) {
       this.globalData.user = user
     }

@@ -53,12 +53,8 @@ Page({
         "user_name": this.data.user_name,
         "phone": this.data.phone
       }
-      
-      wx.setStorage({
-        key:"user",
-        value:app.globalData.user
-      })
 
+      wx.setStorageSync("user", app.globalData.user)
       wx.navigateBack({
         delta: 1
       })
