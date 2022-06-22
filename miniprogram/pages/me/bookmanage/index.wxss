@@ -1,1 +1,10 @@
 /* pages/me/bookmanage/index.wxss */
+.card{
+  width: 90%;
+  height: 390rpx;
+  background: rgb(245, 245, 230);
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+  margin-top: 15px;
+  margin-left: 15px;
+ }

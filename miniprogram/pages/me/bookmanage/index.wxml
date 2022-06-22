@@ -1,2 +1,7 @@
 <!--pages/me/bookmanage/index.wxml-->
-<text>pages/me/bookmanage/index.wxml</text>
+<view wx:for="{{all_booking}}" wx:item="item">
+<view class="card" bindtap="book_detaile">
+预约订单id：{{item.booking_id}}
+预约人电话：{{item.phone}}
+</view>
+</view>
