@@ -27,11 +27,11 @@ def login():
         data = request.get_json()
         print(data)
 
-        new_user = User(user_nickname=data['user_nickname'],
+        new_user = User(user_nickname=data['user_nickName'],
                         user_name=data['user_name'],
                         type='小程序使用者',
                         phone=data['phone'],
-                        avatar=data['avatar'],
+                        avatar=data['avatarUrl'],
                         u_longitude=data['longitude'],
                         u_latitude=data['latitude']
                         )
