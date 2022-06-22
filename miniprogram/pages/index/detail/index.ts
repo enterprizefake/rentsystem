@@ -49,16 +49,26 @@ Page({
       iscollect:true
     })
   }
-  // if(this.data.iscollect)
-  // {
-  //   wx.request({
-  //     url: 'http://127.0.0.1:8086/index/detail/collection',
-  //     method: 'POST',
-  //     data:{
-  //     h_id:this.data.house.h_id
-  //     }
-  //   })   
-  // }
+  if(this.data.iscollect)
+  {
+    wx.request({
+      url: 'http://127.0.0.1:8086/index/detail/collection',
+      method: 'POST',
+      data:{
+      h_id:this.data.house.h_id,
+      phone:app.globalData.user.phone
+      },
+      success: (res) => {
+        var datas = res.data
+        console.log(res)
+       // console.log(datas)
+        if (datas.sucess == 'no') {
+          console.log("h_id:"+this.data.house.h_id)
+          console.log("???")
+        }
+      },
+    })   
+  }
   },
   jump2(index) {
     if (app.globalData.user) {
