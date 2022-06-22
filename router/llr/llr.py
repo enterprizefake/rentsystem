@@ -97,9 +97,16 @@ def g():
 def index():
     dic = {'sucess': 'yes'}
     try:
-        all_houses = db.session.query(House).all()
+        all_houses = db.session.query(House).filter(House.h_state=="未出租").all()
         print(all_houses)
-        houses = to_list(all_houses)
+
+        houses=[]
+        for house in all_houses:
+            if(house.audit_id):
+                audit=db.session.query(Audit).filter(Audit.audit_id==house.audit_id)[0]
+                if(audit.audit_state=="已通过"):
+                    houses.append(to_dict(house))
+
 
         dic['house'] = houses
         # dic['house']=to_list(allhouse)
