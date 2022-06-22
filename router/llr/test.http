@@ -65,8 +65,7 @@ POST  http://127.0.0.1:8086/index/detail/book
 Content-Type: application/json
 
 {
-  "booking_id": 1,
-  "h_id": 3,
+  "h_id": 5,
   "phone": "2",
   "visit_number": 3,
   "visit_time": null
@@ -223,4 +222,15 @@ Content-Type: application/json
   "message_type": "支付成功通知",
   "phone": "1",
   "user_type": ""
+}
+
+###
+POST  http://127.0.0.1:8086/test/picture
+Content-Type: application/json
+
+{
+  "h_id":1,
+  "pictures":[
+    
+  ]
 }
