@@ -116,3 +116,4 @@ if __name__=="__main__":
         traceback.print_exc()
     finally:
         db.session.close_all()
+        # db.session.close_all_sessions()
