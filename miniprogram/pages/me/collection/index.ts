@@ -14,9 +14,11 @@ Page({
   onLoad() {
 
   },
-  jump1() {
+  jump1(index) {
+    var house=index.currentTarget.dataset.name
+    var house=JSON.stringify(index.currentTarget.dataset.name)
     wx.navigateTo({
-      url: "/pages/me/myinfo/index"
+      url: "/pages/index/detail/index?house="+house
     })
   },
   /**
@@ -53,7 +55,7 @@ Page({
         this.setData({
           all_collections:datas.collections
         })
-        console.log(this.data.all_collections[1].h_id)
+       // console.log(this.data.all_collections[1].h_id)
         }
         wx.hideLoading()
       },

@@ -7,7 +7,8 @@ Page({
    */
   data: {
     house: null,
-    iscollect:false
+    iscollect:false,
+    all_collections:null
   },
 
   /**
@@ -19,6 +20,50 @@ Page({
     // console.log(option)
     this.setData({
       house: house
+    })
+    wx.showLoading(
+      {
+        title: '加载数据中'
+      }
+    )
+    var app = getApp()
+    wx.request({
+      // url: 'http://1.15.184.52:8086/index',
+      url: 'http://127.0.0.1:8086/tenants/collections',
+      method:"POST",
+      data: {
+      phone:app.globalData.user.phone
+      },
+      success: (res) => {
+        var datas = res.data
+        console.log(datas)
+        if (datas.sucess == 'no') {
+          console.log("???")
+        }
+        else {
+        this.setData({
+          all_collections:datas.collections
+        })
+    //     if(this.data.all_collections.h_id.indexOf(66)==-1){
+    //       console.log("不存在")
+    // }else{
+    //       console.log("存在,索引是：",arr.indexOf(66))
+    // }
+    for(var i=0;i<this.data.all_collections.length;i++)
+    {
+    if(this.data.all_collections[i].h_id==this.data.house.h_id)
+    {
+      this.setData({
+        iscollect:true
+      })
+    }
+    }
+        }
+        wx.hideLoading()
+      },
+      fail(e) {
+        console.log(e)
+      }
     })
     // wx.request({
 
@@ -142,9 +187,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
