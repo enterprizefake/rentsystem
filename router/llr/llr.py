@@ -28,8 +28,13 @@ def login():
         print(data)
 
         new_user = User(user_nickname=data['user_nickname'],
-                        user_name=data['user_name'], type='小程序使用者',
-                        phone=data['phone'], avatar=data['avatar'])
+                        user_name=data['user_name'],
+                        type='小程序使用者',
+                        phone=data['phone'],
+                        avatar=data['avatar'],
+                        u_longitude=data['longitude'],
+                        u_latitude=data['latitude']
+                        )
 
         dic.update(to_dict(new_user))
         db.session.add(new_user)
@@ -118,7 +123,6 @@ def index_detail():
         landlord_phone = db.session.query(
             House).filter(House.h_id == data)[0].phone
         print(data)
-
 
         dic['landlord'] = to_dict(db.session.query(
             User).filter(User.phone == landlord_phone)[0])
@@ -225,7 +229,8 @@ def index_detail_book():
     try:
         data = request.get_json()
         print(data)
-
+        # h_id=data['h_id']
+        # print("h_id"+str(h_id))
         new_booking = Booking(
             h_id=data['h_id'],
             phone=data['phone'],
@@ -387,24 +392,24 @@ def landlord_rentnew():
 
         db.session.add(new_house)
         db.session.flush()
-        
-        h_id=new_house.h_id
+
+        h_id = new_house.h_id
         print(h_id)
 
-        pictures=data['pictures']
+        pictures = data['pictures']
         # h_id=request.form.get("h_id")
-        # team_images =request.form.get("images") #队base64进行解码还原。 
+        # team_images =request.form.get("images") #队base64进行解码还原。
 
-        os.makedirs('static/image/{}'.format(h_id), exist_ok=True) #递归创建文件夹
+        os.makedirs('static/image/{}'.format(h_id), exist_ok=True)  # 递归创建文件夹
 
-        i=1
-        while i<=len(pictures):
-            with open("/static/image/{}/{}.jpg".format(h_id,i),"wb") as f:#存入图片，存入地址为服务器中的项目地址。
-                f.write( base64.b64decode(pictures[i]) )
-            i+=1
-            
-        house=db.session.query(House).filter(House.h_id==h_id)[0]
-        house.picture_number=len(pictures)
+        i = 1
+        while i <= len(pictures):
+            with open("/static/image/{}/{}.jpg".format(h_id, i), "wb") as f:  # 存入图片，存入地址为服务器中的项目地址。
+                f.write(base64.b64decode(pictures[i]))
+            i += 1
+
+        house = db.session.query(House).filter(House.h_id == h_id)[0]
+        house.picture_number = len(pictures)
         db.session.commit()
     except Exception as e:
         traceback.print_exc()
@@ -422,7 +427,7 @@ def landlord_rentold():
     try:
         data = request.get_json()
         # print(data)
-        h_id=data['h_id']
+        h_id = data['h_id']
         house = db.session.query(House).filter(House.h_id == h_id)[0]
         if(house.h_state == '未出租'):
             house.address = data['address']
@@ -434,23 +439,23 @@ def landlord_rentold():
             house.max_renttime = data['max_renttime']
             house.price = data['price']
 
-            
-            pictures=data['pictures']
+            pictures = data['pictures']
             # h_id=request.form.get("h_id")
-            # team_images =request.form.get("images") #队base64进行解码还原。 
+            # team_images =request.form.get("images") #队base64进行解码还原。
 
-            shutil.rmtree('static/image/{}'.format(h_id))    #递归删除文件夹
+            shutil.rmtree('static/image/{}'.format(h_id))  # 递归删除文件夹
 
-            os.makedirs('static/image/{}'.format(h_id), exist_ok=True) #递归创建文件夹
+            os.makedirs('static/image/{}'.format(h_id),
+                        exist_ok=True)  # 递归创建文件夹
 
-            i=1
-            while i<=len(pictures):
-                with open("/static/image/{}/{}.jpg".format(h_id,i),"wb") as f:#存入图片，存入地址为服务器中的项目地址。
-                    f.write( base64.b64decode(pictures[i]) )
-                i+=1
-                
-            house=db.session.query(House).filter(House.h_id==h_id)[0]
-            house.picture_number=len(pictures)
+            i = 1
+            while i <= len(pictures):
+                with open("/static/image/{}/{}.jpg".format(h_id, i), "wb") as f:  # 存入图片，存入地址为服务器中的项目地址。
+                    f.write(base64.b64decode(pictures[i]))
+                i += 1
+
+            house = db.session.query(House).filter(House.h_id == h_id)[0]
+            house.picture_number = len(pictures)
             db.session.commit()
         else:
             dic = {'sucess': 'no'}
@@ -522,9 +527,10 @@ def root_audited():
     try:
         data = request.get_json()
         print(data)
-        num=data['phone']
-        audited=to_list(db.session.query(Audit).filter(Audit.phone==num).all())
-        dic['audited']=audited
+        num = data['phone']
+        audited = to_list(db.session.query(
+            Audit).filter(Audit.phone == num).all())
+        dic['audited'] = audited
 
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -534,7 +540,7 @@ def root_audited():
         return dic
 
 
-#下架已通过的审核
+# 下架已通过的审核
 
 
 @llr.route("/root/delaudited", methods=["POST", 'GET'])
@@ -544,14 +550,16 @@ def root_delaudited():
         data = request.get_json()
         print(data)
 
-        audit_id=data['audit_id']
+        audit_id = data['audit_id']
 
-        h_state=db.session.query(House).filter(House.audit_id==audit_id)[0].h_state
+        h_state = db.session.query(House).filter(
+            House.audit_id == audit_id)[0].h_state
 
-        if(h_state=='未出租'):
-            audited=db.session.query(Audit).filter(Audit.audit_id==audit_id)[0]
-            audited.audit_info=data['audit_info']
-            audited.audit_state=data['audit_state']
+        if(h_state == '未出租'):
+            audited = db.session.query(Audit).filter(
+                Audit.audit_id == audit_id)[0]
+            audited.audit_info = data['audit_info']
+            audited.audit_state = data['audit_state']
             db.session.commit()
         else:
             dic = {'sucess': 'no'}
@@ -562,7 +570,7 @@ def root_delaudited():
         db.session.close()
         return dic
 
-#所有未审核房源
+# 所有未审核房源
 
 
 @llr.route("/root/audits", methods=["POST", 'GET'])
@@ -570,19 +578,20 @@ def root_audits():
     dic = {'sucess': 'yes'}
     try:
 
-        dic['audits']=[]
+        dic['audits'] = []
 
-        houses=db.session.query(House).all()
+        houses = db.session.query(House).all()
         print(56)
         for house in houses:
             if(house.audit_id is None):
-                dic['audits'].append(to_dict(house))       
+                dic['audits'].append(to_dict(house))
             else:
-                audit=db.session.query(Audit).filter(Audit.audit_id==house.audit_id)[0]
+                audit = db.session.query(Audit).filter(
+                    Audit.audit_id == house.audit_id)[0]
 
-                if(audit.audit_state=='未审核'):
+                if(audit.audit_state == '未审核'):
                     dic['audits'].append(to_dict(house))
-        
+
     except Exception as e:
         dic = {'sucess': 'no'}
 
@@ -590,7 +599,7 @@ def root_audits():
         db.session.close()
         return dic
 
-#提交审核
+# 提交审核
 
 
 @llr.route("/root/audit", methods=["POST", 'GET'])
@@ -598,28 +607,29 @@ def root_audit():
     dic = {'sucess': 'yes'}
     try:
 
-        data=request.get_json()
-        h_id=data['h_id']
-        house=db.session.query(House).filter(House.h_id==h_id)[0]
+        data = request.get_json()
+        h_id = data['h_id']
+        house = db.session.query(House).filter(House.h_id == h_id)[0]
 
         if(house.audit_id is None):
-            new_audit=Audit(
-            audit_info=data['audit_info'],
-            audit_state=data["audit_state"]
+            new_audit = Audit(
+                audit_info=data['audit_info'],
+                audit_state=data["audit_state"]
             )
             db.session.add(new_audit)
-            
+
             db.session.flush()
 
-            house.audit_id=new_audit.audit_id
+            house.audit_id = new_audit.audit_id
 
             db.session.commit()
         else:
-            audit_id=house.audit_id
-            audit=db.session.query(Audit).filter(Audit.audit_id==audit_id)[0]
-            audit.phone=data['phone']
-            audit.audit_state=data['audit_state']
-            audit.audit_info=data['audit_info']
+            audit_id = house.audit_id
+            audit = db.session.query(Audit).filter(
+                Audit.audit_id == audit_id)[0]
+            audit.phone = data['phone']
+            audit.audit_state = data['audit_state']
+            audit.audit_info = data['audit_info']
             db.session.commit()
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -628,20 +638,21 @@ def root_audit():
         db.session.close()
         return dic
 
-#获取所有消息通知
+# 获取所有消息通知
 
 
 @llr.route("/messages", methods=["POST", 'GET'])
 def messages():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
-        phone=data['phone']
-        user_type=data['user_type']
+        phone = data['phone']
+        user_type = data['user_type']
 
-        messages=db.session.query(Message).filter(Message.user_type==user_type).filter(Message.phone==phone).all()
-        dic['messages']=to_list(messages)
+        messages = db.session.query(Message).filter(
+            Message.user_type == user_type).filter(Message.phone == phone).all()
+        dic['messages'] = to_list(messages)
 
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -650,18 +661,19 @@ def messages():
         db.session.close()
         return dic
 
-#已读某个消息
+# 已读某个消息
 
 
 @llr.route("/messages/read", methods=["POST", 'GET'])
 def messages_read():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
-        message_id=data['message_id']
-        message=db.session.query(Message).filter(Message.message_id==message_id)[0]
-        message.isread=1
+        message_id = data['message_id']
+        message = db.session.query(Message).filter(
+            Message.message_id == message_id)[0]
+        message.isread = 1
 
         db.session.commit()
     except Exception as e:
@@ -671,17 +683,17 @@ def messages_read():
         db.session.close()
         return dic
 
-#发送消息
+# 发送消息
 
 
 @llr.route("/messages/send", methods=["POST", 'GET'])
 def messages_send():
     dic = {'sucess': 'yes'}
     try:
-        data=request.get_json()
+        data = request.get_json()
         print(data)
 
-        new_message=Message(
+        new_message = Message(
             isread=0,
             content=data['content'],
             message_type=data['message_type'],
@@ -697,5 +709,3 @@ def messages_send():
     finally:
         db.session.close()
         return dic
-
-
