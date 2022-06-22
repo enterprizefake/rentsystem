@@ -19,6 +19,6 @@
 <view class="card2" style="position:fixed; bottom:0;width: 750rpx;">
   <button style="width:22vw;height: 40px;margin-left: 10px;font-size: 15px;margin-top: 10px;"  bindtap="jump1" >收藏</button>
 <button style="width:25vw;height: 40px;margin-left: 130px;margin-top: -40px;font-size: 16px;" type=""  bindtap="jump2" data-name="{{house}}" >预约</button>
-<button style="width:32vw;height:60px;margin-right: -2px;margin-top: -50px;font-size: 18px;text-align:end;"  bindtap="jump3" data-name1="{{house}}" class="buttontype" >立即申请</button>
+<button style="width:32vw;height:100px;margin-right: -2px;margin-top: -50px;font-size: 18px;text-align:end;border: 0px;"  bindtap="jump3" data-name1="{{house}}" class="buttontype" >立即申请</button>
 </view>
 
