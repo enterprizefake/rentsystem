@@ -1,2 +1,93 @@
-<!--pages/me/order/index.wxml-->
-<text>pages/me/order/index.wxml</text>
+<view>
+
+  <view wx:for="{{orders}}">
+
+
+    <!-- 卡片 -->
+    <view class="card">
+      <!-- 顶部房东信息及支付信息 -->
+      <view class="top">
+        <!-- 头像 -->
+        <van-image class="v0" width="120rpx" height="120rpx" round src="{{item.avatar}}" style="margin-right: 30rpx;" />
+        <view class="flex1">
+        <view class="font">
+
+          <view>
+            {{item.user_name}}({{item.user_nickname}})
+          </view>
+
+          <view>
+            电话:{{item.phone}}
+          </view>
+
+        </view>
+
+        <view class="price">
+          ￥{{item.price*(item.rent_time+item.relet_time)}}
+        </view>
+
+      </view>
+      </view>
+
+      <!-- 上 -->
+
+      <view class="up">
+
+        <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+        <view class="right">
+
+          <view style="font-weight: bolder;">
+            订单编号:{{item.order_id}}
+          </view>
+
+
+          <view class="date">
+            租赁时间:{{item.rent_time}}(月)
+          </view>
+
+          <view class="date">
+            续租时间:{{item.relet_time}}(月)
+          </view>
+
+          <!-- <view class="date">
+            开始日期:\n{{item.begin_date}}
+          </view>
+
+          <view class="date">
+            结束日期:\n{{item.end_date}}
+          </view> -->
+
+          <view class="date">
+            开始日期:
+          </view>
+
+          <view class="date">
+            {{date}}
+          </view>
+
+          <view class="date">
+            结束日期:
+          </view>
+
+          <view class="date">
+            {{date}}
+          </view>
+
+        </view>
+
+      </view>
+      <!-- 下 -->
+      <view class="down">
+
+        <view class="left">
+          {{item.h_name}}
+        </view>
+
+
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
