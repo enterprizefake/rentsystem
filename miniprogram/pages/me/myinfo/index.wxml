@@ -1,2 +1,14 @@
-<!--pages/me/myinfo/index.wxml-->
-<text>pages/me/myinfo/index.wxml</text>
+<view>
+  <van-cell-group>
+
+  <van-cell title="头像" >
+  <van-image class="v0" width="120rpx" height="120rpx" round src="{{user.avatarUrl}}" />
+  </van-cell>
+
+  <van-cell title="昵称" value="{{user.nickName}}"  />
+  <van-cell title="姓名" value="{{user.user_name}}"  />
+  <van-cell title="电话" value="{{user.phone}}"  />
+
+  </van-cell-group>
+</view>
+

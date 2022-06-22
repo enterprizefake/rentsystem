@@ -54,6 +54,18 @@ Page({
         "phone": this.data.phone
       }
 
+      wx.request({
+        url:"http://127.0.0.1:8086/login",
+        data:app.globalData.user,
+        success:(res)=>
+        {
+          console.log("登录成功")
+        },
+        fail:(res)=>
+        {
+          console.log("登录失败")
+        }
+      })
       wx.setStorageSync("user", app.globalData.user)
       wx.navigateBack({
         delta: 1
