@@ -1,2 +1,5 @@
 <!--pages/me/collection/index.wxml-->
-<text>pages/me/collection/index.wxml</text>
+<view wx:for="{{all_collections}}" wx:item="item">
+<van-cell title="{{item.h_id}}" is-link bindtap="jump1"></van-cell>
+</view>
+
