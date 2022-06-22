@@ -76,7 +76,7 @@ POST  http://127.0.0.1:8086/tenants/orders
 Content-Type: application/json
 
 {
-  "phone": "2"
+  "phone": "18030931611"
 }
 
 ###

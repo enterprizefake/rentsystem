@@ -275,9 +275,13 @@ def tenants_orders():
 
         for order in orders:
             house=to_dict(db.session.query(House).filter(House.h_id==order['h_id'])[0])
-            order=order.update(house)
+            user=to_dict(db.session.query(User).filter(User.phone==house['phone'])[0])
+            order.update(house)
+            order.update(user)
 
         dic['orders'] = orders
+
+
     except Exception as e:
         dic = {'sucess': 'no'}
 
@@ -332,7 +336,9 @@ def tenants_collections():
 
         for collection in collections:
             house=to_dict(db.session.query(House).filter(House.h_id==collection['h_id'])[0])
-            collection=collection.update(house)
+            user=to_dict(db.session.query(User).filter(User.phone==house['phone'])[0])
+            collection.update(house)
+            collection.update(user)
 
 
         dic['collections'] = collections
@@ -360,6 +366,13 @@ def landlord_orders():
         for house in houses:
             h_id = house.h_id
             orders += to_list(db.session.query(Order).filter(Order.h_id == h_id).all())
+
+        for order in orders:
+            house=to_dict(db.session.query(House).filter(House.h_id==order['h_id'])[0])
+            user=to_dict(db.session.query(User).filter(User.phone==house['phone'])[0])
+            order.update(house)
+            order.update(user)
+
         dic['orders'] = orders
     except Exception as e:
         dic = {'sucess': 'no'}
