@@ -266,8 +266,17 @@ def tenants_orders():
         data = request.get_json()
         print(data)
         num = data['phone']
+
+        
         orders = to_list(db.session.query(
             Order).filter(Order.phone == num).all())
+
+        
+
+        for order in orders:
+            house=to_dict(db.session.query(House).filter(House.h_id==order['h_id'])[0])
+            order=order.update(house)
+
         dic['orders'] = orders
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -318,9 +327,15 @@ def tenants_collections():
         data = request.get_json()
         print(data)
         num = data['phone']
-        orders = to_list(db.session.query(Collection).filter(
+        collections = to_list(db.session.query(Collection).filter(
             Collection.phone == num).all())
-        dic['collections'] = orders
+
+        for collection in collections:
+            house=to_dict(db.session.query(House).filter(House.h_id==collection['h_id'])[0])
+            collection=collection.update(house)
+
+
+        dic['collections'] = collections
     except Exception as e:
         dic = {'sucess': 'no'}
     finally:
