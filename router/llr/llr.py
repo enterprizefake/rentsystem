@@ -27,7 +27,7 @@ def login():
         data = request.get_json()
         print(data)
 
-        new_user = User(user_nickname=data['user_nickName'],
+        new_user = User(user_nickname=data['nickName'],
                         user_name=data['user_name'],
                         type='小程序使用者',
                         phone=data['phone'],
