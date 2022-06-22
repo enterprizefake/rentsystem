@@ -1,6 +1,9 @@
 d1={'1':5,"2":6,"8":10}
 d2={'1':7,"2":8,"3":9}
 d3={'484':8484}
-d1=d1.update(d3)
-# d1.update(d2)
+d1.update(d3)
+s=set()
+s.add(d1)
+
+print(s)
 print(d1)

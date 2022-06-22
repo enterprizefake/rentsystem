@@ -583,6 +583,10 @@ def root_audited():
         num = data['phone']
         audited = to_list(db.session.query(
             Audit).filter(Audit.phone == num).all())
+
+        for a in audited:
+            house=to_dict(db.session.query(House).filter(House.audit_id==a['audit_id'])[0])
+            a.update(house)
         dic['audited'] = audited
 
     except Exception as e:
