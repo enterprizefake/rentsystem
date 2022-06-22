@@ -36,9 +36,9 @@ Content-Type: application/json
 {
   "begin_date": null,
   "end_date": null,
-  "h_id": 3,
+  "h_id": 5,
   "phone": "18030931611",
-  "rent_time": 4
+  "rent_time": "4"
 }
 
 ###
@@ -160,6 +160,16 @@ Content-Type: application/json
 
 {
   "phone":2
+}
+
+###
+POST  http://127.0.0.1:8086/landlord/bookcheck
+Content-Type: application/json
+
+{
+  "booking_id":16,
+  "booking_state":"预约成功",
+  "reply":"无"
 }
 
 ###

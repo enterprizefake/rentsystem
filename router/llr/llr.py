@@ -526,8 +526,7 @@ def landlord_deleteold():
         db.session.close()
         return dic
 
-# 预约看房管理
-
+# 查看所有预约看房
 
 @llr.route("/landlord/book", methods=["POST", 'GET'])
 def landlord_book():
@@ -545,6 +544,25 @@ def landlord_book():
                 Booking).filter(Booking.h_id == house.h_id).all())
             dic['bookings'] += house_bookings
 
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+# 预约看房管理
+@llr.route("/landlord/bookcheck", methods=["POST", 'GET'])
+def landlord_bookcheck():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+
+        book=db.session.query(Booking).filter(Booking.booking_id==data['booking_id'])[0]
+        book.booking_state=data['booking_state']
+        book.reply=data['reply']
+
+        db.session.commit()
     except Exception as e:
         dic = {'sucess': 'no'}
 
