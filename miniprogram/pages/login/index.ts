@@ -54,8 +54,10 @@ Page({
         "phone": this.data.phone
       }
 
+      var user = app.globalData.user
       wx.request({
         url:"http://127.0.0.1:8086/login",
+        method:'POST',
         data:app.globalData.user,
         success:(res)=>
         {
