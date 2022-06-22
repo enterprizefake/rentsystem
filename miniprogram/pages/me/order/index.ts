@@ -1,4 +1,3 @@
-import { formatTime } from '../../../utils/util'
 var app=getApp()
 Page({
 
@@ -6,13 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    orders:null,
-    date:null
+    orders:null
   },
   onLoad (data) {
-    this.setData({
-      date:formatTime(new Date())
-    })
     if( data.user_type == "tenant" )
     {
       data.user_type="tenants"

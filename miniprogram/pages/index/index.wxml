@@ -1,7 +1,7 @@
 <!-- 轮播图 -->
 <swiper indicator-dots autoplay circular>
 <block class="item">
-<swiper-item wx:for="{{list}}" wx:item="item" bindtap="to_detail" data-name="{{item.h_id}}">
+<swiper-item wx:for="{{list}}" wx:item="item" bindtap="to_detail" data-name="{{item}}">
 <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="item"> </image>
 </swiper-item>
 </block>

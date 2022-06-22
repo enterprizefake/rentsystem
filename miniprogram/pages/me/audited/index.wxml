@@ -1,2 +1,19 @@
-<!--pages/me/audited/index.wxml-->
-<text>pages/me/audited/index.wxml</text>
+<view>
+
+<view wx:if="{{!audited}}">
+  <van-empty
+  class="custom-image"
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+  description="你还没有审核过房子"
+  />
+</view>
+
+<view wx:else>
+  <van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="审核房源">内容 1</van-tab>
+  <van-tab title="我审核的">内容 2</van-tab>
+
+</van-tabs>
+</view>
+
+</view>

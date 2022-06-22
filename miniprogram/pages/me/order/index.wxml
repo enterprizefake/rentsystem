@@ -1,8 +1,14 @@
 <view>
+<view wx:if="{{!orders}}">
+  <van-empty
+  class="custom-image"
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+  description="你还没有租过房子哟"
+/>
+</view>
 
-  <view wx:for="{{orders}}">
-
-
+<view wx:else>
+  <view  wx:for="{{orders}}">
     <!-- 卡片 -->
     <view class="card">
       <!-- 顶部房东信息及支付信息 -->
@@ -45,24 +51,17 @@
             租赁时间:{{item.rent_time}}(月)
           </view>
 
-          <view class="date">
-            续租时间:{{item.relet_time}}(月)
-          </view>
-
           <!-- <view class="date">
-            开始日期:\n{{item.begin_date}}
-          </view>
-
-          <view class="date">
-            结束日期:\n{{item.end_date}}
+            续租时间:{{item.relet_time}}(月)
           </view> -->
+
 
           <view class="date">
             开始日期:
           </view>
 
           <view class="date">
-            {{date}}
+            {{item.begin_date}}
           </view>
 
           <view class="date">
@@ -70,7 +69,7 @@
           </view>
 
           <view class="date">
-            {{date}}
+            {{item.end_date}}
           </view>
 
         </view>
@@ -89,5 +88,5 @@
     </view>
 
   </view>
-
+</view>
 </view>

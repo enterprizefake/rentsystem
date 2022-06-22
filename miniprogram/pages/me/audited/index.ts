@@ -1,18 +1,33 @@
-// pages/me/audited/index.ts
+var app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    audited:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    wx.request({
+      url:"http://127.0.0.1:8086/root/audited",
+      method:'POST',
+      data:
+      {
+        phone:app.globalData.user.phone
+      },
+      success:(res)=>
+      {
+        console.log(res.data)
+        this.setData({
+          audited:res.data.audited
+        })
+      }
 
+    })
   },
 
   /**
