@@ -15,29 +15,9 @@ Page({
 
   },
   jump1(index) {
-    var house=index.currentTarget.dataset.name
-    
-    console.log(house)
-    var house1={address:null}
-    house1.address=house.address
-    house1.audit_id=house.audit_id
-    house1.h_detail=house.h_detail
-    house1.h_id=house.h_id
-    house1.h_latitude=house.h_latitude
-    house1.h_longitude=house.h_longitude
-    house1.h_name=house.h_name
-    house1.h_state=house.h_state
-    house1.max_relettime=house.max_relettime
-    house1.max_renttime=house.max_renttime
-    house1.phone=house.phone
-    house1.picture_number=house.picture_number
-    house1.price=house.price
-    console.log(house1)
-    var house2=JSON.stringify(house1)
-    console.log(house2)
-    //const newhouse = JSON.stringify(house);
+
     wx.navigateTo({
-      url: "/pages/index/detail/index?house"+house2
+      url: "/pages/index/detail/index?house="+encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
     })
   },
   /**

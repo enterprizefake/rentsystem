@@ -1,7 +1,7 @@
-// app.ts
 App<IAppOption>({
   globalData: {
-    user: null
+    user: null,
+    temp_user:null
   },
   login() {
     var temp_user = null
@@ -12,9 +12,8 @@ App<IAppOption>({
         wx.getLocation({
           type: 'wgs84',
           success: (res) => {
-
             temp_user = { ...temp_user, ...res }
-            this.globalData.user = temp_user
+            this.globalData.temp_user = temp_user
             wx.navigateTo({
               url: "/pages/login/index"
             })
@@ -25,10 +24,28 @@ App<IAppOption>({
     })
   },
   onLaunch() {
-    const user = wx.getStorageSync("user")
+    var user = wx.getStorageSync("user")
     console.log("app user:" + user)
     if (user) {
-      this.globalData.user = user
+      wx.request({
+        url: "http://127.0.0.1:8086/login",
+        method: 'POST',
+        data: user,
+        success: (res) => {
+          if (res.data.sucess == "yes") {
+            console.log("登录成功")
+            user.type=res.data.type
+            wx.setStorageSync("user", user)
+            this.globalData.user = user
+            console.log("this.globalData.user:"+this.globalData.user.type)
+          }
+          else
+          {
+            console.log("登录失败")
+          }
+        }
+      })
+      
     }
   },
 })

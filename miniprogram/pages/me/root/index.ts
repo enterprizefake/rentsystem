@@ -1,10 +1,11 @@
-var app=getApp()
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    audits:null,
     audited:null
   },
 
@@ -13,15 +14,24 @@ Page({
    */
   onLoad() {
     wx.request({
-      url:"http://127.0.0.1:8086/root/audited",
-      method:'POST',
-      data:
+      url:"http://127.0.0.1:8086/root/audits",
+      method:"POST",
+      success:(res)=>
       {
+        this.setData({
+          audits:res.data.audits
+        })
+      }
+    })
+    
+    wx.request({
+      url:"http://127.0.0.1:8086/root/audited",
+      method:"POST",
+      data:{
         phone:app.globalData.user.phone
       },
       success:(res)=>
       {
-        console.log(res.data)
         this.setData({
           audited:res.data.audited
         })

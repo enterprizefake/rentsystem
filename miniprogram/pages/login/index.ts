@@ -48,27 +48,31 @@ Page({
   },
   commit() {
     if (this.check1() && this.check2()) {
-      app.globalData.user = {
-        ...app.globalData.user,
+      app.globalData.temp_user = {
+        ...app.globalData.temp_user,
         "user_name": this.data.user_name,
         "phone": this.data.phone
       }
 
-      var user = app.globalData.user
       wx.request({
-        url:"http://127.0.0.1:8086/login",
-        method:'POST',
-        data:app.globalData.user,
-        success:(res)=>
-        {
-          console.log("登录成功")
-        },
-        fail:(res)=>
-        {
-          console.log("登录失败")
+        url: "http://127.0.0.1:8086/login",
+        method: 'POST',
+        data: app.globalData.temp_user,
+        success: (res) => {
+
+          if (res.data.sucess == "yes") {
+            console.log("登录成功")
+          }
+          else
+          {
+            console.log("登录失败")
+          }
         }
       })
+      app.globalData.user=app.globalData.temp_user
       wx.setStorageSync("user", app.globalData.user)
+
+
       wx.navigateBack({
         delta: 1
       })
