@@ -1,5 +1,6 @@
 import base64
 
+
 from router.llr.dict import *
 from database.models import *
 from Starter import db
@@ -223,7 +224,7 @@ def index_detail_cancelcollection():
 
         id = data['h_id']
         num = data['phone']
-        r = db.session.query(Collection).filter(
+        db.session.query(Collection).filter(
             Collection.h_id == id, Collection.phone == num).delete()
         db.session.commit()
     except Exception as e:
@@ -651,8 +652,10 @@ def root_delaudited():
         if(h_state == '未出租'):
             if(data['audit_state'] == "未审核"):
                 audited = db.session.query(Audit).filter(
-                    Audit.audit_id == audit_id)[0]
-                house = db.session.query(House).filter()
+                    Audit.audit_id == audit_id)
+                house = db.session.query(House).filter(House.audit_id==audit_id)[0]
+                house.audit_id=None
+                audited.delete()
             else:
                 audited = db.session.query(Audit).filter(
                     Audit.audit_id == audit_id)[0]
