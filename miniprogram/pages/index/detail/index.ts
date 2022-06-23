@@ -14,10 +14,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) {
+  onLoad: function (option) {   
     var house = JSON.parse(option.house)
-    console.log(house)
-    // console.log(option)
+   console.log(house)
     this.setData({
       house: house
     })
@@ -36,7 +35,6 @@ Page({
       },
       success: (res) => {
         var datas = res.data
-        console.log(datas)
         if (datas.sucess == 'no') {
           console.log("???")
         }

@@ -70,8 +70,8 @@ Page({
       url: 'http://127.0.0.1:8086/index/detail/pay',
       method: 'POST',
       data: {
-        begin_data:this.data.begindate,
-        end_data:this.data.enddate,
+        begin_date:this.data.begindate,
+        end_date:this.data.enddate,
         h_id:this.data.house.h_id,
         phone:this.data.information.phone,
         rent_time:this.data.information.rtime
