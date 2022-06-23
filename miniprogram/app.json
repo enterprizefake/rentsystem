@@ -11,13 +11,12 @@
     "pages/me/myinfo/index",
     "pages/me/order/index",
     "pages/me/collection/index",
-    "pages/me/audited/index",
-    "pages/me/audit/index",
     "pages/me/rent/index",
     "pages/me/delrent/index",
     "pages/me/bookmanage/index",
     "pages/me/message/index",
-    "pages/login/index"
+    "pages/login/index",
+    "pages/me/root/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

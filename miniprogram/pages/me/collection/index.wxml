@@ -1,5 +1,7 @@
 <!--pages/me/collection/index.wxml-->
 <view wx:for="{{all_collections}}" wx:item="item">
+
 <van-cell title="{{item.h_id}}房屋地址：{{item.address}} " is-link bindtap="jump1" data-name="{{item}}">￥{{item.price}}</van-cell>
+
 </view>
 

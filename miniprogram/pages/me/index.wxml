@@ -46,14 +46,15 @@
   </view>
 
   <!-- 管理员部分 -->
-  <view wx:if="{{root}}">
-    <van-cell title="我审核的" is-link bindtap="jump7"></van-cell>
-    <van-cell title="审核房源" is-link bindtap="jump8"></van-cell>
+  <view wx:if="{{ (user.type=='小程序管理员') }}">
+
+    <van-cell title="管理中心(管理员)" is-link bindtap="jump7"></van-cell>
+
   </view>
 
   
   <view class="message">
-  <van-icon name="chat-o" info="99+" size="2rem" bindtap="jump9"></van-icon>
+  <van-icon name="chat-o" info="99+" size="2rem" bindtap="jump8"></van-icon>
   </view>
 
 </view>

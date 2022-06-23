@@ -7,7 +7,6 @@ Page({
   data: {
     user_type: "tenant",
     user: null,
-    root: true,
     user_name: null,
     phone: null
   },
@@ -63,15 +62,10 @@ Page({
   },
   jump7() {
     wx.navigateTo({
-      url: "/pages/me/audited/index"
+      url: "/pages/me/root/index"
     })
   },
   jump8() {
-    wx.navigateTo({
-      url: "/pages/me/audit/index"
-    })
-  },
-  jump9() {
     wx.navigateTo({
       url: "/pages/me/message/index?user_type=" + this.data.user_type
     })

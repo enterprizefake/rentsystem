@@ -7,19 +7,16 @@ Page({
    */
   data: {
     house: null,
-    iscollect:false,
-    all_collections:null
+    iscollect: false,
+    all_collections: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    var house = JSON.parse(option.house)
-    console.log(house)
-    // console.log(option)
     this.setData({
-      house: house
+      house: JSON.parse(decodeURIComponent(option.house))
     })
     wx.showLoading(
       {
@@ -30,9 +27,9 @@ Page({
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
       url: 'http://127.0.0.1:8086/tenants/collections',
-      method:"POST",
+      method: "POST",
       data: {
-      phone:app.globalData.user.phone
+        phone: app.globalData.user.phone
       },
       success: (res) => {
         var datas = res.data
@@ -41,23 +38,21 @@ Page({
           console.log("???")
         }
         else {
-        this.setData({
-          all_collections:datas.collections
-        })
-    //     if(this.data.all_collections.h_id.indexOf(66)==-1){
-    //       console.log("不存在")
-    // }else{
-    //       console.log("存在,索引是：",arr.indexOf(66))
-    // }
-    for(var i=0;i<this.data.all_collections.length;i++)
-    {
-    if(this.data.all_collections[i].h_id==this.data.house.h_id)
-    {
-      this.setData({
-        iscollect:true
-      })
-    }
-    }
+          this.setData({
+            all_collections: datas.collections
+          })
+          //     if(this.data.all_collections.h_id.indexOf(66)==-1){
+          //       console.log("不存在")
+          // }else{
+          //       console.log("存在,索引是：",arr.indexOf(66))
+          // }
+          for (var i = 0; i < this.data.all_collections.length; i++) {
+            if (this.data.all_collections[i].h_id == this.data.house.h_id) {
+              this.setData({
+                iscollect: true
+              })
+            }
+          }
         }
         wx.hideLoading()
       },
@@ -70,70 +65,66 @@ Page({
     // })
     //   console.log(option.house_id)
   },
-  jump1(){
+  jump1() {
     var app = getApp()
     console.log(app.globalData.user.phone)
-  if(this.data.iscollect)
-  {
-    wx.showToast({
-      title: '取消收藏',
-      icon:'none'
-    })
-    
-    this.setData({
-      iscollect:false
-    });
-  }
-  else
-  {
-    wx.showToast({
-      title: '收藏成功',
-      icon:'none'
-    })
-    this.setData({
-      iscollect:true
-    })
-  }
-  if(this.data.iscollect)
-  {
-    wx.request({
-      url: 'http://127.0.0.1:8086/index/detail/collection',
-      method: 'POST',
-      data:{
-      h_id:this.data.house.h_id,
-      phone:app.globalData.user.phone
-      },
-      success: (res) => {
-        var datas = res.data
-        console.log(res)
-       // console.log(datas)
-        if (datas.sucess == 'no') {
-          console.log("h_id:"+this.data.house.h_id)
-          console.log("???")
-        }
-      },
-    })   
-  }
-  else
-  {
-    wx.request({
-      url: 'http://127.0.0.1:8086/index/detail/cancelcollection',
-      method: 'POST',
-      data:{
-      h_id:this.data.house.h_id,
-      phone:app.globalData.user.phone
-      },
-      success: (res) => {
-        var datas = res.data
-        console.log(res)
-       // console.log(datas)
-        if (datas.sucess == 'no') {
-          console.log("h_id:"+this.data.house.h_id)
-          console.log("???")
-        }
-      },
-    })   
-  }
+    if (this.data.iscollect) {
+      wx.showToast({
+        title: '取消收藏',
+        icon: 'none'
+      })
+
+      this.setData({
+        iscollect: false
+      });
+    }
+    else {
+      wx.showToast({
+        title: '收藏成功',
+        icon: 'none'
+      })
+      this.setData({
+        iscollect: true
+      })
+    }
+    if (this.data.iscollect) {
+      wx.request({
+        url: 'http://127.0.0.1:8086/index/detail/collection',
+        method: 'POST',
+        data: {
+          h_id: this.data.house.h_id,
+          phone: app.globalData.user.phone
+        },
+        success: (res) => {
+          var datas = res.data
+          console.log(res)
+          // console.log(datas)
+          if (datas.sucess == 'no') {
+            console.log("h_id:" + this.data.house.h_id)
+            console.log("???")
+          }
+        },
+      })
+    }
+    else {
+      wx.request({
+        url: 'http://127.0.0.1:8086/index/detail/cancelcollection',
+        method: 'POST',
+        data: {
+          h_id: this.data.house.h_id,
+          phone: app.globalData.user.phone
+        },
+        success: (res) => {
+          var datas = res.data
+          console.log(res)
+          // console.log(datas)
+          if (datas.sucess == 'no') {
+            console.log("h_id:" + this.data.house.h_id)
+            console.log("???")
+          }
+        },
+      })
+    }
   },
   jump2(index) {
     if (app.globalData.user) {
