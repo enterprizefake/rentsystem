@@ -14,7 +14,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) {   
+  onLoad: function (option) {  
+    console.log(option.house) 
     var house = JSON.parse(option.house)
    console.log(house)
     this.setData({
