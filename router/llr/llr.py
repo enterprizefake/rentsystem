@@ -26,20 +26,26 @@ def login():
 
         data = request.get_json()
         print(data)
+        phone=data['phone']
+        
+        has_user=db.session.query(User).filter(User.phone==phone)[0]
+        print(has_user)
+        if(has_user):
+            dic['type']=has_user.type
+        else:
+            new_user = User(user_nickname=data['nickName'],
+                            user_name=data['user_name'],
+                            type='小程序使用者',
+                            phone=data['phone'],
+                            avatar=data['avatarUrl'],
+                            u_longitude=data['longitude'],
+                            u_latitude=data['latitude']
+                            )
 
-        new_user = User(user_nickname=data['nickName'],
-                        user_name=data['user_name'],
-                        type='小程序使用者',
-                        phone=data['phone'],
-                        avatar=data['avatarUrl'],
-                        u_longitude=data['longitude'],
-                        u_latitude=data['latitude']
-                        )
-
-        dic.update(to_dict(new_user))
-        db.session.add(new_user)
-        db.session.commit()
-
+            dic.update(to_dict(new_user))
+            db.session.add(new_user)
+            db.session.commit()
+        print(dic)
     except Exception as e:
         # traceback.print_exc()
         # 返回错误信息

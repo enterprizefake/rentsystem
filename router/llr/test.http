@@ -4,8 +4,10 @@ Content-Type: application/json
 {
 	"phone": 250,
 	"user_name": "hhh",
-	"avatar": "wrfvrvwr",
-	"user_nickname": "regrg"
+	"avatarUrl": "wrfvrvwr",
+	"nickName": "regrg",
+  "longitude":10.5,
+  "latitude":50.4
 }
 ###
 
