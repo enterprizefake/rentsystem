@@ -44,8 +44,11 @@ Page({
       }
     })
   },
- book_detaile(){
-
+ book_agree(index){
+  var app = getApp()
+ },
+ book_refuse(index){
+  var app = getApp()
  },
   /**
    * 生命周期函数--监听页面初次渲染完成

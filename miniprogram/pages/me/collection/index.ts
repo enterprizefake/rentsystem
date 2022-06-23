@@ -15,6 +15,7 @@ Page({
 
   },
   jump1(index) {
+
     wx.navigateTo({
       url: "/pages/index/detail/index?house="+encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
     })

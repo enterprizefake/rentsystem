@@ -11,6 +11,7 @@ Page({
     list:null
   },
   to_detail(index){
+
     wx.navigateTo({
       url:"/pages/index/detail/index?house="+JSON.stringify(index.currentTarget.dataset.name)
     })

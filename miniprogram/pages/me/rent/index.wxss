@@ -1,1 +1,90 @@
 /* pages/me/rent/index.wxss */
+/* pages/index/detail/reserve/index.wxss */
+page{
+  background: #eee;
+}
+.baseInfo{
+  padding:20rpx 10rpx;
+}
+.baseInfo image{
+  width: 10rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+.baseInfo text{
+  font-size: 28rpx;
+  color: #6f6f6f;
+}
+.list{
+  color: #6f6f6f;
+  font-size: 32rpx;
+}
+.icon{
+  background: #fff;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+ 
+.icon-img{
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+.icon-head{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+.icon-r{
+  width: 20rpx;
+  height: 30rpx;
+}
+.name,.sex,.phone,.info{
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.name input,.phone input,.info input{
+  text-align:right;
+}
+.sex{
+  background: #fff;
+}
+.radio radio{
+  margin-left: 30rpx;
+}
+ 
+button{
+  background-color: #FE6702;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+ 
+.modal view{
+  text-align: center;
+}
+.wx_7_button{
+  width: 240rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: white;
+  display:block;
+  margin:0 auto;
+  margin-top: 80rpx;
+  background-color: #E84951;
+  border-radius: 6rpx;
+  font-size: 32rpx;
+}

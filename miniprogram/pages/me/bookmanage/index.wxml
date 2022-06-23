@@ -1,7 +1,12 @@
 <!--pages/me/bookmanage/index.wxml-->
 <view wx:for="{{all_booking}}" wx:item="item">
-<view class="card" bindtap="book_detaile">
-预约订单id：{{item.booking_id}}
-预约人电话：{{item.phone}}
+<view class="card" >
+<view>预约订单id：{{item.booking_id}}</view>
+<view>预约人电话：{{item.phone}}</view>
+<view>预约状态：{{item.booking_state}}</view>
+<view>访问时间：{{item.visit_time}}</view>
+<view>访问人数：{{item.visit_number}}</view>
+<button style="margin-left: 10px;width: 100px;margin-top: 20px;" bindtap="book_agree">同意</button>
+<button style="margin-right: 100px;width: 100px;margin-top: -40px;" bindtap="book_refuse">拒绝</button>
 </view>
 </view>

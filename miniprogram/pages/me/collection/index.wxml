@@ -3,5 +3,7 @@
 
 <van-cell title="{{item.h_id}}房屋地址：{{item.address}} " is-link bindtap="jump1" data-name="{{item}}">￥{{item.price}}</van-cell>
 
+
+
 </view>
 
