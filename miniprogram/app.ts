@@ -33,7 +33,7 @@ App<IAppOption>({
         data: user,
         success: (res) => {
           if (res.data.sucess == "yes") {
-            console.log("登录成功")
+            console.log("二次登录成功")
             user.type=res.data.type
             wx.setStorageSync("user", user)
             this.globalData.user = user

@@ -59,23 +59,25 @@ Page({
         method: 'POST',
         data: app.globalData.temp_user,
         success: (res) => {
-
           if (res.data.sucess == "yes") {
-            console.log("登录成功")
+            console.log("(清除缓存后)初次登录成功")
+            app.globalData.user=app.globalData.temp_user
+            app.globalData.user.type=res.data.type
+            wx.setStorageSync("user", app.globalData.user)
+
+            wx.navigateBack({
+              delta: 1
+            })
           }
           else
           {
-            console.log("登录失败")
+            console.log("(清除缓存后)初次登录失败")
           }
         }
-      })
-      app.globalData.user=app.globalData.temp_user
-      wx.setStorageSync("user", app.globalData.user)
 
-
-      wx.navigateBack({
-        delta: 1
       })
+
+      
 
     }
 
