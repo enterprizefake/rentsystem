@@ -585,14 +585,21 @@ def root_audited():
     try:
         data = request.get_json()
         print(data)
+
         num = data['phone']
         audited = to_list(db.session.query(
             Audit).filter(Audit.phone == num).all())
 
+        print(audited)
+
         for a in audited:
             house=to_dict(db.session.query(House).filter(House.audit_id==a['audit_id'])[0])
             a.update(house)
+            # print(a)
+
+        print(audited)
         dic['audited'] = audited
+        print(dic)
 
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -643,7 +650,6 @@ def root_audits():
         dic['audits'] = []
 
         houses = db.session.query(House).all()
-        print(56)
         for house in houses:
             if(house.audit_id is None):
                 dic['audits'].append(to_dict(house))
@@ -676,7 +682,8 @@ def root_audit():
         if(house.audit_id is None):
             new_audit = Audit(
                 audit_info=data['audit_info'],
-                audit_state=data["audit_state"]
+                audit_state=data["audit_state"],
+                phone=data['phone']
             )
             db.session.add(new_audit)
 
