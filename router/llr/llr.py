@@ -414,7 +414,8 @@ def landlord_allold():
                 house.update(
                     {
                         "audit_info": '',
-                        "audit_state": "未审核"
+                        "audit_state": "未审核",
+                        "audit_phone":''
                     }
                 )
         dic['oldhouses'] = houses
