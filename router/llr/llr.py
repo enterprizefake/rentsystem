@@ -28,10 +28,9 @@ def login():
         print(data)
         phone=data['phone']
         
-        has_user=db.session.query(User).filter(User.phone==phone)[0]
-        print(has_user)
+        has_user=db.session.query(User).filter(User.phone==phone).all()
         if(has_user):
-            dic['type']=has_user.type
+            dic['type']=has_user[0].type
         else:
             new_user = User(user_nickname=data['nickName'],
                             user_name=data['user_name'],
