@@ -83,8 +83,12 @@ Page({
         if (datas.sucess == 'no') {
           console.log("h_id:"+this.data.house.h_id)
           console.log("???")
+
+          // var d=JSON.stringify
+          console.log("this.data:"+JSON.stringify(this.data))
         }
-      },
+      }
+
     })  
     this.setData({
       modalHidden: true
