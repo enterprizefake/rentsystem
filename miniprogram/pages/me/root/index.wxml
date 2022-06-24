@@ -1,19 +1,115 @@
 <view>
 
-<view wx:if="{{!audited}}">
-  <van-empty
-  class="custom-image"
-  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-  description=""
-  />
-</view>
+  <view>
+    <van-tabs active="{{ active }}" bind:change="onChange">
+      <van-tab title="审核房源">
 
-<view wx:else>
-  <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="审核房源">内容 1</van-tab>
-  <van-tab title="我审核的">内容 2</van-tab>
+        <view>
+          <view wx:if="{{audits.length==0}}">
+            <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="看来可以休息一下咯" />
+          </view>
 
-</van-tabs>
-</view>
+          <view wx:else>
+            <view wx:for="{{audits}}">
+              <!-- 卡片 -->
+              <view class="card" bindtap="check" data-name="{{item}}">
+                <!-- 上 -->
+                <view class="up">
+
+                  <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+
+                  <view class="right">
+
+                    <view style="font-weight: bolder;padding-bottom: 73%;">
+                      价格:{{item.price}}
+                    </view>
+
+
+                    <view>
+                      地址:
+                    </view>
+
+                    <view class="date">
+                      {{item.address}}
+                    </view>
+
+                  </view>
+
+                </view>
+                <!-- 下 -->
+                <view class="down">
+
+                  <view class="left">
+                    {{item.h_name}}
+                  </view>
+
+                  <view>
+                  {{item.h_detail}}
+                  </view>
+
+                </view>
+
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </van-tab>
+
+      <van-tab title="我审核的">
+        <view>
+          <view wx:if="{{audited.length==0}}">
+            <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无审核记录" />
+          </view>
+
+          <view wx:else>
+            <view wx:for="{{audited}}">
+              <!-- 卡片 -->
+              <view class="{{ (item.audit_state=='已通过')?'card':'card1' }}" bindtap="check1" data-name="{{item}}">
+                <!-- 上 -->
+                <view class="up">
+
+                  <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+
+                  <view class="right">
+
+                    <view style="font-weight: bolder;padding-bottom: 73%;">
+                      价格:{{item.price}}
+                    </view>
+
+
+                    <view>
+                      地址:
+                    </view>
+
+                    <view class="date">
+                      {{item.address}}
+                    </view>
+
+                  </view>
+
+                </view>
+                <!-- 下 -->
+                <view class="down">
+
+                  <view class="left">
+                    {{item.h_name}}
+                  </view>
+
+                  <view>
+                  {{item.h_detail}}
+                  </view>
+
+                </view>
+
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </van-tab>
+
+    </van-tabs>
+  </view>
 
 </view>

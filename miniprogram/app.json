@@ -16,7 +16,8 @@
     "pages/me/bookmanage/index",
     "pages/me/message/index",
     "pages/login/index",
-    "pages/me/root/index"
+    "pages/me/root/index",
+    "pages/me/root/check/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

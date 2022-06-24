@@ -1,40 +1,47 @@
 var app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    audits:null,
-    audited:null
+    audits: null,
+    audited: null,
+    card: 'card'
   },
+  check(index) {
+    wx.navigateTo({
+      url: "/pages/me/root/check/index?type=audits&data=" + encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
+    })
+  },
+  check1(index) {
+      wx.navigateTo({
+        url: "/pages/me/root/check/index?type=audited&data=" + encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
+      })
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad() {
+  },
+  onShow() {
     wx.request({
-      url:"http://127.0.0.1:8086/root/audits",
-      method:"POST",
-      success:(res)=>
-      {
+      url: "http://127.0.0.1:8086/root/audits",
+      method: "POST",
+      success: (res) => {
         this.setData({
-          audits:res.data.audits
+          audits: res.data.audits
         })
+        console.log(this.data.audits)
       }
     })
-    
+
     wx.request({
-      url:"http://127.0.0.1:8086/root/audited",
-      method:"POST",
-      data:{
-        phone:app.globalData.user.phone
+      url: "http://127.0.0.1:8086/root/audited",
+      method: "POST",
+      data: {
+        phone: app.globalData.user.phone
       },
-      success:(res)=>
-      {
+      success: (res) => {
         this.setData({
-          audited:res.data.audited
+          audited: res.data.audited
         })
+        console.log(res.data)
       }
 
     })
@@ -47,12 +54,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
 
   /**
    * 生命周期函数--监听页面隐藏

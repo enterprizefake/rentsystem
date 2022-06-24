@@ -1,0 +1,50 @@
+<view>
+  <!-- 轮播图 -->
+  <swiper indicator-dots autoplay circular>
+    <block>
+      <swiper-item wx:for="{{content.picture_number}}">
+        <image src="http://127.0.0.1:8086/static/image/{{content.h_id}}/{{index+1}}.jpg" class="img"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view>
+    <van-cell-group>
+      <van-cell title="房名" value="{{content.h_name}}" />
+      <van-cell title="价格" value="￥{{content.price}}" />
+      <van-cell title="联系电话" value="{{content.phone}}" />
+      <van-cell title="详细信息" value="{{content.h_detail}}" />
+      <van-cell title="地址" is-link bindtap="map" />
+      <van-cell title="最长租赁时间" value="{{content.max_relettime}}" />
+
+      <van-cell title="审核回复">
+        <input placeholder="请输入" 
+        disabled="{{type=='audited'?true:false}}"
+        model:value="{{reply}}"
+        ></input>
+      </van-cell>
+
+      <van-cell title="审核结果">
+        <input placeholder="请选择" value="{{state}}" 
+        disabled="{{type=='audited'?true:false}}"
+        bindtap="pop"></input>
+      </van-cell>
+
+      <button bindtap="commit" hidden="{{type=='audited'?true:false}}">提交</button>
+    </van-cell-group>
+
+    <van-popup show="{{show}}" position="bottom" >
+      <van-picker columns="{{columns}}" 
+      show-toolbar title="选择审核结果"
+       bind:confirm="confirm"
+       bind:cancel="cancel"
+       />
+    </van-popup>
+
+  </view>
+
+  <view>
+
+  </view>
+
+</view>
