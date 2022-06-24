@@ -1,15 +1,7 @@
 <!--pages/me/rent/index.wxml-->
-<view class='baseInfo'>
-  <text>房屋出租基本信息</text>
-</view>
- 
-<form bindsubmit="formSubmit">
-<view class='list'>
- <view class="name">
- <text>房屋编号</text>
- </view>
- 
-</view>
- 
-<button style="margin-left: 80px;margin-bottom: 10px;" form-type='submit' >提交</button>
-</form>
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="发布新房">内容 1</van-tab>
+  
+  <van-tab title="修改旧房">内容 2</van-tab>
+
+</van-tabs>

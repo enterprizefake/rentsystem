@@ -23,7 +23,7 @@ Page({
       url: 'http://127.0.0.1:8086/landlord/book',
       method:"POST",
       data: {
-        phone:2
+        phone:1
       },
       success: (res) => {
         var datas = res.data
@@ -46,9 +46,57 @@ Page({
   },
  book_agree(index){
   var app = getApp()
+  var booking = index.currentTarget.dataset.name
+  //var house = JSON.stringify(index.currentTarget.dataset.name)
+  console.log(booking.booking_id)
+  wx.request({
+    // url: 'http://1.15.184.52:8086/index',
+    url: 'http://127.0.0.1:8086/landlord/bookcheck',
+    method: 'POST',
+    data: {
+      phone:booking.phone,
+      booking_id:booking.booking_id,
+      booking_state:'预约成功',
+      reply:'无',
+    },
+    success: (res) => {
+      var datas = res.data
+      console.log(res)
+     // console.log(datas)
+      if (datas.sucess == 'no') {
+        console.log("h_id:"+this.data.house.h_id)
+        console.log("???")
+      }
+    },
+  })
+  this.onLoad();  
  },
  book_refuse(index){
   var app = getApp()
+  var booking = index.currentTarget.dataset.name
+  //var house = JSON.stringify(index.currentTarget.dataset.name)
+  console.log(booking.booking_id)
+  wx.request({
+    // url: 'http://1.15.184.52:8086/index',
+    url: 'http://127.0.0.1:8086/landlord/bookcheck',
+    method: 'POST',
+    data: {
+      phone:booking.phone,
+      booking_id:booking.booking_id,
+      booking_state:'预约失败',
+      reply:'无',
+    },
+    success: (res) => {
+      var datas = res.data
+      console.log(res)
+     // console.log(datas)
+      if (datas.sucess == 'no') {
+        console.log("h_id:"+this.data.house.h_id)
+        console.log("???")
+      }
+    },
+  }) 
+  this.onLoad(); 
  },
   /**
    * 生命周期函数--监听页面初次渲染完成

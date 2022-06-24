@@ -8,3 +8,21 @@
   margin-top: 15px;
   margin-left: 15px;
  }
+ .card1{
+  width: 90%;
+  height: 390rpx;
+  background: rgb(133, 135, 140);
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+  margin-top: 15px;
+  margin-left: 15px;
+ }
+ .card2{
+  width: 90%;
+  height: 390rpx;
+  background: rgb(0, 255, 0);
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+  margin-top: 15px;
+  margin-left: 15px;
+ }

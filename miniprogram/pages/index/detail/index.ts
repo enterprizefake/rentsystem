@@ -14,16 +14,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-<<<<<<< HEAD
   onLoad: function (option) {  
-    console.log(option.house) 
-    var house = JSON.parse(option.house)
-   console.log(house)
-=======
-
-  onLoad: function (option) {
-
->>>>>>> b375ea4cf470345ce9720d7164130c713e48243e
     this.setData({
       house: JSON.parse(decodeURIComponent(option.house))
     })
