@@ -6,7 +6,6 @@ from flask import request
 
 import traceback
 
-from torch import long
 # appblueprint = Blueprint('_blueprint', __name__)
 mapblueprint = Blueprint('fyjmap', __name__)
 
