@@ -9,11 +9,10 @@ Page({
     socket.connect((status, ws) => {
       // 连接成功
       if (status) {
-
+        console.log(ws);
+        
         // 向服务端发送消息
         ws.emit('connect', { msg: 'Hello World' }); // 参数一：发送消息的socket名，参数二: 发送的数据
-
-
         // 接受服务端传来的消息
         ws.on('connect', (res) => { // 参数一：接收消息的socket名，参数二：返回的信息 function 
           console.log(res)

@@ -3,8 +3,9 @@ const App = getApp();
 
 let wsStatus = false;
 let onSocket = null;
-onSocket = io("wss://127.0.0.1:8086/")// 连接 socket
 
+
+onSocket = io("ws://127.0.0.1:8086/message",{ transports: ['wensocket'] })// 连接 socket
 export const connect = function (cb) { 
   if (!onSocket) {
     onSocket.on('connect', function (res) { // 监听socket 是否连接成功
