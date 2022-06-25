@@ -100,7 +100,10 @@ socketio = SocketIO(app,ping_interval=25,cors_allowed_origins="*")
 
 
 
-#_______________________________________________
+@socketio.on('connect', namespace='/test')
+def test_message(message):
+    print(message)
+
 
 
 

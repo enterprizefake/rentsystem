@@ -457,15 +457,18 @@ def landlord_rentnew():
         print(h_id)
 
         pictures = data['pictures']
+        # print(pictures)
         # h_id=request.form.get("h_id")
         # team_images =request.form.get("images") #队base64进行解码还原。
 
         os.makedirs('static/image/{}'.format(h_id), exist_ok=True)  # 递归创建文件夹
-
+        print(os.getcwd())
         i = 1
         while i <= len(pictures):
-            with open("/static/image/{}/{}.jpg".format(h_id, i), "wb") as f:  # 存入图片，存入地址为服务器中的项目地址。
-                f.write(base64.b64decode(pictures[i]))
+            # 存入图片，存入地址为服务器中的项目地址。
+            with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i), "wb") as f:
+                print(456684)
+                f.write(base64.b64decode(pictures[i-1]))
             i += 1
 
         house = db.session.query(House).filter(House.h_id == h_id)[0]
@@ -509,10 +512,10 @@ def landlord_rentold():
                         exist_ok=True)  # 递归创建文件夹
 
             i = 1
-            while i <= len(pictures):
-                with open("/static/image/{}/{}.jpg".format(h_id, i), "wb") as f:  # 存入图片，存入地址为服务器中的项目地址。
-                    f.write(base64.b64decode(pictures[i]))
-                i += 1
+            with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i), "wb") as f:
+                print(456684)
+                f.write(base64.b64decode(pictures[i-1]))
+            i += 1
 
             house = db.session.query(House).filter(House.h_id == h_id)[0]
             house.picture_number = len(pictures)
