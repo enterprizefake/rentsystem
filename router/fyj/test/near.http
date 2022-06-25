@@ -1,0 +1,8 @@
+POST http://127.0.0.1:8086/api/near
+Content-Type: application/json
+
+{
+	"long": 106.59079261413574,
+	"lat": 29.540359336357056
+}
+###

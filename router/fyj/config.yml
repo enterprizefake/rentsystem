@@ -1,6 +1,7 @@
 blueprints :
 # py文件名(同级目录) : blueprint名字
-  helloworld : helloworldprint
+  # helloworld : helloworldprint
+  map : mapblueprint
 
 #示例:
 # blueprints :
