@@ -1,5 +1,6 @@
 import base64
 
+
 from router.llr.dict import *
 from database.models import *
 from Starter import db
@@ -26,20 +27,25 @@ def login():
 
         data = request.get_json()
         print(data)
+        phone = data['phone']
 
-        new_user = User(user_nickname=data['user_nickName'],
-                        user_name=data['user_name'],
-                        type='小程序使用者',
-                        phone=data['phone'],
-                        avatar=data['avatarUrl'],
-                        u_longitude=data['longitude'],
-                        u_latitude=data['latitude']
-                        )
+        has_user = db.session.query(User).filter(User.phone == phone).all()
+        if(has_user):
+            dic['type'] = has_user[0].type
+        else:
+            new_user = User(user_nickname=data['nickName'],
+                            user_name=data['user_name'],
+                            type='小程序使用者',
+                            phone=data['phone'],
+                            avatar=data['avatarUrl'],
+                            u_longitude=data['longitude'],
+                            u_latitude=data['latitude']
+                            )
 
-        dic.update(to_dict(new_user))
-        db.session.add(new_user)
-        db.session.commit()
-
+            dic.update(to_dict(new_user))
+            db.session.add(new_user)
+            db.session.commit()
+        print(dic)
     except Exception as e:
         # traceback.print_exc()
         # 返回错误信息
@@ -97,9 +103,17 @@ def g():
 def index():
     dic = {'sucess': 'yes'}
     try:
-        all_houses = db.session.query(House).all()
+        all_houses = db.session.query(House).filter(
+            House.h_state == "未出租").all()
         print(all_houses)
-        houses = to_list(all_houses)
+
+        houses = []
+        for house in all_houses:
+            if(house.audit_id):
+                audit = db.session.query(Audit).filter(
+                    Audit.audit_id == house.audit_id)[0]
+                if(audit.audit_state == "已通过"):
+                    houses.append(to_dict(house))
 
         dic['house'] = houses
         # dic['house']=to_list(allhouse)
@@ -210,7 +224,7 @@ def index_detail_cancelcollection():
 
         id = data['h_id']
         num = data['phone']
-        r = db.session.query(Collection).filter(
+        db.session.query(Collection).filter(
             Collection.h_id == id, Collection.phone == num).delete()
         db.session.commit()
     except Exception as e:
@@ -259,9 +273,20 @@ def tenants_orders():
         data = request.get_json()
         print(data)
         num = data['phone']
+
         orders = to_list(db.session.query(
             Order).filter(Order.phone == num).all())
+
+        for order in orders:
+            house = to_dict(db.session.query(House).filter(
+                House.h_id == order['h_id'])[0])
+            user = to_dict(db.session.query(User).filter(
+                User.phone == house['phone'])[0])
+            order.update(house)
+            order.update(user)
+
         dic['orders'] = orders
+
     except Exception as e:
         dic = {'sucess': 'no'}
 
@@ -311,9 +336,18 @@ def tenants_collections():
         data = request.get_json()
         print(data)
         num = data['phone']
-        orders = to_list(db.session.query(Collection).filter(
+        collections = to_list(db.session.query(Collection).filter(
             Collection.phone == num).all())
-        dic['collections'] = orders
+
+        for collection in collections:
+            house = to_dict(db.session.query(House).filter(
+                House.h_id == collection['h_id'])[0])
+            user = to_dict(db.session.query(User).filter(
+                User.phone == house['phone'])[0])
+            collection.update(house)
+            collection.update(user)
+
+        dic['collections'] = collections
     except Exception as e:
         dic = {'sucess': 'no'}
     finally:
@@ -338,6 +372,15 @@ def landlord_orders():
         for house in houses:
             h_id = house.h_id
             orders += to_list(db.session.query(Order).filter(Order.h_id == h_id).all())
+
+        for order in orders:
+            house = to_dict(db.session.query(House).filter(
+                House.h_id == order['h_id'])[0])
+            user = to_dict(db.session.query(User).filter(
+                User.phone == house['phone'])[0])
+            order.update(house)
+            order.update(user)
+
         dic['orders'] = orders
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -359,7 +402,24 @@ def landlord_allold():
 
         houses = to_list(db.session.query(
             House).filter(House.phone == num).all())
-        dic['orders'] = houses
+
+        for house in houses:
+            audit = db.session.query(Audit).filter(
+                Audit.audit_id == house['audit_id']).all()
+            if(audit):
+                d=to_dict(audit[0])
+                d['audit_phone']=d['phone']
+                del d['phone']
+                house.update(d)
+            else:
+                house.update(
+                    {
+                        "audit_info": '',
+                        "audit_state": "未审核",
+                        "audit_phone":''
+                    }
+                )
+        dic['oldhouses'] = houses
     except Exception as e:
         dic = {'sucess': 'no'}
 
@@ -397,15 +457,18 @@ def landlord_rentnew():
         print(h_id)
 
         pictures = data['pictures']
+        # print(pictures)
         # h_id=request.form.get("h_id")
         # team_images =request.form.get("images") #队base64进行解码还原。
 
         os.makedirs('static/image/{}'.format(h_id), exist_ok=True)  # 递归创建文件夹
-
+        print(os.getcwd())
         i = 1
         while i <= len(pictures):
-            with open("/static/image/{}/{}.jpg".format(h_id, i), "wb") as f:  # 存入图片，存入地址为服务器中的项目地址。
-                f.write(base64.b64decode(pictures[i]))
+            # 存入图片，存入地址为服务器中的项目地址。
+            with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i), "wb") as f:
+                print(456684)
+                f.write(base64.b64decode(pictures[i-1]))
             i += 1
 
         house = db.session.query(House).filter(House.h_id == h_id)[0]
@@ -449,10 +512,10 @@ def landlord_rentold():
                         exist_ok=True)  # 递归创建文件夹
 
             i = 1
-            while i <= len(pictures):
-                with open("/static/image/{}/{}.jpg".format(h_id, i), "wb") as f:  # 存入图片，存入地址为服务器中的项目地址。
-                    f.write(base64.b64decode(pictures[i]))
-                i += 1
+            with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i), "wb") as f:
+                print(456684)
+                f.write(base64.b64decode(pictures[i-1]))
+            i += 1
 
             house = db.session.query(House).filter(House.h_id == h_id)[0]
             house.picture_number = len(pictures)
@@ -491,7 +554,7 @@ def landlord_deleteold():
         db.session.close()
         return dic
 
-# 预约看房管理
+# 查看所有预约看房
 
 
 @llr.route("/landlord/book", methods=["POST", 'GET'])
@@ -517,6 +580,28 @@ def landlord_book():
         db.session.close()
         return dic
 
+# 预约看房管理
+
+
+@llr.route("/landlord/bookcheck", methods=["POST", 'GET'])
+def landlord_bookcheck():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+
+        book = db.session.query(Booking).filter(
+            Booking.booking_id == data['booking_id'])[0]
+        book.booking_state = data['booking_state']
+        book.reply = data['reply']
+
+        db.session.commit()
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
 # 管理员
 # 我审核的
 
@@ -527,10 +612,22 @@ def root_audited():
     try:
         data = request.get_json()
         print(data)
+
         num = data['phone']
         audited = to_list(db.session.query(
             Audit).filter(Audit.phone == num).all())
+
+        print(audited)
+
+        for a in audited:
+            house = to_dict(db.session.query(House).filter(
+                House.audit_id == a['audit_id'])[0])
+            a.update(house)
+            # print(a)
+
+        print(audited)
         dic['audited'] = audited
+        print(dic)
 
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -540,7 +637,7 @@ def root_audited():
         return dic
 
 
-# 下架已通过的审核
+# 下架已通过的审核或删除审核
 
 
 @llr.route("/root/delaudited", methods=["POST", 'GET'])
@@ -556,10 +653,17 @@ def root_delaudited():
             House.audit_id == audit_id)[0].h_state
 
         if(h_state == '未出租'):
-            audited = db.session.query(Audit).filter(
-                Audit.audit_id == audit_id)[0]
-            audited.audit_info = data['audit_info']
-            audited.audit_state = data['audit_state']
+            if(data['audit_state'] == "未审核"):
+                audited = db.session.query(Audit).filter(
+                    Audit.audit_id == audit_id)
+                house = db.session.query(House).filter(House.audit_id==audit_id)[0]
+                house.audit_id=None
+                audited.delete()
+            else:
+                audited = db.session.query(Audit).filter(
+                    Audit.audit_id == audit_id)[0]
+                audited.audit_info = data['audit_info']
+                audited.audit_state = data['audit_state']
             db.session.commit()
         else:
             dic = {'sucess': 'no'}
@@ -581,7 +685,6 @@ def root_audits():
         dic['audits'] = []
 
         houses = db.session.query(House).all()
-        print(56)
         for house in houses:
             if(house.audit_id is None):
                 dic['audits'].append(to_dict(house))
@@ -614,7 +717,8 @@ def root_audit():
         if(house.audit_id is None):
             new_audit = Audit(
                 audit_info=data['audit_info'],
-                audit_state=data["audit_state"]
+                audit_state=data["audit_state"],
+                phone=data['phone']
             )
             db.session.add(new_audit)
 

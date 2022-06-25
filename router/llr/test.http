@@ -4,8 +4,10 @@ Content-Type: application/json
 {
 	"phone": 250,
 	"user_name": "hhh",
-	"avatar": "wrfvrvwr",
-	"user_nickname": "regrg"
+	"avatarUrl": "wrfvrvwr",
+	"nickName": "regrg",
+  "longitude":10.5,
+  "latitude":50.4
 }
 ###
 
@@ -36,9 +38,9 @@ Content-Type: application/json
 {
   "begin_date": null,
   "end_date": null,
-  "h_id": 3,
+  "h_id": 5,
   "phone": "18030931611",
-  "rent_time": 4
+  "rent_time": "4"
 }
 
 ###
@@ -76,7 +78,7 @@ POST  http://127.0.0.1:8086/tenants/orders
 Content-Type: application/json
 
 {
-  "phone": "2"
+  "phone": "18030931611"
 }
 
 ###
@@ -163,6 +165,16 @@ Content-Type: application/json
 }
 
 ###
+POST  http://127.0.0.1:8086/landlord/bookcheck
+Content-Type: application/json
+
+{
+  "booking_id":16,
+  "booking_state":"预约成功",
+  "reply":"无"
+}
+
+###
 POST  http://127.0.0.1:8086/root/audited
 Content-Type: application/json
 
@@ -176,9 +188,9 @@ POST  http://127.0.0.1:8086/root/delaudited
 Content-Type: application/json
 
 {
-  "audit_id":1,
+  "audit_id":6,
   "audit_info":"之前看错了",
-  "audit_state":"未审核"
+  "audit_state":"已驳回"
 }
 
 ###
@@ -190,7 +202,7 @@ POST  http://127.0.0.1:8086/root/audit
 Content-Type: application/json
 
 {
-  "h_id":3,
+  "h_id":7,
   "phone":18030931611,
   "audit_state":"已驳回",
   "audit_info":"不行"

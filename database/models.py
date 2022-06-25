@@ -37,9 +37,9 @@ class Booking(db.Model):
 class Collection(db.Model):
     __tablename__ = 'collection'
 
-    collection_id = db.Column(db.Integer, primary_key=True)
-    phone = db.Column(db.ForeignKey('user.phone'), index=True)
-    h_id = db.Column(db.ForeignKey('house.h_id', ondelete='CASCADE'), index=True)
+    useless = db.Column(db.String(255))
+    phone = db.Column(db.ForeignKey('user.phone'), primary_key=True, nullable=False)
+    h_id = db.Column(db.ForeignKey('house.h_id', ondelete='CASCADE'), primary_key=True, nullable=False, index=True)
 
     h = db.relationship('House', primaryjoin='Collection.h_id == House.h_id', backref='collections')
     user = db.relationship('User', primaryjoin='Collection.phone == User.phone', backref='collections')
