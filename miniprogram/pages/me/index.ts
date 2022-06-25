@@ -49,6 +49,7 @@ Page({
     wx.navigateTo({
       url: "/pages/me/rent/index"
     })
+    
   },
   jump5() {
     wx.navigateTo({

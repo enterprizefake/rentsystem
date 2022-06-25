@@ -40,11 +40,6 @@ Page({
           this.setData({
             all_collections: datas.collections
           })
-          //     if(this.data.all_collections.h_id.indexOf(66)==-1){
-          //       console.log("不存在")
-          // }else{
-          //       console.log("存在,索引是：",arr.indexOf(66))
-          // }
           for (var i = 0; i < this.data.all_collections.length; i++) {
             if (this.data.all_collections[i].h_id == this.data.house.h_id) {
               this.setData({

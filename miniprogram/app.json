@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/me/index",
     "pages/more/index",
+    "pages/login/index",
     "pages/index/detail/index",
     "pages/index/detail/reserve/index",
     "pages/index/detail/rent/index",
@@ -15,9 +16,9 @@
     "pages/me/delrent/index",
     "pages/me/bookmanage/index",
     "pages/me/message/index",
-    "pages/login/index",
     "pages/me/root/index",
     "pages/me/root/check/index"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,9 +1,5 @@
 var app=getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     active: 0,
     new_address: null,
@@ -11,7 +7,7 @@ Page({
     new_latitude: null,
     new_longitude: null,
     new_name: null,
-    new_phone: app.globalData.user.phone,
+    new_phone: null,
     new_price: null,
     max_relettime: null,
     max_renttime: null,
@@ -47,7 +43,7 @@ Page({
     for (var i = 0; i < temp_pictures.length; i++) {
       var url = temp_pictures[i].url
       console.log(url)
-      temp_pictures[i]=wx.getFileSystemManager().readFileSync(url,'base64',0)
+      temp_pictures[i] = wx.getFileSystemManager().readFileSync(url, 'base64', 0)
     }
 
     wx.request({
@@ -156,59 +152,9 @@ Page({
       new_picture: index.detail
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    this.setData({
+      new_phone:app.globalData.user.phone
+    })
   }
 })

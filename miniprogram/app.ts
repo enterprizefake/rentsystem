@@ -1,7 +1,7 @@
 App<IAppOption>({
   globalData: {
     user: null,
-    temp_user:null
+    temp_user: null
   },
   login() {
     var temp_user = null
@@ -34,18 +34,17 @@ App<IAppOption>({
         success: (res) => {
           if (res.data.sucess == "yes") {
             console.log("二次登录成功")
-            user.type=res.data.type
+            user.type = res.data.type
             wx.setStorageSync("user", user)
             this.globalData.user = user
-            console.log("this.globalData.user:"+this.globalData.user.type)
+            console.log("this.globalData.user:" + this.globalData.user.type)
           }
-          else
-          {
+          else {
             console.log("登录失败")
           }
         }
       })
-      
+
     }
   },
 })
