@@ -1,6 +1,114 @@
 <!--pages/me/rent/index.wxml-->
 <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="发布新房">内容 1</van-tab>
+  <van-tab title="发布新房">
+    <view class="form">
+  <van-cell-group>
+    <van-field
+    label="房屋地址"
+    value="{{ new_address }}"
+    placeholder="请输入您要出租的房屋地址"
+    type="textarea"
+    autosize
+    clearable
+    required
+    bind:change="getaddress"
+    />
+    <van-field
+		value="{{ new_detail }}"
+		label="详细描述"
+		placeholder="请输入该房屋的详细描述"
+    autosize
+    clearable
+    required
+    bind:change="getdetail"
+		/>
+    <van-field
+    label="房屋的经度"
+    value="{{ new_latitude }}"
+    placeholder="请输入房屋的坐标经度"
+    autosize
+    clearable
+    required
+    bind:change="getlatitude"
+    />
+    <van-field
+    label="房屋的纬度"
+    value="{{ new_longitude }}"
+    placeholder="请输入房屋的坐标纬度"
+    autosize
+    clearable
+    required
+    maxlength="11"
+    bind:change="getlongitude"
+    />
+    <van-field
+    label="房屋的使用时间"
+    value="{{ max_relettime }}"
+    placeholder="请输入房屋的使用时间"
+    type="textarea"
+    autosize
+    clearable
+    required
+    bind:change="getmax_relettime"
+    />
+    <van-field
+    label="房屋的最大出租时间"
+    value="{{ max_renttime }}"
+    placeholder="请输入房屋的出租时间"
+    type="textarea"
+    autosize
+    clearable
+    required
+    bind:change="getmax_renttime"
+    />
+    <van-field
+    label="房屋的名字"
+    value="{{ new_name }}"
+    placeholder="请输入房屋的名字"
+    type="textarea"
+    autosize
+    clearable
+    required
+    bind:change="getname"
+    />
+    <van-field
+    label="联系电话"
+    value="{{ new_phone }}"
+    placeholder="输入电话"
+    type="textarea"
+    autosize
+    clearable
+    input-class="textarea"
+    required
+    bind:change="getphone"
+    />
+    <van-field 
+    label="出租价格（月）"
+    value="{{ new_price }}"
+    placeholder="输入价格"
+    type="textarea"
+    autosize
+    clearable
+    input-class="textarea"
+    required
+    bind:change="getprice"
+    />
+    <van-field 
+    label="房屋介绍图片"
+    value="{{ new_picture }}"
+    placeholder="上传图片"
+    type="textarea"
+    autosize
+    clearable
+    input-class="textarea"
+    required
+    bind:change="getpicture"
+    />
+  </van-cell-group>
+ <button style="position: fixed;bottom: -0px;margin-left: 90px;" bindtap="rentnew">提交审核</button>
+  <van-toast id="van-toast" />
+</view>
+  </van-tab>
   
   <van-tab title="修改旧房">内容 2</van-tab>
 
