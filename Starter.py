@@ -1,10 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from flask import Flask,render_template
 from flask_cors import *
 import traceback
 import logging
 from ServerConfig import databaseconfig
 from sys import platform
+
+
 
 
 app =Flask(__name__)
@@ -98,11 +100,6 @@ from flask_socketio import SocketIO
 socketio = SocketIO(app,ping_interval=25,cors_allowed_origins="*")
 # socketio.on_namespace(MonitorSocket("/monsocket"))
 
-
-
-@socketio.on('connect', namespace='/test')
-def test_message(message):
-    print(message)
 
 
 
