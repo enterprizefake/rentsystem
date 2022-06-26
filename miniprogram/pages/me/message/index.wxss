@@ -38,5 +38,6 @@
 
 .content .right
 {
+  width: 70%;
   font-size: small;
 }

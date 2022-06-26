@@ -3,7 +3,7 @@
   <van-empty
   class="custom-image"
   image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-  description="你还没有租过房子哟"
+  description="你还没有订单哟"
 />
 </view>
 
