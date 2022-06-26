@@ -767,7 +767,7 @@ def messages_unread():
         db.session.close()
         return dic
 
-# 获取所有消息通知(租客)
+# 获取所有消息通知并已读
 
 @llr.route("/messages", methods=["POST", 'GET'])
 def messages():
@@ -780,31 +780,12 @@ def messages():
 
         messages = db.session.query(Message).filter(
             Message.user_type == user_type).filter(Message.phone == phone).all()
+
+        for message in messages:
+            message.isread=1       
         dic['messages'] = to_list(messages)
-
-        print(dic)
-    except Exception as e:
-        dic = {'sucess': 'no'}
-
-    finally:
-        db.session.close()
-        return dic
-
-
-# 已读某个消息
-
-
-@llr.route("/messages/read", methods=["POST", 'GET'])
-def messages_read():
-    dic = {'sucess': 'yes'}
-    try:
-        data = request.get_json()
-        print(data)
-        message_id = data['message_id']
-        message = db.session.query(Message).filter(
-            Message.message_id == message_id)[0]
-        message.isread = 1
-
+        dic['messages'].reverse()
+        
         db.session.commit()
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -812,6 +793,29 @@ def messages_read():
     finally:
         db.session.close()
         return dic
+
+
+# # 已读某个消息(废弃)
+
+
+# @llr.route("/messages/read", methods=["POST", 'GET'])
+# def messages_read():
+#     dic = {'sucess': 'yes'}
+#     try:
+#         data = request.get_json()
+#         print(data)
+#         message_id = data['message_id']
+#         message = db.session.query(Message).filter(
+#             Message.message_id == message_id)[0]
+#         message.isread = 1
+
+#         db.session.commit()
+#     except Exception as e:
+#         dic = {'sucess': 'no'}
+
+#     finally:
+#         db.session.close()
+#         return dic
 
 # 发送消息
 
