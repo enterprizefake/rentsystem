@@ -1,12 +1,33 @@
-
+var app=getApp()
 Page({
   data: {
-
+    user_type:null,
+    messages:null
   },
 
-  onLoad() {
-
-    
+  onLoad(v) {
+    this.setData({
+      user_type:v.user_type
+    })
+    wx.request({
+      url:"http://127.0.0.1:8086/messages",
+      method:'POST',
+      data:{
+        phone:app.globalData.user.phone,
+        user_type:this.data.user_type=='tenant'?'租客':'房东'
+      },
+      success:(res)=>
+      {
+        if(res.data.sucess=='yes')
+        {
+          this.setData({
+            messages:res.data.messages
+          })
+          console.log(this.data.messages)
+          console.log(res.data)
+        }
+      }
+    })
   },
 
   /**

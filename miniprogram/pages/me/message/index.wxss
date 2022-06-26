@@ -1,1 +1,42 @@
-/* pages/me/message/index.wxss */
+.card {
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 400rpx;
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+  background-color: white;
+}
+
+.time {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+  font-size: small;
+  color: gray;
+}
+
+.title {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 3%;
+  font-weight: bold;
+}
+
+.content
+{
+  padding-top: 4%;
+  padding-left: 3%;
+  display: flex;
+}
+
+.content .left
+{
+  width: 30%;
+  font-size: small;
+  color: rgb(128,128,128);
+}
+
+.content .right
+{
+  font-size: small;
+}

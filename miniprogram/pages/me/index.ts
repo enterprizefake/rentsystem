@@ -42,6 +42,14 @@ Page({
               },
               success: (res) => {
                 if (res.data.sucess == 'yes') {
+                  if(res.data.landlord_messages==0)
+                  {
+                    res.data.landlord_messages=null
+                  }
+                  if(res.data.tenent_messages==0)
+                  {
+                    res.data.tenent_messages=null
+                  }
                   this.setData({
                     landlord_messages: res.data.landlord_messages,
                     tenent_messages: res.data.tenent_messages
