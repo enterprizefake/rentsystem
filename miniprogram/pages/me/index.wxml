@@ -9,29 +9,29 @@
   <!-- 共有部分 -->
 
   <!-- 顶部框架 -->
-<view class="{{user_type}}">
+  <view class="{{user_type}}">
 
-  <!-- 头像 -->
-  <van-image class="v0" width="120rpx" height="120rpx" round src="{{user.avatarUrl}}" />
+    <!-- 头像 -->
+    <van-image class="v0" width="120rpx" height="120rpx" round src="{{user.avatarUrl}}" />
 
-  <!-- 昵称 -->
-  <view class="v1">
-  <view class="v2">
-    <text>
-      {{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})
-    </text>
+    <!-- 昵称 -->
+    <view class="v1">
+      <view class="v2">
+        <text>
+          {{user.nickName}}({{ user_type=='tenant'? '租客':'房东'}})
+        </text>
+      </view>
+
+      <!-- 消息通知和切换 -->
+      <view class="v3">
+        <text bindtap="change">切换</text>
+      </view>
+    </view>
+
   </view>
-  
-  <!-- 消息通知和切换 -->
-  <view class="v3"> 
-    <text bindtap="change">切换</text> 
-  </view>
-  </view>
 
-</view>
-
-<van-cell title="个人资料" is-link bindtap="jump1"></van-cell>
-<van-cell title="我的订单" is-link bindtap="jump2"></van-cell>
+  <van-cell title="个人资料" is-link bindtap="jump1"></van-cell>
+  <van-cell title="我的订单" is-link bindtap="jump2"></van-cell>
 
   <!-- 租客部分 -->
   <view wx:if="{{user_type=='tenant'}}">
@@ -52,9 +52,9 @@
 
   </view>
 
-  
+
   <view class="message">
-  <van-icon name="chat-o" info="99+" size="2rem" bindtap="jump8"></van-icon>
+    <van-icon name="chat-o" info="{{user_type=='tenant'?tenent_messages:landlord_messages}}" size="2rem" bindtap="jump8"></van-icon>
   </view>
 
 </view>

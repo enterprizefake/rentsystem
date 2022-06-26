@@ -8,7 +8,10 @@ Page({
     user_type: "tenant",
     user: null,
     user_name: null,
-    phone: null
+    phone: null,
+    tenent_messages: null,
+    landlord_messages: null,
+    inter: null
   },
   login() {
     app.login()
@@ -25,10 +28,49 @@ Page({
       })
     }
   },
+  createconnect() {
+    this.setData({
+      inter: setInterval(
+        () => {
+          if (this.data.user) {
+            wx.request({
+              url: "http://127.0.0.1:8086/messages/unread",
+              method: 'POST',
+              data:
+              {
+                phone: this.data.user.phone
+              },
+              success: (res) => {
+                if (res.data.sucess == 'yes') {
+                  this.setData({
+                    landlord_messages: res.data.landlord_messages,
+                    tenent_messages: res.data.tenent_messages
+                  })
+                }
+              }
+            })
+          }
+        }, 3000)
+    })
+  },
+  destoryconnect()
+  {
+    clearInterval(this.data.inter)
+    this.setData({
+      inter:null
+    })
+  },
   onShow() {
     this.setData({
       user: app.globalData.user
     })
+    if (this.data.user) {
+      this.createconnect()
+    }
+
+  },
+  onHide() {
+    this.destoryconnect()
   },
   jump1() {
     wx.navigateTo({
@@ -49,7 +91,7 @@ Page({
     wx.navigateTo({
       url: "/pages/me/rent/index"
     })
-    
+
   },
   jump5() {
     wx.navigateTo({
