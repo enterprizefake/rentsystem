@@ -742,6 +742,31 @@ def root_audit():
         db.session.close()
         return dic
 
+# 获取所有未读消息数量(租客+房东)
+
+
+@llr.route("/messages/unread", methods=["POST", 'GET'])
+def messages_unread():
+    dic = {'sucess': 'yes'}
+    try:
+        data = request.get_json()
+        print(data)
+        phone = data['phone']
+
+        tenent_messages = db.session.query(Message).filter(Message.phone == phone,Message.user_type=="租客",Message.isread ==0).all()
+        dic['tenent_messages'] = len(tenent_messages)
+
+        landlord_messages = db.session.query(Message).filter(Message.phone == phone,Message.user_type=="房东",Message.isread ==0).all()
+        dic['landlord_messages'] = len(landlord_messages)
+
+        print(dic)
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
 # 获取所有消息通知
 
 
