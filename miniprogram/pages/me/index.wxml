@@ -41,7 +41,7 @@
   <!-- 房东部分 -->
   <view wx:else>
     <van-cell title="我要出租" is-link bindtap="jump4"></van-cell>
-    <van-cell title="不想租了" is-link bindtap="jump5"></van-cell>
+    <van-cell title="房屋管理" is-link bindtap="jump5"></van-cell>
     <van-cell title="租客预约管理" is-link bindtap="jump6"></van-cell>
   </view>
 
