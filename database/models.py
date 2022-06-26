@@ -77,6 +77,7 @@ class Message(db.Model):
     message_type = db.Column(db.String(100))
     isread = db.Column(db.Integer)
     content = db.Column(db.Text)
+    send_time = db.Column(db.String(300))
 
     user = db.relationship('User', primaryjoin='Message.phone == User.phone', backref='messages')
 

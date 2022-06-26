@@ -767,8 +767,7 @@ def messages_unread():
         db.session.close()
         return dic
 
-# 获取所有消息通知
-
+# 获取所有消息通知(租客)
 
 @llr.route("/messages", methods=["POST", 'GET'])
 def messages():
@@ -783,12 +782,14 @@ def messages():
             Message.user_type == user_type).filter(Message.phone == phone).all()
         dic['messages'] = to_list(messages)
 
+        print(dic)
     except Exception as e:
         dic = {'sucess': 'no'}
 
     finally:
         db.session.close()
         return dic
+
 
 # 已读某个消息
 
