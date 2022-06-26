@@ -5,16 +5,47 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+  all_renthouse:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    wx.showLoading(
+      {
+        title: '加载数据中'
+      }
+    )
+    var app = getApp()
+    wx.request({
+      // url: 'http://1.15.184.52:8086/index',
+      url: 'http://127.0.0.1:8086/landlord/allold',
+      method:"POST",
+      data: {
+      phone:app.globalData.user.phone
+      },
+      success: (res) => {
+        var datas = res.data
+        console.log(datas)
+        if (datas.sucess == 'no') {
+          console.log("???")
+        }
+        else {
+       this.setData({
+         all_renthouse:datas.oldhouses
+       })
+       console.log(this.data.all_renthouse);
+       
+       // console.log(this.data.all_collections[1].h_id)
+        }
+        wx.hideLoading()
+      },
+      fail(e) {
+        console.log(e)
+      }
+    })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

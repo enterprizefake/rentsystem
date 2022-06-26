@@ -1,2 +1,7 @@
 <!--pages/me/delrent/index.wxml-->
-<text>pages/me/delrent/index.wxml</text>
+<view wx:for="{{all_renthouse}}" wx:item="item">
+<view class="card" bindtap="">
+<view>房屋的名字：{{item.h_name}}</view>
+<view>房屋的地址：{{item.address}}</view>
+</view>
+</view>
