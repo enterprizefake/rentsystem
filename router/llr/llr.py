@@ -785,7 +785,7 @@ def messages():
             message.isread=1       
         dic['messages'] = to_list(messages)
         dic['messages'].reverse()
-        
+
         db.session.commit()
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -832,7 +832,8 @@ def messages_send():
             content=data['content'],
             message_type=data['message_type'],
             phone=data['phone'],
-            user_type=data['user_type']
+            user_type=data['user_type'],
+            send_time=data['send_time']
         )
 
         db.session.add(new_message)
