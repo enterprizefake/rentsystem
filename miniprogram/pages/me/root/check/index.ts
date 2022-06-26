@@ -1,3 +1,4 @@
+import {formatTime} from "../../../../utils/util"
 var app = getApp()
 Page({
 
@@ -42,7 +43,19 @@ Page({
           if (res.data.sucess == 'yes') {
             wx.showToast({
               title: '提交成功',
-              icon: 'success',
+              icon: 'success'
+            })
+            wx.request({
+              url: 'http://127.0.0.1:8086/messages/send',
+              method: 'POST',
+              data:
+              {
+                phone:this.data.content.phone,
+                message_type:this.data.state=='已通过'?"房屋发布成功通知":"房屋发布失败通知",
+                user_type:"房东",
+                content:this.data.state=='已通过'?"您发布的房子("+this.data.content.h_name+")已成功通过审核!":"您发布的房子("+this.data.content.h_name+")因未通过审核被驳回!",
+                send_time:formatTime(new Date())
+              }
             })
           }
           else {

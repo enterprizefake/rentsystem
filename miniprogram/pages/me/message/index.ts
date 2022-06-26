@@ -23,8 +23,6 @@ Page({
           this.setData({
             messages:res.data.messages
           })
-          console.log(this.data.messages)
-          console.log(res.data)
         }
       }
     })
