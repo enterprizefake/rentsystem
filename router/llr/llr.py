@@ -1,4 +1,5 @@
 import base64
+import math
 
 
 
@@ -106,7 +107,7 @@ def index():
     try:
         all_houses = db.session.query(House).filter(
             House.h_state == "未出租").all()
-        print(all_houses)
+        # print(all_houses)
 
         houses = []
         for house in all_houses:
@@ -116,8 +117,31 @@ def index():
                 if(audit.audit_state == "已通过"):
                     houses.append(to_dict(house))
 
+        try:
+            data=request.get_json()
+            longitude=data['longitude']
+            latitude=data['latitude']
+
+
+            for house in houses:
+                house['distance']=distance(longitude,latitude,house['h_longitude'],house['h_latitude'])
+            houses.sort(key=lambda x:x['distance'])
+
+            print("0:"+str(houses))
+
+            for house in houses:
+                if(house['distance']<1):
+                    house['distance']="{}米".format( round(house['distance']*1000,2) )
+                else:
+                    house['distance']="{}公里".format(round(house['distance'],2))
+
+            print("1:"+str(houses))
+        except Exception as e:
+            traceback.print_exc()
+            pass
+        
         dic['house'] = houses
-        # dic['house']=to_list(allhouse)
+        print(dic)
     except Exception as e:
         # traceback.print_exc()
         # 返回错误信息
@@ -846,3 +870,20 @@ def messages_send():
     finally:
         db.session.close()
         return dic
+
+
+
+# 计算距离优先
+def distance(jingduA, weiduA,jingduB, weiduB):
+
+    R = 6371.393
+    Pi = math.pi
+
+    a = (math.sin(math.radians(weiduA/2-weiduB/2)))**2
+    b = math.cos(weiduA*Pi/180) * math.cos(weiduB*Pi/180) * (math.sin((jingduA/2-jingduB/2)*Pi/180))**2
+
+    L = 2 * R * math.asin((a+b)**0.5)
+
+    # 单位是千米
+
+    return L
