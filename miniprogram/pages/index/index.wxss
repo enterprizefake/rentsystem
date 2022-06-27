@@ -31,7 +31,7 @@
 .card .content .price
 {
   display: flex;
-  height: 50rpx;
+  align-items:baseline;
 }
 
 .card .content .price .price_number
@@ -46,8 +46,6 @@
   margin-left: 3%;
   font-size: small;
   color: red;
-  bottom: 0;
-  margin-top: 2.5%;
 }
 
 .card .content .detail

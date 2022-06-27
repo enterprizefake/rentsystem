@@ -25,7 +25,7 @@
     
     <view class="price" style="margin-bottom: 3%;"> 
     <view class="price_number">{{item.price}}  </view>
-    <view class="price_cell"> 元/月</view>
+    <view class="price_cell">元/月</view>
     </view>
     <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
     </view>
