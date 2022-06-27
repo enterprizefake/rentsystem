@@ -6,6 +6,13 @@
 </swiper-item>
 </block>
 </swiper>
+<!-- 标签栏 -->
+<van-tabs  bind:change="onChange">
+  <van-tab title="价格优先"></van-tab>
+  <van-tab title="最新发布"></van-tab>
+  <van-tab title="离我最近" disabled="{{!user}}"></van-tab>
+</van-tabs>
+
 <!-- 正式内容 -->
 <view class="all">
 <view wx:for="{{all_houses}}" wx:item="item" >
@@ -15,3 +22,13 @@
 <text class="cardtextclass1">\n￥{{item.price}}</text>
 </view>  </view>
 </view>
+
+<!-- 正式内容 -->
+<!-- <view class="all">
+<view wx:for="{{all_houses}}" wx:item="item" >
+<view class="card" bindtap="to_detail" bindtap="to_detail" data-name="{{item}}">
+<image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"> </image>
+<text class="cardtextclass">{{item.h_name}}</text>
+<text class="cardtextclass1">\n￥{{item.price}}</text>
+</view>  </view>
+</view> -->
