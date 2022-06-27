@@ -1,5 +1,6 @@
 import base64
 import math
+import re
 
 
 
@@ -493,7 +494,6 @@ def landlord_rentnew():
         while i <= len(pictures):
             # 存入图片，存入地址为服务器中的项目地址。
             with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i), "wb") as f:
-                print(456684)
                 f.write(base64.b64decode(pictures[i-1]))
             i += 1
 
@@ -517,7 +517,8 @@ def landlord_rentold():
         data = request.get_json()
         # print(data)
         h_id = data['h_id']
-        house = db.session.query(House).filter(House.h_id == h_id)[0]
+        house = db.session.query(House).filter(House.h_id == h_id).first()
+        picture_number=house.picture_number
         if(house.h_state == '未出租'):
             house.address = data['address']
             house.h_detail = data['h_detail']
@@ -527,21 +528,48 @@ def landlord_rentold():
             house.max_relettime = data['max_relettime']
             house.max_renttime = data['max_renttime']
             house.price = data['price']
+            house.picture_number=len(data['pictures'])
 
+
+            print(len(data['pictures']))
             pictures = data['pictures']
-            # h_id=request.form.get("h_id")
-            # team_images =request.form.get("images") #队base64进行解码还原。
+            old=[]
+            new=[]
+            for picture in pictures:
+                if(type(picture)==dict):
+                    url=picture['url']
 
-            shutil.rmtree('static/image/{}'.format(h_id))  # 递归删除文件夹
+                    pattern=".*/(\d+).jpg"
 
-            os.makedirs('static/image/{}'.format(h_id),
-                        exist_ok=True)  # 递归创建文件夹
+                    result=re.match(pattern,url).group(1)
 
-            i = 1
-            with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i), "wb") as f:
-                print(456684)
-                f.write(base64.b64decode(pictures[i-1]))
-            i += 1
+                    old.append(int(result))
+                else:
+                    new.append(picture)
+
+            print(os.getcwd())
+            print(picture_number)
+            print(old)
+            i=1
+            while i<=picture_number:
+                if(i not in old):
+                    print(i)
+                    os.remove("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id,i))
+                i+=1
+
+            i=1
+            while i <=len(old):
+                os.rename( "{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id,old[i-1]),
+                "{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id,i)  )
+                i+=1
+
+
+            i = len(old)+1
+            j=0
+            while j < len(new):
+                with open("{}/static/image/{}/{}.jpg".format(os.getcwd(),h_id, i+j), "wb") as f:
+                    f.write(base64.b64decode(new[j]))
+                j += 1
 
             house = db.session.query(House).filter(House.h_id == h_id)[0]
             house.picture_number = len(pictures)
