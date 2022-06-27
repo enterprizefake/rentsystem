@@ -142,10 +142,8 @@ Page({
   },
   jump3(index) {
     if (app.globalData.user) {
-      var house = index.currentTarget.dataset.name1
-      var house = JSON.stringify(index.currentTarget.dataset.name1)
       wx.navigateTo({
-        url: "/pages/index/detail/rent/index?house=" + house
+        url: "/pages/index/detail/rent/index?house=" +JSON.stringify(index.currentTarget.dataset.name1)
       })
     }
     else {
