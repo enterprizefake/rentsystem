@@ -119,10 +119,15 @@ Page({
     })
   },
   afterRead(file) {
-    var img = file.detail.file.url
-    var temp_picture = this.data.new_picture
-    temp_picture.push({ url: img })
-    console.log(temp_picture)
+    console.log("file:"+JSON.stringify(file))
+    var pl=file.detail.file;
+    var temp_picture = this.data.new_picture;
+    for(var i=0;i<pl.length;i++)
+    {
+      var img = pl[i].url
+      temp_picture.push({ url: img })
+      console.log(temp_picture)
+    }
     this.setData({
       new_picture: temp_picture
     })

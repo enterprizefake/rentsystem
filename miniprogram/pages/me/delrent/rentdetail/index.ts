@@ -10,7 +10,6 @@ Page({
   rentde:null,
   active: 0,
     new_address: null,
-    new_id:null,
     new_detail: null,
     new_latitude: null,
     new_longitude: null,
@@ -19,6 +18,7 @@ Page({
     new_price: null,
     max_relettime: null,
     max_renttime: null,
+    // old_picture:[],
     new_picture: []
   },
   map() {
@@ -83,15 +83,20 @@ Page({
     })
   },
   afterRead(file) {
-    var img = file.detail.file.url
-    var temp_picture = this.data.new_picture
-    temp_picture.push({ url: img })
-    console.log(temp_picture)
+    var pl=file.detail.file;
+    var temp_picture = this.data.new_picture;
+    for(var i=0;i<pl.length;i++)
+    {
+      var img = pl[i].url
+      temp_picture.push({ url: img })
+      console.log(temp_picture)
+    }
     this.setData({
       new_picture: temp_picture
     })
   },
   delete(file) {
+    console.log(file);
     var index = file.detail.index
     var temp_picture = this.data.new_picture
     temp_picture.splice(index, 1)
@@ -126,20 +131,39 @@ Page({
       rentde: house
     })
     console.log(this.data.rentde)
+    var picture_number=this.data.rentde.picture_number
+    var h_id=this.data.rentde.h_id
+    var temp_picture=[]
+    for(var i=1;i<=picture_number;i++)
+    {
+      temp_picture.push({url:"http://127.0.0.1:8086/static/image/"+h_id+"/"+i+".jpg"})
+    }
+    this.setData({
+      new_picture:temp_picture
+    })
+
+
   },
   rentnew(index) {
     var temp_pictures = this.data.new_picture
+    console.log("temp_pictures:"+JSON.stringify(temp_pictures))
     for (var i = 0; i < temp_pictures.length; i++) {
-      var url = temp_pictures[i].url
-      console.log(url)
-      temp_pictures[i] = wx.getFileSystemManager().readFileSync(url, 'base64', 0)
-    }
+      try
+      {
+        var url = temp_pictures[i].url
+        console.log(url)
+        temp_pictures[i] = wx.getFileSystemManager().readFileSync(url, 'base64', 0)
+      }
+      catch(e){
 
+      }
+    }
+    console.log(temp_pictures)
     wx.request({
       url: 'http://127.0.0.1:8086/landlord/rentold',
       method: 'POST',
       data: {
-        h_id:this.data.new_id,
+        h_id:this.data.rentde.h_id,
         address: this.data.new_address,
         h_detail: this.data.new_detail,
         h_latitude: this.data.new_latitude,

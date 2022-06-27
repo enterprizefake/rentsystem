@@ -15,7 +15,9 @@
 
         <van-cell title="上传图片" required>
         </van-cell>
-        <van-uploader  file-list="{{ new_picture }}" 
+        <van-uploader
+        file-list="{{ new_picture }}" 
+        multiple
         deletable 
         bind:delete="delete"
         bind:after-read="afterRead" />

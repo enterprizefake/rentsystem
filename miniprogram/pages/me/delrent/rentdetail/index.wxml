@@ -16,6 +16,7 @@
         </van-cell>
         <van-uploader  file-list="{{ new_picture }}" 
         deletable 
+        multiple
         bind:delete="delete"
         bind:after-read="afterRead" />
 

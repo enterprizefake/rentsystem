@@ -1,17 +1,13 @@
 // pages/me/delrent/index.ts
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  all_renthouse:null
+    all_renthouse: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onShow() {
     wx.showLoading(
       {
         title: '加载数据中'
@@ -21,23 +17,20 @@ Page({
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
       url: 'http://127.0.0.1:8086/landlord/allold',
-      method:"POST",
+      method: "POST",
       data: {
-      phone:app.globalData.user.phone
+        phone: app.globalData.user.phone
       },
       success: (res) => {
         var datas = res.data
-       // console.log(datas)
+        // console.log(datas)
         if (datas.sucess == 'no') {
           console.log("???")
         }
         else {
-       this.setData({
-         all_renthouse:datas.oldhouses
-       })
-     //  console.log(this.data.all_renthouse);
-       
-       // console.log(this.data.all_collections[1].h_id)
+          this.setData({
+            all_renthouse: datas.oldhouses
+          });
         }
         wx.hideLoading()
       },
@@ -46,38 +39,36 @@ Page({
       }
     })
   },
-cancelrent(index)
-{
-  var kkk = index.currentTarget.dataset.name
-  //var kkk = JSON.stringify(index.currentTarget.dataset.name)
-  console.log(kkk.h_id)
-  wx.request({
-    url:'http://127.0.0.1:8086/landlord/deleteold',
-    method:'POST',
-    data:{
-    h_id:kkk.h_id
-    },
-    success: (res) => {
-      var datas = res.data
-     // console.log(datas)
-      if (datas.sucess == 'no') {
-        console.log("???")
+  cancelrent(index) {
+    var kkk = index.currentTarget.dataset.name
+    //var kkk = JSON.stringify(index.currentTarget.dataset.name)
+    console.log(kkk.h_id)
+    wx.request({
+      url: 'http://127.0.0.1:8086/landlord/deleteold',
+      method: 'POST',
+      data: {
+        h_id: kkk.h_id
+      },
+      success: (res) => {
+        var datas = res.data
+        // console.log(datas)
+        if (datas.sucess == 'no') {
+          console.log("???")
+        }
+        else {
+          this.onLoad()
+        }
       }
-      else{
-        this.onLoad()
-      }
-    }
-  })
-},
-reviserent(index)
-{
- /// console.log(index.currentTarget.dataset.name)
-  var rentde = index.currentTarget.dataset.name
-  var rentde = JSON.stringify(index.currentTarget.dataset.name)
-  wx.navigateTo({
-    url:"/pages/me/delrent/rentdetail/index?rentde="+rentde
-  })
-},
+    })
+  },
+  reviserent(index) {
+    /// console.log(index.currentTarget.dataset.name)
+    var rentde = index.currentTarget.dataset.name
+    var rentde = JSON.stringify(index.currentTarget.dataset.name)
+    wx.navigateTo({
+      url: "/pages/me/delrent/rentdetail/index?rentde=" + rentde
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -85,12 +76,6 @@ reviserent(index)
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
