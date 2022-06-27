@@ -1,7 +1,9 @@
 <view>
 
   <view>
-    <van-tabs active="{{ active }}" bind:change="onChange">
+    <van-tabs 
+    bind:change="onChange"  
+    animated swipeable>
       <van-tab title="审核房源">
 
         <view>

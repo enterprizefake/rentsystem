@@ -7,21 +7,104 @@
 </block>
 </swiper>
 <!-- 标签栏 -->
-<van-tabs  bind:change="onChange">
-  <van-tab title="价格优先"></van-tab>
-  <van-tab title="最新发布"></van-tab>
-  <van-tab title="离我最近" disabled="{{!user}}"></van-tab>
+<van-tabs  bind:change="onChange" >
+  <van-tab title="价格优先">
+  <view>
+    <view wx:for="{{price_list}}">
+
+    <view class="card">
+
+    <view class="left">
+    <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
+    class="img"></image>
+    </view>
+
+    <view class="content">
+
+    <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
+    <view style="margin-bottom: 3%;">联系电话:{{item.phone}}</view>
+    
+    <view class="price" style="margin-bottom: 3%;"> 
+    <view class="price_number">{{item.price}}  </view>
+    <view class="price_cell"> 元/月</view>
+    </view>
+    <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
+    </view>
+    </view>
+    <van-divider />
+
+    </view>
+  </view>
+  </van-tab>
+  <van-tab title="最新发布">
+    <view>
+    <view wx:for="{{new_list}}">
+
+    <view class="card">
+
+    <view class="left">
+    <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
+    class="img"></image>
+    </view>
+
+    <view class="content">
+
+    <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
+    <view style="margin-bottom: 3%;">联系电话:{{item.phone}}</view>
+    
+    <view class="price" style="margin-bottom: 3%;"> 
+    <view class="price_number">{{item.price}}  </view>
+    <view class="price_cell"> 元/月</view>
+    </view>
+    <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
+    </view>
+    </view>
+    <van-divider />
+
+    </view>
+  </view>
+  </van-tab>
+  <van-tab title="离我最近" disabled="{{!user}}">
+    <view>
+    <view wx:for="{{near_list}}">
+    <view class="card">
+
+    <view class="left">
+    <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
+    class="img"></image>
+    </view>
+
+    <view class="content">
+
+    <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
+    <view style="margin-bottom: 3%;">联系电话:{{item.phone}}</view>
+    
+    <view class="price" style="margin-bottom: 3%;"> 
+    <view class="price_number">{{item.price}}  </view>
+    <view class="price_cell"> 元/月</view>
+    </view>
+    <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
+
+    <view style="margin-bottom: 3%;" class="detail">距您{{item.distance}}</view>
+
+    </view>
+    </view>
+    <van-divider />
+
+    </view>
+  </view>
+  </van-tab>
 </van-tabs>
 
 <!-- 正式内容 -->
-<view class="all">
+<!-- <view class="all">
 <view wx:for="{{all_houses}}" wx:item="item" >
 <view class="card" bindtap="to_detail" bindtap="to_detail" data-name="{{item}}">
 <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"> </image>
 <text class="cardtextclass">{{item.h_name}}</text>
 <text class="cardtextclass1">\n￥{{item.price}}</text>
 </view>  </view>
-</view>
+</view> -->
 
 <!-- 正式内容 -->
 <!-- <view class="all">

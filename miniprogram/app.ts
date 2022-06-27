@@ -25,6 +25,7 @@ App<IAppOption>({
   },
   onLaunch() {
     var user = wx.getStorageSync("user")
+    this.globalData.user = user
     console.log("app user:" + user)
     if (user) {
       wx.request({

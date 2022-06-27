@@ -7,68 +7,84 @@ Page({
    * 页面的初始数据
    */
   data: {
-    all_houses: null,
     list: null,
-    user:null
+    price_list: null,
+    new_list: null,
+    near_list: null,
+    user: null
   },
   onChange(v) {
     var index = v.detail.index
-    if (index == 0) {
-      var l=this.data.all_houses.slice(0)
-      l.sort(
-        (a, b) => (a.price) - (b.price)
-      );
-      this.setData({
-        all_houses:l
-      });
-    }
-    else if (index == 1) {
-      var l=this.data.all_houses.slice(0)
-      l.sort(
-        (a, b) => { 
-          if(a.public_time<b.public_time) return -1;
-          if(a.public_time>b.public_time) return 1;
-          return 0;
-         }
-      );
-      this.setData({
-        all_houses:l
-      });
-    }
-    else {
+    if (index == 2) {
+      wx.showLoading({
+        title: '加载中',
+      })
       wx.request({
-        url: 'http://127.0.0.1:8086/index/distance',
-        method:'POST',
+        url: 'http://127.0.0.1:8086/index',
+        method: 'POST',
         data:
         {
-          longitude:this.data.user.longitude,
-          latitude:this.data.user.latitude
+          longitude: this.data.user.longitude,
+          latitude: this.data.user.latitude
         },
-        success:
-        {
-
+        success: (res) => {
+          this.setData({
+            near_list: res.data.house
+          })
+          console.log(res.data.house)
+          wx.hideLoading()
         }
       });
-      var l=this.data.all_houses.slice(0)
-      l.sort(
-        (a, b) => { 
-
-          if(a.public_time<b.public_time) return -1;
-          if(a.public_time>b.public_time) return 1;
-          return 0;
-         }
-      );
-      this.setData({
-        all_houses:l
-      });
     }
+    // if (index == 0) {
+    //   var l=this.data.all_houses.slice(0)
+    //   l.sort(
+    //     (a, b) => (a.price) - (b.price)
+    //   );
+    //   this.setData({
+    //     all_houses:l
+    //   });
+    // }
+    // else if (index == 1) {
+    //   var l=this.data.all_houses.slice(0)
+    //   l.sort(
+    //     (a, b) => { 
+    //       if(a.public_time<b.public_time) return -1;
+    //       if(a.public_time>b.public_time) return 1;
+    //       return 0;
+    //      }
+    //   );
+    //   this.setData({
+    //     all_houses:l
+    //   });
+    // }
+    // else {
+    //   wx.showLoading({
+    //     title: '加载中',
+    //   })
+    //   wx.request({
+    //     url: 'http://127.0.0.1:8086/index/distance',
+    //     method:'POST',
+    //     data:
+    //     {
+    //       longitude:this.data.user.longitude,
+    //       latitude:this.data.user.latitude
+    //     },
+    //     success:(res)=>
+    //     {
+    //       this.setData({
+    //         all_houses:res.data.houses
+    //       })
+    //       wx.hideLoading()
+    //     }
+    //   });
+    // }
   },
   to_detail(index) {
     wx.navigateTo({
       url: "/pages/index/detail/index?house=" + JSON.stringify(index.currentTarget.dataset.name)
     })
   },
-
   onShow() {
     wx.showLoading(
       {
@@ -76,7 +92,7 @@ Page({
       }
     )
     this.setData({
-      user:app.globalData.user
+      user: app.globalData.user
     })
     wx.request({
       url: 'http://127.0.0.1:8086/index',
@@ -86,19 +102,23 @@ Page({
           console.log("???")
         }
         else {
-          this.setData({
-            all_houses: res.data.house
-          })
-
           var p = res.data.house.slice(0)
-
           p.sort(
             (a, b) => (a.price) - (b.price)
           );
-
+          var n = res.data.house.slice(0)
+          n.sort(
+            (a, b) => {
+              if (a.public_time < b.public_time) return -1;
+              if (a.public_time > b.public_time) return 1;
+              return 0;
+            }
+          )
           this.setData({
-            list: p.splice(0, 3)
-          })
+            list: p.slice(0).splice(0, 3),
+            price_list: p,
+            new_list: n
+          });
 
         }
         wx.hideLoading()
