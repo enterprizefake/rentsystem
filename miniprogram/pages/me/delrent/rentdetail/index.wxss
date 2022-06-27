@@ -1,0 +1,57 @@
+/* pages/me/delrent/rentdetail/index.wxss */
+page{
+  background: #eee;
+}
+.baseInfo{
+  padding:20rpx 10rpx;
+}
+
+.baseInfo text{
+  font-size: 28rpx;
+  color: #6f6f6f;
+}
+
+
+
+.list{
+  color: #6f6f6f;
+  font-size: 32rpx;
+}
+
+ 
+.name,.sex,.phone,.info{
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.name input,.phone input,.info input{
+  text-align:right;
+}
+
+.sex{
+  background: #fff;
+}
+
+
+.radio radio{
+  margin-left: 30rpx;
+}
+ 
+button{
+  background-color: #FE6702;
+  color: #fff;
+
+ 
+  width: 100%;
+}
+ 
+
+
+.modal view{
+  text-align: center;
+}
+

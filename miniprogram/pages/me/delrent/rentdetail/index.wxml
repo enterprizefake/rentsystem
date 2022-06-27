@@ -1,0 +1,37 @@
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="修改出租信息">
+    <view class="form">
+      <van-cell-group>        
+      <van-field label="房屋id" value="{{ rentde.h_id }}" placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required 
+        disabled
+        bind:change="get_id" />
+        <van-field label="房屋名称" value="{{ rentde.h_name }}" placeholder="请输入房屋的名字" type="textarea" autosize clearable required bind:change="getname" />
+        <van-cell title="房屋地址" required value="{{ rentde.address?rentde.address:'请选择' }}" class="van-multi-ellipsis--l2" is-link bindtap="map" />
+        <van-field value="{{ rentde.h_detail }}" label="详细描述" placeholder="请输入该房屋的详细描述" autosize clearable required bind:change="getdetail" />
+        <van-field label="审核状态" value="{{ rentde.audit_state }}"  type="textarea" autosize clearable required disabled bind:change="getmax_relettime" />
+        <van-field label="房屋的最大出租时间" value="{{ rentde.max_renttime }}" placeholder="请输入房屋的出租时间" type="textarea" autosize clearable required bind:change="getmax_renttime" />
+        <van-field label="出租价格（月）" value="{{ rentde.price }}" placeholder="输入价格" type="textarea" autosize clearable input-class="textarea" required bind:change="getprice" />
+        <van-field label="联系电话" value="{{ rentde.phone }}" placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required bind:change="getphone" />
+        <van-cell title="上传图片" required>
+        </van-cell>
+        <van-uploader  file-list="{{ new_picture }}" 
+        deletable 
+        bind:delete="delete"
+        bind:after-read="afterRead" />
+
+        <!-- <van-field label="房屋介绍图片" value="{{ new_picture }}" placeholder="上传图片" type="textarea" autosize clearable input-class="textarea" required bind:change="getpicture" /> -->
+
+
+        <view class="bt1">
+          <van-button type="primary" bindtap="rentnew">提交审核</van-button>
+        </view>
+
+
+      </van-cell-group>
+      <!-- <button style="position: fixed;bottom: -0px;margin-left: 90px;" bindtap="rentnew">提交审核</button> -->
+      <van-toast id="van-toast" />
+    </view>
+  </van-tab>
+
+
+</van-tabs>

@@ -3,5 +3,8 @@
 <view class="card" bindtap="">
 <view>房屋的名字：{{item.h_name}}</view>
 <view>房屋的地址：{{item.address}}</view>
+<button style="margin-left: 10px;margin-top: 80px;width: 150px;" bindtap="cancelrent" data-name="{{item}}">取消租房</button>
+<button style="margin-right: 10px;margin-top: -40px;width: 150px;" bindtap="reviserent"
+data-name="{{item}}">修改信息</button>
 </view>
 </view>
