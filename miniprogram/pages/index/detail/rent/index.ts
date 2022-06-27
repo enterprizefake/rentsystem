@@ -24,7 +24,7 @@ Page({
     // wx.request({
 
     // })
-  // console.log(house)
+   console.log(this.data.house)
   },
   formSubmit(e){
     //console.log(e);

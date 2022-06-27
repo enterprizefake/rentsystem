@@ -8,7 +8,7 @@ Page({
        house:null,
        information:[],
        modalHidden:true,
-       begindate:null
+       begindate:'请选择访问时间'
   },
 
   /**
