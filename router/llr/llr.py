@@ -1,6 +1,7 @@
 import base64
 
 
+
 from router.llr.dict import *
 from database.models import *
 from Starter import db
@@ -447,7 +448,8 @@ def landlord_rentnew():
             max_relettime=data['max_relettime'],
             max_renttime=data['max_renttime'],
             phone=data['phone'],
-            price=data['price']
+            price=data['price'],
+            public_time=data['public_time']
         )
 
         db.session.add(new_house)
