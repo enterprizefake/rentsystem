@@ -62,6 +62,7 @@ class House(db.Model):
     max_relettime = db.Column(db.Integer)
     h_detail = db.Column(db.Text)
     picture_number = db.Column(db.Integer, server_default=db.FetchedValue())
+    public_time = db.Column(db.String(300))
 
     audit = db.relationship('Audit', primaryjoin='House.audit_id == Audit.audit_id', backref='houses')
     user = db.relationship('User', primaryjoin='House.phone == User.phone', backref='houses')
