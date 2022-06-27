@@ -11,8 +11,7 @@
   <van-tab title="价格优先">
   <view>
     <view wx:for="{{price_list}}">
-
-    <view class="card">
+    <view class="card" bindtap="to_detail" data-name="{{item}}">
 
     <view class="left">
     <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
@@ -40,7 +39,7 @@
     <view>
     <view wx:for="{{new_list}}">
 
-    <view class="card">
+    <view class="card" bindtap="to_detail" data-name="{{item}}">
 
     <view class="left">
     <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
@@ -67,7 +66,7 @@
   <van-tab title="离我最近" disabled="{{!user}}">
     <view>
     <view wx:for="{{near_list}}">
-    <view class="card">
+    <view class="card" bindtap="to_detail" data-name="{{item}}">
 
     <view class="left">
     <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
