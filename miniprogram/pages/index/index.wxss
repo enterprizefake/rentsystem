@@ -1,43 +1,59 @@
-/* pages/index/index.wxss */
-.all
-{
-padding: 10px;
-display: flex;
-flex-flow: wrap;
-justify-content: space-between;
-}
-.all>view
-{
-width:48%;
-text-align: center;
-}
-
-.all image
-{
-  margin-top: 10px;
-  width: 95%;
-  height: 60%;
-}
-.card{
-  width: 100%;
-  height: 390rpx;
-  background: rgb(226, 208, 208);
-  border-radius: 10rpx;
-  box-shadow: 5px 5px 5px #cdcfcf;
-  margin-top: 10px;
- }
- .swiper-container{
-  height: 150px;
-}
-.item{
+.item {
   width: 100%;
   height: 100%;
 }
-.cardtextclass{
-  text-align: center;
+
+.card {
+  width: 100%;
+  display: flex;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
-.cardtextclass1{
-  color: #B22222;
-  text-align: center;
-  font-size: 20px;
+
+.card .left {
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 30%;
+  height: 200rpx;
+}
+
+.card .left .img {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+}
+
+.card .content {
+  width: 64%;
+  height: 100%;
+}
+ 
+.card .content .price
+{
+  display: flex;
+  height: 50rpx;
+}
+
+.card .content .price .price_number
+{
+  font-size: large;
+  font-weight: bold;
+  color: red;
+}
+
+.card .content .price .price_cell
+{
+  margin-left: 3%;
+  font-size: small;
+  color: red;
+  bottom: 0;
+  margin-top: 2.5%;
+}
+
+.card .content .detail
+{
+  font-size: small;
+  color:slategrey;
+  bottom: 0;
+  margin-top: 2.5%;
 }
