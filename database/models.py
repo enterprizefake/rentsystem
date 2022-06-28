@@ -1,9 +1,11 @@
 # coding: utf-8
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, Text
+from sqlalchemy.orm import relationship
+from sqlalchemy.schema import FetchedValue
 from flask_sqlalchemy import SQLAlchemy
 
 
 db = SQLAlchemy()
-
 
 
 class Audit(db.Model):
@@ -15,7 +17,6 @@ class Audit(db.Model):
     audit_info = db.Column(db.Text)
 
     user = db.relationship('User', primaryjoin='Audit.phone == User.phone', backref='audits')
-
 
 
 class Booking(db.Model):
@@ -33,7 +34,6 @@ class Booking(db.Model):
     user = db.relationship('User', primaryjoin='Booking.phone == User.phone', backref='bookings')
 
 
-
 class Collection(db.Model):
     __tablename__ = 'collection'
 
@@ -43,7 +43,6 @@ class Collection(db.Model):
 
     h = db.relationship('House', primaryjoin='Collection.h_id == House.h_id', backref='collections')
     user = db.relationship('User', primaryjoin='Collection.phone == User.phone', backref='collections')
-
 
 
 class House(db.Model):
@@ -63,10 +62,15 @@ class House(db.Model):
     h_detail = db.Column(db.Text)
     picture_number = db.Column(db.Integer, server_default=db.FetchedValue())
     public_time = db.Column(db.String(300))
+    square = db.Column(db.Integer)
+    hasparking = db.Column(db.String(255))
+    haslift = db.Column(db.String(255))
+    haswc = db.Column(db.String(255))
+    room = db.Column(db.String(255))
+    shared_housing = db.Column('shared housing', db.String(255))
 
     audit = db.relationship('Audit', primaryjoin='House.audit_id == Audit.audit_id', backref='houses')
     user = db.relationship('User', primaryjoin='House.phone == User.phone', backref='houses')
-
 
 
 class Message(db.Model):
@@ -83,7 +87,6 @@ class Message(db.Model):
     user = db.relationship('User', primaryjoin='Message.phone == User.phone', backref='messages')
 
 
-
 class Order(db.Model):
     __tablename__ = 'orders'
 
@@ -97,7 +100,6 @@ class Order(db.Model):
 
     h = db.relationship('House', primaryjoin='Order.h_id == House.h_id', backref='orders')
     user = db.relationship('User', primaryjoin='Order.phone == User.phone', backref='orders')
-
 
 
 class User(db.Model):

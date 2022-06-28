@@ -128,21 +128,17 @@ def index():
                 house['distance']=distance(longitude,latitude,house['h_longitude'],house['h_latitude'])
             houses.sort(key=lambda x:x['distance'])
 
-            print("0:"+str(houses))
-
             for house in houses:
                 if(house['distance']<1):
                     house['distance']="{}米".format( round(house['distance']*1000,2) )
                 else:
                     house['distance']="{}公里".format(round(house['distance'],2))
 
-            print("1:"+str(houses))
         except Exception as e:
             traceback.print_exc()
             pass
         
         dic['house'] = houses
-        print(dic)
     except Exception as e:
         # traceback.print_exc()
         # 返回错误信息
@@ -461,7 +457,7 @@ def landlord_rentnew():
     dic = {'sucess': 'yes'}
     try:
         data = request.get_json()
-        # print(data)
+        print(data['square'])
 
         new_house = House(
             address=data['address'],
@@ -474,6 +470,12 @@ def landlord_rentnew():
             max_renttime=data['max_renttime'],
             phone=data['phone'],
             price=data['price'],
+            square=data['square'],
+            room=data['room'],
+            haslift=data['haslift'],
+            hasparking=data['hasparking'],
+            haswc=data['haswc'],
+            shared_housing=data['shared_housing'],
             public_time=data['public_time']
         )
 
@@ -520,6 +522,7 @@ def landlord_rentold():
         house = db.session.query(House).filter(House.h_id == h_id).first()
         picture_number=house.picture_number
         if(house.h_state == '未出租'):
+                
             house.address = data['address']
             house.h_detail = data['h_detail']
             house.h_latitude = data['h_latitude']
@@ -528,10 +531,18 @@ def landlord_rentold():
             house.max_relettime = data['max_relettime']
             house.max_renttime = data['max_renttime']
             house.price = data['price']
+
+            house.square=data['square']
+            house.room=data['room']
+            house.haslift=data['haslift']
+            house.hasparking=data['hasparking']
+            house.haswc=data['haswc']
+            house.shared_housing=data['shared_housing']
+
             house.picture_number=len(data['pictures'])
 
 
-            print(len(data['pictures']))
+
             pictures = data['pictures']
             old=[]
             new=[]
@@ -571,8 +582,14 @@ def landlord_rentold():
                     f.write(base64.b64decode(new[j]))
                 j += 1
 
-            house = db.session.query(House).filter(House.h_id == h_id)[0]
-            house.picture_number = len(pictures)
+
+            audit_id = house.audit_id
+
+            if(audit_id):
+                audited = db.session.query(Audit).filter(Audit.audit_id == audit_id)
+                house.audit_id=None
+                audited.delete()
+
             db.session.commit()
         else:
             dic = {'sucess': 'no'}
@@ -596,6 +613,15 @@ def landlord_deleteold():
 
         house = db.session.query(House).filter(House.h_id == data['h_id'])[0]
         if(house.h_state == '未出租'):
+
+            audit_id = house.audit_id
+
+            if(audit_id):
+                audited = db.session.query(Audit).filter(Audit.audit_id == audit_id)
+                house.audit_id=None
+                audited.delete()
+            
+            print(house)
             db.session.delete(house)
             db.session.commit()
         else:
@@ -691,7 +717,7 @@ def root_audited():
         return dic
 
 
-# 下架已通过的审核或删除审核
+# 下架已通过的审核或删除审核(废弃)
 
 
 @llr.route("/root/delaudited", methods=["POST", 'GET'])
