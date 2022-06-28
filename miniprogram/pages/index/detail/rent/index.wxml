@@ -34,7 +34,7 @@
 </view>
  
 <van-submit-bar
-  price="{{ house.price }}"
+  price="{{ house.price*100 }}"
   button-text="提交订单"
   bind:submit="formSubmit"
 />

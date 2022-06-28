@@ -21,6 +21,7 @@ Page({
     this.setData({
       house: house
     })
+    
     // wx.request({
 
     // })

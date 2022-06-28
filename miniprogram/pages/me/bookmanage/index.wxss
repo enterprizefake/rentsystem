@@ -1,7 +1,7 @@
 /* pages/me/bookmanage/index.wxss */
 .card{
   width: 90%;
-  height: 390rpx;
+  height: 500rpx;
   background: rgb(245, 245, 230);
   border-radius: 10rpx;
   box-shadow: 5px 5px 5px #cdcfcf;
@@ -10,8 +10,8 @@
  }
  .card1{
   width: 90%;
-  height: 390rpx;
-  background: rgb(133, 135, 140);
+  height: 500rpx;
+  background: rgb(105, 105, 105);
   border-radius: 10rpx;
   box-shadow: 5px 5px 5px #cdcfcf;
   margin-top: 15px;
@@ -19,10 +19,53 @@
  }
  .card2{
   width: 90%;
-  height: 390rpx;
-  background: rgb(0, 255, 0);
+  height: 500rpx;
+  background: rgb(0, 255, 127);
   border-radius: 10rpx;
   box-shadow: 5px 5px 5px #cdcfcf;
   margin-top: 15px;
   margin-left: 15px;
  }
+ .card3 {
+  margin-left: 3%;
+  margin-right: 3%;
+  height: 400rpx;
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+  background-color: white;
+}
+
+.time {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+  font-size: small;
+  color: gray;
+}
+
+.title {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-left: 3%;
+  font-weight: bold;
+}
+
+.content
+{
+  padding-top: 4%;
+  padding-left: 3%;
+  display: flex;
+}
+
+.content .left
+{
+  width: 30%;
+  font-size: small;
+  color: rgb(128,128,128);
+}
+
+.content .right
+{
+  width: 70%;
+  font-size: small;
+}

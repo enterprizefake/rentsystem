@@ -9,22 +9,13 @@
     </swiper-item>
   </block>
 </swiper>
-<view class="card1"><text decode="{{true}}">{{house.h_name}}&nbsp;{{house.address}}</text>
-
-  <view wx:if="{{iscollect==true}}">
-    <view style="margin-left: 340px;margin-top: -20px;text-align: left;">
-      <van-icon name="star" style="font-size: 25px;" bindtap="jump1" />
-      <view style="font-size: 13px;">收藏</view>
-    </view>
-    <!-- <button style="width:20vw;height: 25px;margin-right: 10px;font-size: 10px;margin-top: -20px;"  bindtap="jump1" type="primary">收藏</button></view>
- <view wx:else><button style="width:22vw;height: 40px;margin-left: 10px;font-size: 15px;margin-top: 10px;"  bindtap="jump1" >收藏</button> -->
-  </view>
-  <view wx:else>
-    <view style="margin-left: 340px;margin-top: -20px;">
-      <van-icon name="star-o" style="font-size: 25px;" bindtap="jump1" />
-      <view style="font-size: 13px;">收藏</view>
-    </view>
-  </view>
+<view class="card1"><text  decode="{{true}}">{{house.h_name}}&nbsp;{{house.address}}</text>
+ 
+<view wx:if="{{iscollect==true}}">
+<view style="margin-left: 340px;margin-top: -20px;text-align: left;">
+<van-icon name="star"  style="font-size: 25px;" bindtap="jump1"/><view style="font-size: 13px;">收藏</view></view>
+ </view>
+ <view wx:else><view style="margin-left: 340px;margin-top: -20px;"><van-icon name="star-o"  style="font-size: 25px;"  bindtap="jump1"/><view style="font-size: 13px;">收藏</view></view> </view>
 </view>
 
 <text>联系电话:{{house.phone}}\n</text>
