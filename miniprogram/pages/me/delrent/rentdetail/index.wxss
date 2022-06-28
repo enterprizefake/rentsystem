@@ -1,4 +1,4 @@
-/* pages/me/delrent/rentdetail/index.wxss */
+pages/me/delrent/rentdetail/index.wxss
 page{
   background: #eee;
 }
@@ -55,3 +55,6 @@ button{
   text-align: center;
 }
 
+.value-class {
+  flex: none !important;
+}

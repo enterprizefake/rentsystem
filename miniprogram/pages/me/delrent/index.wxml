@@ -1,10 +1,36 @@
 <!--pages/me/delrent/index.wxml-->
 <view wx:for="{{all_renthouse}}" wx:item="item">
-<view class="card" bindtap="">
-<view>房屋的名字：{{item.h_name}}</view>
-<view>房屋的地址：{{item.address}}</view>
-<button style="margin-left: 10px;margin-top: 80px;width: 150px;" bindtap="cancelrent" data-name="{{item}}">取消租房</button>
-<button style="margin-right: 10px;margin-top: -40px;width: 150px;" bindtap="reviserent"
+<view class="card" >
+  <view class="title">
+        {{item.h_name}}
+      </view>
+      <view class="content">
+
+<view class="left">
+  房屋的名字：
+</view>
+
+<view class="right">
+  {{item.h_name}}
+</view>
+
+
+</view>
+
+<view class="content">
+
+<view class="left">
+  房屋的地址：
+</view>
+
+<view class="right">
+  {{item.address}}
+</view>
+</view>
+<!-- <view>房屋的名字：{{item.h_name}}</view>
+<view>房屋的地址：{{item.address}}</view> -->
+<button style="margin-left: 10px;margin-top: 50px;width: 100px;font-size: 13px;" bindtap="cancelrent" data-name="{{item}}">取消租房</button>
+<button style="margin-right: 80px;margin-top: -33px;width: 100px;font-size: 13px;" bindtap="reviserent"
 data-name="{{item}}">修改信息</button>
 </view>
 </view>

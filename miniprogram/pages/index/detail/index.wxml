@@ -17,15 +17,35 @@
  </view>
  <view wx:else><view style="margin-left: 340px;margin-top: -20px;"><van-icon name="star-o"  style="font-size: 25px;"  bindtap="jump1"/><view style="font-size: 13px;">收藏</view></view> </view>
 </view>
+<view class="card5" style="margin-top: 10px;height: 80px;">
+  <view class="content">
 
-<text>联系电话:{{house.phone}}\n</text>
-<text>价格:{{house.price}}\n</text>
+<view class="left">
+  联系电话：
+</view>
+
+<view class="right">
+  {{house.phone}}
+</view>
+</view>
+<view class="content" style="margin-top: 1px;">
+
+<view class="left">
+  价格：
+</view>
+
+<view class="right">
+  {{house.price}}
+</view>
+</view>
+</view>
 <view>
   <map 
   markers="{{markers}}"
   longitude="{{house.h_longitude}}" 
   latitude="{{house.h_latitude}}"
   class="map"
+  style="margin-top: 10px;"
   ></map>
 </view>
 

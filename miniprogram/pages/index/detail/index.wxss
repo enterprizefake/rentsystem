@@ -111,3 +111,30 @@
   height: 2rpx;*/
   background-color: #D8D8D8;
 }
+.content
+{
+  padding-top: 4%;
+  padding-left: 3%;
+  display: flex;
+}
+
+.content .left
+{
+  width: 30%;
+  font-size: small;
+  color: rgb(128,128,128);
+}
+
+.content .right
+{
+  width: 70%;
+  font-size: small;
+}
+.card5 {
+
+  height: 500rpx;
+  background: rgb(255, 255, 255);
+  border-radius: 10rpx;
+  box-shadow: 5px 5px 5px #cdcfcf;
+  height: 50px;
+}

@@ -19,7 +19,21 @@ Page({
     new_price: null,
     max_relettime: null,
     max_renttime: null,
-    // old_picture:[],
+    show: false,
+    new_square: null,
+    new_hasparking: null,
+    new_haslift: null,
+    new_haswc: null,
+    new_shared_housing: null,
+    new_room: null,
+    room_options: [
+      {
+        values: ['一室', '两室', '三室', '四室', '五室']
+      },
+      {
+        values: ['一厅', '两厅', '三厅']
+      },
+    ],
     new_picture: []
   },
   map() {
@@ -124,9 +138,82 @@ Page({
       new_picture: index.detail
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  getroom(index) {
+    this.setData({
+      show: true
+    });
+  },
+  room_confirm(index) {
+    var v = index.detail.value
+    var s = v[0] + v[1]
+    console.log(s)
+    this.setData({
+      new_room: s,
+      show: false
+    })
+
+  },
+  room_cancel(index) {
+    this.setData({
+      show: false
+    });
+  },
+  haslift() {
+    if (this.data.new_haslift == '是') {
+      this.setData({
+        new_haslift: '否'
+      })
+    }
+    else
+    {
+      this.setData({
+        new_haslift: '是'
+      })
+
+    }
+  },
+  haswc() {
+    if (this.data.new_haswc == '是') {
+      this.setData({
+        new_haswc: '否'
+      })
+    }
+    else
+    {
+      this.setData({
+        new_haswc: '是'
+      })
+
+    }
+  },
+  hasparking() {
+    if (this.data.new_hasparking == '是') {
+      this.setData({
+        new_hasparking: '否'
+      })
+    }
+    else
+    {
+      this.setData({
+        new_hasparking: '是'
+      })
+
+    }
+  },
+  shared_housing() {
+    if (this.data.new_shared_housing == '是') {
+      this.setData({
+        new_shared_housing: '否'
+      })
+    }
+    else
+    {
+      this.setData({
+        new_shared_housing: '是'
+      })
+
+    }
+  },
   onLoad: function (option) {
     var house = JSON.parse(option.rentde)
     this.setData({
@@ -139,6 +226,21 @@ Page({
       max_renttime:house.max_renttime,
       new_price:house.price,
       phone:house.phone,
+      show: false,
+      new_square: house.square,
+      new_hasparking: house.hasparking,
+      new_haslift: house.haslift,
+      new_haswc: house.haswc,
+      new_shared_housing: house.shared_housing,
+      new_room: house.room,
+      room_options: [
+        {
+          values: ['一室', '两室', '三室', '四室', '五室']
+        },
+        {
+          values: ['一厅', '两厅', '三厅']
+        },
+      ],
       rentde: house
     })
     console.log(this.data.rentde)
@@ -181,6 +283,12 @@ Page({
         max_relettime: this.data.max_relettime,
         max_renttime: this.data.max_renttime,
         price: this.data.new_price,
+        square:this.data.new_square,
+        room:this.data.new_room,
+        haslift:this.data.new_haslift,
+        hasparking:this.data.new_hasparking,
+        haswc:this.data.new_haswc,
+        shared_housing:this.data.new_shared_housing,
         pictures: temp_pictures
       },
       success: (res) => {

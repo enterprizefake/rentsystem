@@ -27,9 +27,11 @@
   margin-left: 15px;
  }
  .card3 {
-  margin-left: 3%;
+   width: 90%;
+  margin-top: 30px;
+  margin-left: 5%;
   margin-right: 3%;
-  height: 400rpx;
+  height: 490rpx;
   border-radius: 10rpx;
   box-shadow: 5px 5px 5px #cdcfcf;
   background-color: white;

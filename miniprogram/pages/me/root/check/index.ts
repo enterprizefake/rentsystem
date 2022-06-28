@@ -76,8 +76,9 @@ Page({
   },
   map() {
     wx.openLocation({
-      longitude: Number(this.data.content.longitude),//经度或纬度必须是number类型
-      latitude: Number(this.data.content.latitude),
+      // type:'wgs84',
+      longitude: Number(this.data.content.h_longitude),//经度或纬度必须是number类型
+      latitude: Number(this.data.content.h_latitude),
       name: this.data.content.h_name,
       address: this.data.content.address
     })

@@ -56,7 +56,7 @@ Page({
           console.log("???")
         }
         else {
-          this.onLoad()
+          this.onShow()
         }
       }
     })

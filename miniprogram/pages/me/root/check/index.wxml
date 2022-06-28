@@ -16,6 +16,12 @@
       <van-cell title="详细信息" value="{{content.h_detail}}" />
       <van-cell title="地址" is-link bindtap="map" />
       <van-cell title="最长租赁时间" value="{{content.max_relettime}}" />
+      <van-cell title="面积" value="{{content.square}}m²" />
+      <van-cell title="规格" value="{{content.room}}" />
+      <van-cell title="有无电梯" value="{{content.haslift}}" />
+      <van-cell title="有无停车位" value="{{content.hasparking}}" />
+      <van-cell title="有无独卫" value="{{content.haswc}}" />
+      <van-cell title="是否允许合租" value="{{content.shared_housing}}" />
 
       <van-cell title="审核回复">
         <input placeholder="请输入" 

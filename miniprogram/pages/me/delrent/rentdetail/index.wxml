@@ -1,24 +1,44 @@
 <van-tabs active="{{ active }}" bind:change="onChange">
   <van-tab title="修改出租信息">
     <view class="form">
-      <van-cell-group>        
-      <van-field label="房屋id" value="{{ h_id }}" placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required 
-        disabled
-        bind:change="get_id" />
+      <van-cell-group>
+        <van-field label="房屋id" value="{{ h_id }}" placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required disabled bind:change="get_id" />
         <van-field label="房屋名称" value="{{ new_name }}" placeholder="请输入房屋的名字" type="textarea" autosize clearable required bind:change="getname" />
         <van-cell title="房屋地址" required value="{{ new_address?new_address:'请选择' }}" class="van-multi-ellipsis--l2" is-link bindtap="map" />
         <van-field value="{{ new_detail }}" label="详细描述" placeholder="请输入该房屋的详细描述" autosize clearable required bind:change="getdetail" />
-        <van-field label="审核状态" value="{{ audit_state }}"  type="textarea" autosize clearable required disabled bind:change="getmax_relettime" />
+        <van-field label="审核状态" value="{{ audit_state }}" type="textarea" autosize clearable required disabled bind:change="getmax_relettime" />
         <van-field label="房屋的最大出租时间" value="{{ max_renttime }}" placeholder="请输入房屋的出租时间" type="textarea" autosize clearable required bind:change="getmax_renttime" />
-        <van-field label="出租价格（月）" value="{{ new_price }}" placeholder="输入价格" type="textarea" autosize clearable input-class="textarea" required bind:change="getprice" />
+        <van-field label="出租价格(月)" value="{{ new_price }}" placeholder="输入价格" type="textarea" autosize clearable input-class="textarea" required bind:change="getprice" />
         <van-field label="联系电话" value="{{ phone }}" disabled placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required bind:change="getphone" />
+        <van-field label="房屋面积(m²)" value="{{ new_square }}" placeholder="输入面积" type="number" autosize clearable input-class="textarea" required bind:change="getsquare" />
+
+        <van-cell title="房屋规格" required value="{{ new_room?new_room:'请选择' }}" class="van-multi-ellipsis--l2" is-link bindtap="getroom" />
+
+
+        <van-checkbox-group value="{{ result }}" bind:change="onChange">
+          <van-cell-group>
+            <van-cell required title="是否有电梯" value-class="value-class" clickable bind:click="haslift">
+              <van-checkbox value="{{ new_haslift=='是'?true:false }}" name="1" />
+            </van-cell>
+
+            <van-cell required title="是否有独立卫生间" value-class="value-class" clickable bind:click="haswc">
+              <van-checkbox value="{{ new_haswc=='是'?true:false }}" name="2" />
+            </van-cell>
+
+            <van-cell required title="是否有停车位" value-class="value-class" clickable bind:click="hasparking">
+              <van-checkbox value="{{ new_hasparking=='是'?true:false }}" name="3" />
+            </van-cell>
+
+            <van-cell required title="是否允许合租" value-class="value-class" clickable bind:click="shared_housing">
+              <van-checkbox value="{{ new_shared_housing=='是'?true:false }}" name="4" />
+            </van-cell>
+
+          </van-cell-group>
+        </van-checkbox-group>
+        
         <van-cell title="上传图片" required>
         </van-cell>
-        <van-uploader  file-list="{{ new_picture }}" 
-        deletable 
-        multiple
-        bind:delete="delete"
-        bind:after-read="afterRead" />
+        <van-uploader file-list="{{ new_picture }}" deletable multiple bind:delete="delete" bind:after-read="afterRead" />
 
         <!-- <van-field label="房屋介绍图片" value="{{ new_picture }}" placeholder="上传图片" type="textarea" autosize clearable input-class="textarea" required bind:change="getpicture" /> -->
 
@@ -36,3 +56,7 @@
 
 
 </van-tabs>
+
+<van-popup show="{{show}}" position="bottom">
+  <van-picker columns="{{room_options}}" show-toolbar title="选择规格" bind:confirm="room_confirm" bind:cancel="room_cancel"></van-picker>
+</van-popup>

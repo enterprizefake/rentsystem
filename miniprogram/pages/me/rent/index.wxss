@@ -109,3 +109,7 @@ button {
   border-radius: 6rpx;
   font-size: 32rpx;
 }
+
+.value-class {
+  flex: none !important;
+}

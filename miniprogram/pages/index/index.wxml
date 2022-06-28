@@ -1,97 +1,106 @@
 <!-- 轮播图 -->
 <swiper indicator-dots autoplay circular>
-<block class="item">
-<swiper-item wx:for="{{list}}" wx:item="item" bindtap="to_detail" data-name="{{item}}">
-<image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="item"> </image>
-</swiper-item>
-</block>
+  <block class="item">
+    <swiper-item wx:for="{{list}}" wx:item="item" bindtap="to_detail" data-name="{{item}}">
+      <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="item"> </image>
+    </swiper-item>
+  </block>
 </swiper>
 <!-- 标签栏 -->
-<van-tabs  bind:change="onChange" >
+<van-tabs bind:change="onChange">
   <van-tab title="价格优先">
-  <view>
-    <view wx:for="{{price_list}}">
-    <view class="card" bindtap="to_detail" data-name="{{item}}">
+    <view>
+      <view wx:for="{{price_list}}">
+        <view class="card" bindtap="to_detail" data-name="{{item}}">
 
-    <view class="left">
-    <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
-    class="img"></image>
-    </view>
+          <view class="left">
+            <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+          </view>
 
-    <view class="content">
+          <view class="content">
 
-    <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
-    <view style="margin-bottom: 3%;">联系电话:{{item.phone}}</view>
-    
-    <view class="price" style="margin-bottom: 3%;"> 
-    <view class="price_number">{{item.price}}  </view>
-    <view class="price_cell">元/月</view>
-    </view>
-    <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
-    </view>
-    </view>
-    <van-divider />
+            <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
 
+            <view style="margin-bottom: 3%;font-size: small;">{{item.square}}m² · {{item.shared_housing=='是'?'合租':'整租'}} · {{item.room}}</view>
+            <view style="margin-bottom: 3%;">
+              <van-tag type="primary" wx:if="{{item.haslift=='是'}}" style="margin-right: 3%;">电梯</van-tag>
+              <van-tag type="success" wx:if="{{item.hasparking=='是'}}" style="margin-right: 3%;">停车位</van-tag>
+              <van-tag type="success" wx:if="{{item.haswc=='是'}}">独卫</van-tag>
+            </view>
+
+            <view class="price" style="margin-bottom: 3%;">
+              <view class="price_number">{{item.price}} </view>
+              <view class="price_cell">元/月</view>
+            </view>
+          </view>
+        </view>
+        <van-divider />
+
+      </view>
     </view>
-  </view>
   </van-tab>
   <van-tab title="最新发布">
     <view>
-    <view wx:for="{{new_list}}">
+      <view wx:for="{{new_list}}">
+        <view class="card" bindtap="to_detail" data-name="{{item}}">
 
-    <view class="card" bindtap="to_detail" data-name="{{item}}">
+          <view class="left">
+            <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+          </view>
 
-    <view class="left">
-    <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
-    class="img"></image>
-    </view>
+          <view class="content">
 
-    <view class="content">
+            <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
 
-    <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
-    <view style="margin-bottom: 3%;">联系电话:{{item.phone}}</view>
-    
-    <view class="price" style="margin-bottom: 3%;"> 
-    <view class="price_number">{{item.price}}  </view>
-    <view class="price_cell"> 元/月</view>
-    </view>
-    <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
-    </view>
-    </view>
-    <van-divider />
+            <view style="margin-bottom: 3%;font-size: small;">{{item.square}}m² · {{item.shared_housing=='是'?'合租':'整租'}} · {{item.room}}</view>
+            <view style="margin-bottom: 3%;">
+              <van-tag type="primary" wx:if="{{item.haslift=='是'}}" style="margin-right: 3%;">电梯</van-tag>
+              <van-tag type="success" wx:if="{{item.hasparking=='是'}}" style="margin-right: 3%;">停车位</van-tag>
+              <van-tag type="success" wx:if="{{item.haswc=='是'}}">独卫</van-tag>
+            </view>
 
+            <view class="price" style="margin-bottom: 3%;">
+              <view class="price_number">{{item.price}} </view>
+              <view class="price_cell">元/月</view>
+            </view>
+          </view>
+        </view>
+        <van-divider />
+
+      </view>
     </view>
-  </view>
   </van-tab>
   <van-tab title="离我最近" disabled="{{!user}}">
     <view>
-    <view wx:for="{{near_list}}">
-    <view class="card" bindtap="to_detail" data-name="{{item}}">
+      <view wx:for="{{near_list}}">
+        <view class="card" bindtap="to_detail" data-name="{{item}}">
 
-    <view class="left">
-    <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg"  
-    class="img"></image>
+          <view class="left">
+            <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+          </view>
+
+          <view class="content">
+
+            <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
+            <view style="margin-bottom: 3%;font-size: small;">{{item.square}}m² · {{item.shared_housing=='是'?'合租':'整租'}} · {{item.room}}</view>
+            <view style="margin-bottom: 3%;">
+              <van-tag type="primary" wx:if="{{item.haslift=='是'}}" style="margin-right: 3%;">电梯</van-tag>
+              <van-tag type="success" wx:if="{{item.hasparking=='是'}}" style="margin-right: 3%;">停车位</van-tag>
+              <van-tag type="success" wx:if="{{item.haswc=='是'}}">独卫</van-tag>
+            </view>
+
+            <view class="price" style="margin-bottom: 3%;">
+              <view class="price_number">{{item.price}} </view>
+              <view class="price_cell"> 元/月</view>
+            </view>
+            <view style="margin-bottom: 3%;" class="detail">距您{{item.distance}}</view>
+
+          </view>
+        </view>
+        <van-divider />
+
+      </view>
     </view>
-
-    <view class="content">
-
-    <view style="margin-bottom: 3%;">{{item.h_name}} | {{item.address}}</view>
-    <view style="margin-bottom: 3%;">联系电话:{{item.phone}}</view>
-    
-    <view class="price" style="margin-bottom: 3%;"> 
-    <view class="price_number">{{item.price}}  </view>
-    <view class="price_cell"> 元/月</view>
-    </view>
-    <view style="margin-bottom: 3%;" class="detail">{{item.h_detail}}</view>
-
-    <view style="margin-bottom: 3%;" class="detail">距您{{item.distance}}</view>
-
-    </view>
-    </view>
-    <van-divider />
-
-    </view>
-  </view>
   </van-tab>
 </van-tabs>
 
