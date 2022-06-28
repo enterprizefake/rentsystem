@@ -3,42 +3,51 @@
 <van-dialog id="van-dialog" />
 
 <swiper indicator-dots autoplay circular class="big">
-<block class="item">
-<swiper-item wx:for="{{house.picture_number}}" wx:key="index" wx:for-item="item">
-<image src="http://127.0.0.1:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
-</swiper-item>
-</block>
+  <block class="item">
+    <swiper-item wx:for="{{house.picture_number}}" wx:key="index" wx:for-item="item">
+      <image src="http://127.0.0.1:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
+    </swiper-item>
+  </block>
 </swiper>
-<view class="card1"><text  decode="{{true}}">{{house.h_name}}&nbsp;{{house.address}}</text>
- 
-<view wx:if="{{iscollect==true}}">
-<view style="margin-left: 340px;margin-top: -20px;text-align: left;">
-<van-icon name="star"  style="font-size: 25px;" bindtap="jump1"/><view style="font-size: 13px;">收藏</view></view>
-  <!-- <button style="width:20vw;height: 25px;margin-right: 10px;font-size: 10px;margin-top: -20px;"  bindtap="jump1" type="primary">收藏</button></view>
+<view class="card1"><text decode="{{true}}">{{house.h_name}}&nbsp;{{house.address}}</text>
+
+  <view wx:if="{{iscollect==true}}">
+    <view style="margin-left: 340px;margin-top: -20px;text-align: left;">
+      <van-icon name="star" style="font-size: 25px;" bindtap="jump1" />
+      <view style="font-size: 13px;">收藏</view>
+    </view>
+    <!-- <button style="width:20vw;height: 25px;margin-right: 10px;font-size: 10px;margin-top: -20px;"  bindtap="jump1" type="primary">收藏</button></view>
  <view wx:else><button style="width:22vw;height: 40px;margin-left: 10px;font-size: 15px;margin-top: 10px;"  bindtap="jump1" >收藏</button> -->
- </view>
- <view wx:else><view style="margin-left: 340px;margin-top: -20px;"><van-icon name="star-o"  style="font-size: 25px;"  bindtap="jump1"/><view style="font-size: 13px;">收藏</view></view> </view>
+  </view>
+  <view wx:else>
+    <view style="margin-left: 340px;margin-top: -20px;">
+      <van-icon name="star-o" style="font-size: 25px;" bindtap="jump1" />
+      <view style="font-size: 13px;">收藏</view>
+    </view>
+  </view>
 </view>
- 
+
 <text>联系电话:{{house.phone}}\n</text>
 <text>价格:{{house.price}}\n</text>
-<view class="card"></view>
-<view class="card"></view>
+<view>
+  <map 
+  markers="{{markers}}"
+  longitude="{{house.h_longitude}}" 
+  latitude="{{house.h_latitude}}"
+  class="map"
+  ></map>
+</view>
+
+
 <view class="card2" style="position:fixed; bottom:0;">
   <van-goods-action style="width: 10%;margin-top: 50px;">
-  <van-goods-action-button
-    text="点击预约看房"
-    type="warning"
-    bind:click="jump2"
-    data-name="{{house}}"
-  />
-  <van-goods-action-button text="立即购买" bind:click="jump3" data-name1="{{house}}" />
-</van-goods-action>
+    <van-goods-action-button text="点击预约看房" type="warning" bind:click="jump2" data-name="{{house}}" />
+    <van-goods-action-button text="立即购买" bind:click="jump3" data-name1="{{house}}" />
+  </van-goods-action>
 
-<!-- <view wx:if="{{iscollect==true}}">
+  <!-- <view wx:if="{{iscollect==true}}">
   <button style="width:22vw;height: 40px;margin-left: 10px;font-size: 15px;margin-top: 10px;"  bindtap="jump1" type="primary">收藏</button></view>
  <view wx:else><button style="width:22vw;height: 40px;margin-left: 10px;font-size: 15px;margin-top: 10px;"  bindtap="jump1" >收藏</button></view>
 <button style="width:25vw;height: 40px;margin-left: 130px;margin-top: -40px;font-size: 16px;" type=""  bindtap="jump2" data-name="{{house}}" >预约</button>
 <button style="width:32vw;height:100px;margin-right: -2px;margin-top: -50px;font-size: 18px;text-align:end;border: 0px;"  bindtap="jump3" data-name1="{{house}}" class="buttontype" >立即申请</button> -->
 </view>
-
