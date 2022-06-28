@@ -28,7 +28,7 @@ Page({
             id: house.h_id,
             longitude: house.h_longitude,
             latitude: house.h_latitude,
-            iconPath: 'https://ts1.cn.mm.bing.net/th/id/R-C.f9b24466e257955c69641e405c007fcb?rik=RnZgv1%2b5i44cGg&riu=http%3a%2f%2fimg.51miz.com%2fElement%2f00%2f18%2f66%2f56%2f165b1c5f_E186656_0d203fad.png!%2fquality%2f90%2funsharp%2ftrue%2fcompress%2ftrue%2fformat%2fpng%2ffh%2f630&ehk=DjMb1DZX2AE704F%2b%2fpy60kCRy08DX4o30aXm3MUh5Dc%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1'
+            iconPath: '../../image/首页/详情/地图.png'
           }
         ]
       });
