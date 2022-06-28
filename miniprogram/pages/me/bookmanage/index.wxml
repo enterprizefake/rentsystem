@@ -1,4 +1,5 @@
 <!--pages/me/bookmanage/index.wxml-->
+<view class="container1">
 <view wx:for="{{all_booking}}" wx:item="item" >
 <view wx:if="{{item.booking_state=='预约已提交'}}">
 <view class="card3" >
@@ -55,10 +56,11 @@
 <view>访问人数：{{item.visit_number}}</view>
 回复：<input name="reply" style="margin-top: 5px;border-color: black;box-shadow: black;" type="text"/> -->
 <button style="margin-left: 10px;width: 100px;margin-top: 20px;" bindtap="book_agree" data-name="{{item}}">同意</button>
-<button style="margin-right: 100px;width: 100px;margin-top: -40px;" bindtap="book_refuse" data-name="{{item}}">拒绝</button></view>
+<button style="margin-right: 100px;width: 100px;margin-top: -40px;" bindtap="book_refuse" data-name="{{item}}" type="warn">拒绝</button></view>
 </view>
 <view wx:elif="{{item.booking_state=='预约失败'}}">
-  <view class="card3" >
+  <view class="card3" style="height: 190px;" >
+ 
   <view class="title">
         {{item.booking_state}}
       </view>
@@ -106,7 +108,7 @@
 </view>
 </view>   </view></view>
 <view wx:else="{{item.booking_state}}">
-  <view class="card3" >
+  <view class="card3" style="height: 190px;" >
   <view class="title">
         {{item.booking_state}}
       </view>
@@ -154,4 +156,4 @@
 </view>
 </view>   </view></view>
 </view>
-
+</view>

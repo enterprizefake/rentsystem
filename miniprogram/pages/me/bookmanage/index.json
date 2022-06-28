@@ -8,5 +8,6 @@
     "van-tag": "@vant/weapp/tag/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-divider": "@vant/weapp/divider/index"
-  }
+  },
+  "navigationBarTitleText": "预约管理"
 }

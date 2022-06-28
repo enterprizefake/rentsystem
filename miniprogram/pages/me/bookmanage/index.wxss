@@ -1,4 +1,7 @@
 /* pages/me/bookmanage/index.wxss */
+.container1{
+  background-color: whitesmoke;
+}
 .card{
   width: 90%;
   height: 500rpx;
