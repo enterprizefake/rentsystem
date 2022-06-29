@@ -23,7 +23,7 @@ Page({
       url: 'http://127.0.0.1:8086/landlord/book',
       method:"POST",
       data: {
-        phone:1
+        phone:app.globalData.user.phone
       },
       success: (res) => {
         var datas = res.data

@@ -2,5 +2,6 @@
   "usingComponents": {
     "van-image": "@vant/weapp/image/index",
     "van-empty": "@vant/weapp/empty/index"
-  }
+  },
+  "navigationBarTitleText": "我的订单"
 }

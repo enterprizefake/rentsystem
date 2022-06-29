@@ -5,5 +5,6 @@
     "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",
     "van-goods-action-button": "@vant/weapp/goods-action-button/index",
     "van-icon": "@vant/weapp/icon/index"
-  }
+  },
+  "navigationBarTitleText": "房屋详情"
 }

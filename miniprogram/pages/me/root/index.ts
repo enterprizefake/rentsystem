@@ -27,7 +27,7 @@ Page({
         this.setData({
           audits: res.data.audits
         })
-        console.log(this.data.audits)
+        console.log(res.data.audits)
       }
     })
 

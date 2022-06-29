@@ -18,7 +18,7 @@
   </view>
   <view class='phone'>
     <text>手机</text>
-    <input name="phone" type='text' placeholder-style='font-size:28rpx;' placeholder='请输入你的手机号'></input>
+    <input name="phone" type='text' placeholder-style='font-size:28rpx;' value="{{phone}}"></input>
   </view>
   <view class='phone'>
     <text>访客数量</text>
@@ -43,6 +43,6 @@
     <view name="nm">姓名:{{information.name}}</view>
     <view name="ph">手机:{{information.phone}}</view>
     <view name="nm1">访客数量:{{information.vnumber}}</view>
-    <view name="tm">访问时间：{{information.vtime}}</view>
+    <view name="tm">访问时间：{{begindate}}</view>
 </modal>
 <!-- /模态框 -->

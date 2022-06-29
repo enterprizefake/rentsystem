@@ -1,11 +1,11 @@
 <van-tabs active="{{ active }}" bind:change="onChange">
-  <van-tab title="发布新房">
+  <van-tab title="新房详细信息">
     <view class="form">
       <van-cell-group>
         <van-field label="房屋名称" value="{{ new_name }}" placeholder="请输入房屋的名字" type="textarea" autosize clearable required bind:change="getname" />
         <van-cell title="房屋地址" required value="{{ new_address?new_address:'请选择' }}" class="van-multi-ellipsis--l2" is-link bindtap="map" />
         <van-field value="{{ new_detail }}" label="详细描述" placeholder="请输入该房屋的详细描述" autosize clearable required bind:change="getdetail" />
-        <van-field label="房屋的最大续租时间" value="{{ max_relettime }}" placeholder="请输入房屋的使用时间" type="textarea" autosize clearable required bind:change="getmax_relettime" />
+        <!-- <van-field label="房屋的最大续租时间" value="{{ max_relettime }}" placeholder="请输入房屋的使用时间" type="textarea" autosize clearable required bind:change="getmax_relettime" /> -->
         <van-field label="房屋的最大出租时间" value="{{ max_renttime }}" placeholder="请输入房屋的出租时间" type="textarea" autosize clearable required bind:change="getmax_renttime" />
 
         <van-field label="联系电话" value="{{ new_phone }}" placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required disabled bind:change="getphone" />

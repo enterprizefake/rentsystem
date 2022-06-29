@@ -8,17 +8,20 @@ Page({
        house:null,
        information:[],
        modalHidden:true,
-       begindate:'请选择访问时间'
+       begindate:'请选择访问时间',
+       phone:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) { 
+    var app=getApp()
     var house=JSON.parse(option.house)
     // console.log(option)
     this.setData({
-      house: house
+      house: house,
+      phone:app.globalData.user.phone
     })
     // wx.request({
 
@@ -33,6 +36,7 @@ Page({
     console.log("开始时间"+this.data.begindate)
   },
   formSubmit(e){
+    var app=getApp()
     //console.log(e);
     var information= e.detail.value;
     this.setData({

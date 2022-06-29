@@ -7,5 +7,6 @@
     "van-image": "@vant/weapp/image/index",
     "van-tag": "@vant/weapp/tag/index",
     "van-icon": "@vant/weapp/icon/index"
-  }
+  },
+  "navigationBarTitleText": "收藏"
 }

@@ -3,5 +3,6 @@
     "van-empty": "@vant/weapp/empty/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index"
-  }
+  },
+  "navigationBarTitleText": "审核中心"
 }

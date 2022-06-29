@@ -13,5 +13,6 @@
     "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
     "van-picker": "@vant/weapp/picker/index"
-  }
+  },
+  "navigationBarTitleText": "发布新房"
 }
