@@ -99,7 +99,7 @@ Page({
         iscollect: true
       })
     }
-    if (this.data.iscollect) {
+    if (this.data.iscollect==false) {
       wx.request({
         url: 'http://1.15.184.52:8086/index/detail/collection',
         method: 'POST',
@@ -241,14 +241,15 @@ Page({
           })
           console.log(datas.collections)
         }
-        wx.hideLoading()
-     
     for(var i=0;i<this.data.all_collections.length;i++)
     {
     if(this.data.t_id==this.data.all_collections[i].h_id)
     {this.setData({
       iscollect:true
-    })}
+    })
+    console.log(this.data.all_collections)
+    break;
+  }
     } },
     })
   },
