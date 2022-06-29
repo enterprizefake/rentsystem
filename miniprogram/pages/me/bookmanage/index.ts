@@ -1,6 +1,5 @@
 import { formatTime } from "../../../utils/util"
 
-// pages/me/bookmanage/index.ts
 Page({
 
   /**
@@ -22,8 +21,7 @@ Page({
       }
     )
     wx.request({
-      // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/landlord/book',
+      url: 'http://1.15.184.52:8086/landlord/book',
       method:"POST",
       data: {
         phone:app.globalData.user.phone
@@ -61,7 +59,7 @@ Page({
   console.log(booking.booking_id)
   wx.request({
     // url: 'http://1.15.184.52:8086/index',
-    url: 'http://127.0.0.1:8086/landlord/bookcheck',
+    url: 'http://1.15.184.52:8086/landlord/bookcheck',
     method: 'POST',
     data: {
       phone:booking.phone,
@@ -80,7 +78,7 @@ Page({
       else
       {
         wx.request({
-          url: 'http://127.0.0.1:8086/messages/send',
+          url: 'http://1.15.184.52:8086/messages/send',
           method: 'POST',
           data:
           {
@@ -103,7 +101,7 @@ Page({
   console.log(booking.booking_id)
   wx.request({
     // url: 'http://1.15.184.52:8086/index',
-    url: 'http://127.0.0.1:8086/landlord/bookcheck',
+    url: 'http://1.15.184.52:8086/landlord/bookcheck',
     method: 'POST',
     data: {
       phone:booking.phone,
@@ -121,7 +119,7 @@ Page({
       }
       else{
         wx.request({
-          url: 'http://127.0.0.1:8086/messages/send',
+          url: 'http://1.15.184.52:8086/messages/send',
           method: 'POST',
           data:
           {

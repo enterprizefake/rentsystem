@@ -63,7 +63,7 @@ Page({
    console.log(this.data.information.name),
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/index/detail/book',
+      url: 'http://1.15.184.52:8086/index/detail/book',
       method: 'POST',
       data: {
         h_id:this.data.house.h_id,

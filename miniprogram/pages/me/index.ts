@@ -34,7 +34,7 @@ Page({
         () => {
           if (this.data.user) {
             wx.request({
-              url: "http://127.0.0.1:8086/messages/unread",
+              url: "http://1.15.184.52:8086/messages/unread",
               method: 'POST',
               data:
               {

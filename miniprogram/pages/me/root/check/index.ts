@@ -31,7 +31,7 @@ Page({
   commit() {
     if (this.data.reply && this.data.state) {
       wx.request({
-        url: "http://127.0.0.1:8086/root/audit",
+        url: "http://1.15.184.52:8086/root/audit",
         method: 'POST',
         data: {
           h_id: this.data.content.h_id,
@@ -49,7 +49,7 @@ Page({
               icon: 'success'
             })
             wx.request({
-              url: 'http://127.0.0.1:8086/messages/send',
+              url: 'http://1.15.184.52:8086/messages/send',
               method: 'POST',
               data:
               {
@@ -100,54 +100,5 @@ Page({
       state: this.data.content.audit_state
     })
     // console.log(56486 + JSON.stringify(this.data.content))
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
   }
 })

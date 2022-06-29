@@ -108,7 +108,7 @@ Page({
     })
    console.log(this.data.information),
     wx.request({
-      url: 'http://127.0.0.1:8086/index/detail/pay',
+      url: 'http://1.15.184.52:8086/index/detail/pay',
       method: 'POST',
       data: {
         begin_date:this.data.begindate,
@@ -130,7 +130,7 @@ Page({
         else
         {
           wx.request({
-            url: 'http://127.0.0.1:8086/messages/send',
+            url: 'http://1.15.184.52:8086/messages/send',
             method: 'POST',
             data:
             {
@@ -142,7 +142,7 @@ Page({
             }
           });
           wx.request({
-            url: 'http://127.0.0.1:8086/messages/send',
+            url: 'http://1.15.184.52:8086/messages/send',
             method: 'POST',
             data:
             {

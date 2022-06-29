@@ -40,7 +40,7 @@
           <!-- 下 -->
           <view class="down">
 
-            <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+            <image src="http://1.15.184.52:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
             <view class="right">
               <view class="right-content">
                 【房名】{{item.h_name}}
