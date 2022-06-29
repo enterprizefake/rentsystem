@@ -943,7 +943,7 @@ def messages_send():
         return dic
 
 
-# 获取所有用户及类型
+# 获取所有用户及类型(暂时未用)
 
 
 @llr.route("/allusers", methods=["POST", 'GET'])
