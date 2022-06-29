@@ -125,10 +125,15 @@ def index():
 
 
             for house in houses:
+                print(longitude,latitude,house['h_longitude'],house['h_latitude'])
                 house['distance']=distance(longitude,latitude,house['h_longitude'],house['h_latitude'])
+
+                print("house"+str(house))
+
             houses.sort(key=lambda x:x['distance'])
 
             for house in houses:
+                print(house)
                 if(house['distance']<1):
                     house['distance']="{}米".format( round(house['distance']*1000,2) )
                 else:
@@ -302,6 +307,8 @@ def tenants_orders():
         for order in orders:
             house = to_dict(db.session.query(House).filter(
                 House.h_id == order['h_id'])[0])
+            
+            # user为房东
             user = to_dict(db.session.query(User).filter(
                 User.phone == house['phone'])[0])
             order.update(house)
@@ -388,7 +395,7 @@ def landlord_orders():
         data = request.get_json()
         print(data)
         num = data['phone']
-
+        
         houses = db.session.query(House).filter(House.phone == num).all()
         orders = []
         for house in houses:
@@ -398,8 +405,12 @@ def landlord_orders():
         for order in orders:
             house = to_dict(db.session.query(House).filter(
                 House.h_id == order['h_id'])[0])
+
+            # user为租客
+
+
             user = to_dict(db.session.query(User).filter(
-                User.phone == house['phone'])[0])
+                User.phone == order['phone'])[0])
             order.update(house)
             order.update(user)
 
