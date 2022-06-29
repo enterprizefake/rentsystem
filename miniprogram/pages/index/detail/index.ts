@@ -99,7 +99,7 @@ Page({
         iscollect: true
       })
     }
-    if (this.data.iscollect==false) {
+    if (this.data.iscollect) {
       wx.request({
         url: 'http://1.15.184.52:8086/index/detail/collection',
         method: 'POST',
@@ -223,7 +223,7 @@ Page({
     })
     var app = getApp()
     wx.request({
-      url: "http://127.0.0.1:8086/tenants/collections",
+      url: "http://1.15.184.52:8086/tenants/collections",
       method: "POST",
       data: {
         phone: app.globalData.user.phone
