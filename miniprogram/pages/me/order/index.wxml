@@ -1,7 +1,7 @@
 <!-- 新页面 -->
 <view>
 
-  <view wx:if="{{!orders}}">
+  <view wx:if="{{orders==[]}}">
     <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="你还没有订单哟" />
   </view>
 
