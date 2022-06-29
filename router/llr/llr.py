@@ -161,12 +161,18 @@ def index_detail():
     dic = {'sucess': 'yes'}
     try:
         data = request.get_json()['h_id']
-        landlord_phone = db.session.query(
-            House).filter(House.h_id == data)[0].phone
-        print(data)
+        house=to_dict(db.session.query(House).filter(House.h_id == data).first())
 
-        dic['landlord'] = to_dict(db.session.query(
+        landlord_phone = house['phone']
+
+        landlord = to_dict(db.session.query(
             User).filter(User.phone == landlord_phone)[0])
+
+
+        house.update(landlord)
+        dic['house']=to_dict(house)
+        
+        print(dic)
 
     except Exception as e:
         # traceback.print_exc()
