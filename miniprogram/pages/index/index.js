@@ -20,7 +20,7 @@ Page({
         title: '加载中',
       })
       wx.request({
-        url: 'http://127.0.0.1:8086/index',
+        url: 'http://1.15.184.52:8086/index',
         method: 'POST',
         data:
         {
@@ -52,7 +52,7 @@ Page({
       user: app.globalData.user
     })
     wx.request({
-      url: 'http://127.0.0.1:8086/index',
+      url: 'http://1.15.184.52:8086/index',
       method: 'GET',
       success: (res) => {
         if (res.data.sucess == 'no') {

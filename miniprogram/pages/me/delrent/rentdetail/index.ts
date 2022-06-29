@@ -248,7 +248,7 @@ Page({
     var h_id = this.data.rentde.h_id
     var temp_picture = []
     for (var i = 1; i <= picture_number; i++) {
-      temp_picture.push({ url: "http://127.0.0.1:8086/static/image/" + h_id + "/" + i + ".jpg" })
+      temp_picture.push({ url: "http://1.15.184.52:8086/static/image/" + h_id + "/" + i + ".jpg" })
     }
     this.setData({
       new_picture: temp_picture
@@ -271,7 +271,7 @@ Page({
     }
     console.log(temp_pictures)
     wx.request({
-      url: 'http://127.0.0.1:8086/landlord/rentold',
+      url: 'http://1.15.184.52:8086/landlord/rentold',
       method: 'POST',
       data: {
         h_id: this.data.rentde.h_id,

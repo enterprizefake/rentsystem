@@ -101,13 +101,14 @@ Page({
   },
   //模态框确定
   modalConfirm:function(e) {
+
     wx.showToast({
       title: '提交成功',
       icon:'success',
     })
    console.log(this.data.information),
     wx.request({
-      url: 'http://127.0.0.1:8086/index/detail/pay',
+      url: 'http://1.15.184.52:8086/index/detail/pay',
       method: 'POST',
       data: {
         begin_date:this.data.begindate,
@@ -119,7 +120,6 @@ Page({
       success: (res) => {
         var datas = res.data
          console.log(res)
-       // console.log(datas)
         if (datas.sucess == 'no') {
           console.log("h_id:"+this.data.house.h_id)
           console.log("???")
@@ -130,7 +130,7 @@ Page({
         else
         {
           wx.request({
-            url: 'http://127.0.0.1:8086/messages/send',
+            url: 'http://1.15.184.52:8086/messages/send',
             method: 'POST',
             data:
             {
@@ -142,7 +142,7 @@ Page({
             }
           });
           wx.request({
-            url: 'http://127.0.0.1:8086/messages/send',
+            url: 'http://1.15.184.52:8086/messages/send',
             method: 'POST',
             data:
             {

@@ -39,7 +39,7 @@ Page({
     var app = getApp()
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/index/detail',
+      url: 'http://1.15.184.52:8086/index/detail',
       method: "POST",
       data: {
         h_id: house1.h_id
@@ -101,7 +101,7 @@ Page({
     }
     if (this.data.iscollect) {
       wx.request({
-        url: 'http://127.0.0.1:8086/index/detail/collection',
+        url: 'http://1.15.184.52:8086/index/detail/collection',
         method: 'POST',
         data: {
           h_id: this.data.house.h_id,
@@ -120,7 +120,7 @@ Page({
     }
     else {
       wx.request({
-        url: 'http://127.0.0.1:8086/index/detail/cancelcollection',
+        url: 'http://1.15.184.52:8086/index/detail/cancelcollection',
         method: 'POST',
         data: {
           h_id: this.data.house.h_id,
@@ -191,7 +191,7 @@ Page({
     console.log(this.data.t_id)
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/index/detail',
+      url: 'http://1.15.184.52:8086/index/detail',
       method: "POST",
       data: {
         h_id: this.data.t_id

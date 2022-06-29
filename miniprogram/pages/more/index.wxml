@@ -1,6 +1,6 @@
 <!--pages/more/index.wxml-->
 
-<image src="../image/更多/1.jpg" class="img">
+<image src="http://1.15.184.52:8086/static/image/more/1.jpg" class="img">
  </image>
 
 

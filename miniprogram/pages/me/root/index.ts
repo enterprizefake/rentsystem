@@ -14,14 +14,14 @@ Page({
     })
   },
   check1(index) {
-      wx.navigateTo({
-        url: "/pages/me/root/check/index?type=audited&data=" + encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
-      })
+    wx.navigateTo({
+      url: "/pages/me/root/check/index?type=audited&data=" + encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
+    })
 
   },
   onShow() {
     wx.request({
-      url: "http://127.0.0.1:8086/root/audits",
+      url: "http://1.15.184.52:8086/root/audits",
       method: "POST",
       success: (res) => {
         this.setData({
@@ -29,10 +29,10 @@ Page({
         })
         console.log(res.data.audits)
       }
-    })
+    });
 
     wx.request({
-      url: "http://127.0.0.1:8086/root/audited",
+      url: "http://1.15.184.52:8086/root/audited",
       method: "POST",
       data: {
         phone: app.globalData.user.phone
@@ -41,7 +41,7 @@ Page({
         this.setData({
           audited: res.data.audited
         })
-        console.log("audited:"+res.data)
+        console.log("audited:" + res.data)
       }
 
     })

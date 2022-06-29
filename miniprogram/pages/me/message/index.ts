@@ -10,7 +10,7 @@ Page({
       user_type:v.user_type
     })
     wx.request({
-      url:"http://127.0.0.1:8086/messages",
+      url:"http://1.15.184.52:8086/messages",
       method:'POST',
       data:{
         phone:app.globalData.user.phone,

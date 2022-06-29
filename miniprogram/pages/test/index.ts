@@ -13,7 +13,7 @@ Page({
     if (data.user_type == "tenant") {
       data.user_type = "tenants"
       wx.request({
-        url: "http://127.0.0.1:8086/" + data.user_type + "/orders",
+        url: "http://1.15.184.52:8086/" + data.user_type + "/orders",
         method: 'POST',
         data: {
           phone: app.globalData.user.phone

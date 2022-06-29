@@ -5,7 +5,7 @@
 <swiper indicator-dots autoplay circular class="big">
   <block class="item">
     <swiper-item wx:for="{{house.picture_number}}" wx:key="index" wx:for-item="item">
-      <image src="http://127.0.0.1:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
+      <image src="http://1.15.184.52:8086/static/image/{{house.h_id}}/{{index+1}}.jpg" class="item"> </image>
     </swiper-item>
   </block>
 </swiper>

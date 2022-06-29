@@ -16,7 +16,7 @@ Page({
     var app = getApp()
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/landlord/allold',
+      url: 'http://1.15.184.52:8086/landlord/allold',
       method: "POST",
       data: {
         phone: app.globalData.user.phone
@@ -44,7 +44,7 @@ Page({
     //var kkk = JSON.stringify(index.currentTarget.dataset.name)
     console.log(kkk.h_id)
     wx.request({
-      url: 'http://127.0.0.1:8086/landlord/deleteold',
+      url: 'http://1.15.184.52:8086/landlord/deleteold',
       method: 'POST',
       data: {
         h_id: kkk.h_id

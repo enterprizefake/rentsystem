@@ -34,7 +34,7 @@ Page({
         () => {
           if (this.data.user) {
             wx.request({
-              url: "http://127.0.0.1:8086/messages/unread",
+              url: "http://1.15.184.52:8086/messages/unread",
               method: 'POST',
               data:
               {
@@ -117,10 +117,9 @@ Page({
       url: "/pages/me/bookmanage/index"
     })
   },
-  jump7() {
-    // this.destoryconnect()
+  jump7(v) {
     wx.navigateTo({
-      url: "/pages/me/root/index"
+      url: "/pages/me/root/index?root_type="+v.currentTarget.dataset.name
     })
   },
   jump8() {

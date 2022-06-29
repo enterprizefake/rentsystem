@@ -39,7 +39,7 @@ Page({
     var app = getApp()
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/tenants/collections',
+      url: 'http://1.15.184.52:8086/tenants/collections',
       method:"POST",
       data: {
       phone:app.globalData.user.phone
@@ -63,7 +63,7 @@ Page({
       }
     })
     // wx.request({
-    //   url: 'http://127.0.0.1:8086/index/detail',
+    //   url: 'http://1.15.184.52:8086/index/detail',
     //   method:"POST",
     //   data: {
     //   h_id:this.data.all_collections.h_id

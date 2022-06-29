@@ -1,9 +1,9 @@
 <view>
   <!-- 轮播图 -->
-  <swiper indicator-dots autoplay circular>
+  <swiper indicator-dots autoplay circular style="height: 700rpx;">
     <block>
       <swiper-item wx:for="{{content.picture_number}}">
-        <image src="http://127.0.0.1:8086/static/image/{{content.h_id}}/{{index+1}}.jpg" class="img"></image>
+        <image src="http://1.15.184.52:8086/static/image/{{content.h_id}}/{{index+1}}.jpg" class="img"></image>
       </swiper-item>
     </block>
   </swiper>
