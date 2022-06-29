@@ -13,6 +13,9 @@ Page({
     if (data.user_type == "tenant") {
       data.user_type = "tenants"
     }
+    wx.showLoading({
+      title: '加载中'
+    });
     wx.request({
       url: "http://127.0.0.1:8086/" + data.user_type + "/orders",
       method: 'POST',
@@ -22,7 +25,8 @@ Page({
       success: (res) => {
         this.setData({
           orders: res.data.orders
-        })
+        });
+        wx.hideLoading()
       }
     })
 
