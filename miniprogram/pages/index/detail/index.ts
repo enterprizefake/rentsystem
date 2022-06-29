@@ -16,18 +16,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    var house = JSON.parse(decodeURIComponent(option.house))
-    this.setData({
-      house: JSON.parse(decodeURIComponent(option.house))
-    });
-    console.log(house)
+    var house1 = JSON.parse(decodeURIComponent(option.house))
+
     this.setData
       ({
         markers: [
           {
-            id: house.h_id,
-            longitude: house.h_longitude,
-            latitude: house.h_latitude,
+            id: house1.h_id,
+            longitude: house1.h_longitude,
+            latitude: house1.h_latitude,
             iconPath: '../../image/首页/详情/地图.png'
           }
         ]
@@ -37,30 +34,36 @@ Page({
         title: '加载数据中'
       }
     )
+    console.log(house1.h_id)
     var app = getApp()
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
-      url: 'http://127.0.0.1:8086/tenants/collections',
+      url: 'http://127.0.0.1:8086/index/detail',
       method: "POST",
       data: {
-        phone: app.globalData.user.phone
+        h_id: house1.h_id
       },
       success: (res) => {
         var datas = res.data
+        this.setData
+          ({
+            markers: [
+              {
+                id: datas.house.h_id,
+                longitude: datas.house.h_longitude,
+                latitude: datas.house.h_latitude,
+                iconPath: '../../image/首页/详情/地图.png'
+              }
+            ]
+          });
         if (datas.sucess == 'no') {
           console.log("???")
         }
         else {
           this.setData({
-            all_collections: datas.collections
+            house: datas.house
           })
-          for (var i = 0; i < this.data.all_collections.length; i++) {
-            if (this.data.all_collections[i].h_id == this.data.house.h_id) {
-              this.setData({
-                iscollect: true
-              })
-            }
-          }
+          console.log(this.data.house)
         }
         wx.hideLoading()
       },
