@@ -43,7 +43,7 @@
               <!-- 卡片 -->
               <view class="{{ (item.audit_state=='已通过')?'card':'card1' }}" bindtap="check1" data-name="{{item}}">
                 <!-- 上 -->
-                <view class="card" bindtap="check" data-name="{{item}}">
+                <view class="card" bindtap="check1" data-name="{{item}}">
           <view class="page-header">
             <image mode="scaleToFill" src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg">
             </image>
