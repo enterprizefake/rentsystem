@@ -36,53 +36,10 @@ Page({
         }
       });
     }
-    // if (index == 0) {
-    //   var l=this.data.all_houses.slice(0)
-    //   l.sort(
-    //     (a, b) => (a.price) - (b.price)
-    //   );
-    //   this.setData({
-    //     all_houses:l
-    //   });
-    // }
-    // else if (index == 1) {
-    //   var l=this.data.all_houses.slice(0)
-    //   l.sort(
-    //     (a, b) => { 
-    //       if(a.public_time<b.public_time) return -1;
-    //       if(a.public_time>b.public_time) return 1;
-    //       return 0;
-    //      }
-    //   );
-    //   this.setData({
-    //     all_houses:l
-    //   });
-    // }
-    // else {
-    //   wx.showLoading({
-    //     title: '加载中',
-    //   })
-    //   wx.request({
-    //     url: 'http://127.0.0.1:8086/index/distance',
-    //     method:'POST',
-    //     data:
-    //     {
-    //       longitude:this.data.user.longitude,
-    //       latitude:this.data.user.latitude
-    //     },
-    //     success:(res)=>
-    //     {
-    //       this.setData({
-    //         all_houses:res.data.houses
-    //       })
-    //       wx.hideLoading()
-    //     }
-    //   });
-    // }
   },
   to_detail(index) {
     wx.navigateTo({
-      url: "/pages/index/detail/index?house=" + JSON.stringify(index.currentTarget.dataset.name)
+      url: "/pages/index/detail/index?house=" + encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
     })
   },
   onShow() {

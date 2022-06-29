@@ -1,92 +1,123 @@
+<!-- 新页面 -->
 <view>
-<view wx:if="{{!orders}}">
-  <van-empty
-  class="custom-image"
-  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
-  description="你还没有订单哟"
-/>
-</view>
 
-<view wx:else>
-  <view  wx:for="{{orders}}">
-    <!-- 卡片 -->
-    <view class="card">
-      <!-- 顶部房东信息及支付信息 -->
-      <view class="top">
-        <!-- 头像 -->
-        <van-image class="v0" width="120rpx" height="120rpx" round src="{{item.avatar}}" style="margin-right: 30rpx;" />
-        <view class="flex1">
-        <view class="font">
-
-          <view>
-            {{item.user_name}}({{item.user_nickname}})
-          </view>
-
-          <view>
-            电话:{{item.phone}}
-          </view>
-
-        </view>
-
-        <view class="price">
-          ￥{{item.price*(item.rent_time+item.relet_time)}}
-        </view>
-
-      </view>
-      </view>
-
-      <!-- 上 -->
-
-      <view class="up">
-
-        <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
-        <view class="right">
-
-          <view style="font-weight: bolder;">
-            订单编号:{{item.order_id}}
-          </view>
-
-
-          <view class="date">
-            租赁时间:{{item.rent_time}}(月)
-          </view>
-
-          <!-- <view class="date">
-            续租时间:{{item.relet_time}}(月)
-          </view> -->
-
-
-          <view class="date">
-            开始日期:
-          </view>
-
-          <view class="date">
-            {{item.begin_date}}
-          </view>
-
-          <view class="date">
-            结束日期:
-          </view>
-
-          <view class="date">
-            {{item.end_date}}
-          </view>
-
-        </view>
-
-      </view>
-      <!-- 下 -->
-      <view class="down">
-
-        <view class="left">
-          {{item.h_name}}
-        </view>
-
-
-      </view>
-
-    </view>
-
+  <view wx:if="{{!orders}}">
+    <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="你还没有订单哟" />
   </view>
-</view>
+
+
+  <view wx:else>
+
+    <view style="height: 100%;width: 100%;">
+      <view wx:for="{{orders}}">
+
+        <!-- 卡片 -->
+        <view class="card" >
+
+          <!-- 顶部房东信息及支付信息 -->
+          <view class="top">
+            <!-- 头像 -->
+            <view style="margin-left: 3%;">
+              <van-image class="v0" width="80rpx" height="80rpx" round src="{{item.avatar}}" style="margin-right: 30rpx;" />
+
+            </view>
+
+            <view class="flex1">
+              <view class="font">
+
+                <view>
+                  {{item.user_name}}({{item.user_nickname}})
+                </view>
+
+              </view>
+
+              <view class="success">
+                交易成功
+              </view>
+
+            </view>
+          </view>
+          <!-- 下 -->
+          <view class="down">
+
+            <image src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg" class="img"></image>
+            <view class="right">
+              <view class="right-content">
+                【房名】{{item.h_name}}
+              </view>
+
+              <view class="right-content">
+                【已支付】{{item.price*item.rent_time}}元
+              </view>
+
+              <view class="right-content">
+                【租赁时长】{{item.rent_time}}月
+              </view>
+
+              <view class="right-content">
+                【单价】{{item.price}}元/月
+              </view>
+
+              <van-tag plain type="success" style="margin-right: 5%;margin-left: 4%;">7天无理由</van-tag>
+              <van-tag plain type="success">全程价保</van-tag>
+
+            </view>
+
+          </view>
+          <!-- 更多 -->
+          <view>
+            <!-- <view class="more">查看更多 </view> -->
+
+            <view>
+              <van-collapse value="{{ show }}" bind:change="showmore">
+                <van-collapse-item title="查看更多" title-class="more" name="{{item.order_id}}">
+
+                  <view class="more-content">
+                    <view class="left">订单编号:</view>
+                    <view>{{item.order_id}}</view>
+                  </view>
+
+                  <view class="more-content">
+                    <view class="left">订单开始时间:</view>
+                    <view>{{item.begin_date}}</view>
+                  </view>
+
+                  <view class="more-content">
+                    <view class="left">订单结束时间:</view>
+                    <view>{{item.end_date}}</view>
+                  </view>
+
+                  <view class="more-content">
+                    <view class="left">房东电话:</view>
+                    <view>{{item.phone}}</view>
+                  </view>
+
+                  <view class="more-content">
+                    <view class="left">房屋详情:</view>
+                    <view  data-name="{{item}}" bindtap="to_detail">点击查看</view>
+                    <!-- <view>{{item.h_detail}}</view> -->
+                  </view>
+                  
+                  <view class="more-content">
+                    <view class="left">房屋面积:</view>
+                    <view>{{item.square}}m²</view>
+                  </view>
+
+                  <view class="more-content">
+                    <view class="left">房屋规格:</view>
+                    <view>{{item.room}}</view>
+                  </view>
+
+                </van-collapse-item>
+              </van-collapse>
+            </view>
+
+          </view>
+
+        </view>
+
+      </view>
+    </view>
+  </view>
+
 </view>

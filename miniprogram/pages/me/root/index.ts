@@ -41,19 +41,11 @@ Page({
         this.setData({
           audited: res.data.audited
         })
-        console.log(res.data)
+        console.log("audited:"+res.data)
       }
 
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
 
   /**
    * 生命周期函数--监听页面隐藏

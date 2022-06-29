@@ -11,7 +11,7 @@ Page({
     state: null,
     columns: ['已通过', '已驳回'],
     show: false,
-    type: null
+    type:null
   },
   pop() {
     if (this.data.type == 'audits') { this.setData({ show: true }); }
@@ -41,6 +41,9 @@ Page({
         },
         success: (res) => {
           if (res.data.sucess == 'yes') {
+            this.setData({
+              type:"audited"
+            });
             wx.showToast({
               title: '提交成功',
               icon: 'success'
@@ -77,8 +80,8 @@ Page({
   map() {
     wx.openLocation({
       // type:'wgs84',
-      longitude: Number(this.data.content.h_longitude),//经度或纬度必须是number类型
-      latitude: Number(this.data.content.h_latitude),
+      longitude: this.data.content.h_longitude,//经度或纬度必须是number类型
+      latitude: this.data.content.h_latitude,
       name: this.data.content.h_name,
       address: this.data.content.address
     })

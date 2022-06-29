@@ -7,7 +7,7 @@ Page({
   data: {
     orders: null,
     show: null,
-    card_margin: 0
+    card_margin:0
   },
   onLoad(data) {
     if (data.user_type == "tenant") {
@@ -30,11 +30,6 @@ Page({
     }
 
 
-  },
-  to_detail(v) {
-    wx.navigateTo({
-      url: "/pages/index/detail/index?house=" + encodeURIComponent(JSON.stringify(v.currentTarget.dataset.name))
-    })
   },
   showmore(v) {
     console.log(v.detail);

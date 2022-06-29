@@ -1,11 +1,12 @@
 .card {
   margin-left: 3%;
   margin-right: 3%;
-  height: calc(100% - 10);
+  /* height: 500rpx; */
+  height: 50%;
   border-radius: 10rpx;
   box-shadow: 5px 5px 5px #cdcfcf;
   background-color: white;
-  margin-bottom: 20%;
+  bottom: 20%;
 }
 
 .top {
@@ -39,17 +40,16 @@
 }
 
 .img {
-  width: 40%;
-  height: 250rpx;
+  width: 50%;
+  height: 100%;
   border-radius: 15rpx;
 }
 
-.down .right {
-  height: 100%;
+.right {
   width: 50%;
 }
 
-.down .right-content {
+.right-content {
   font-size: small;
   margin-bottom: 3%;
 }
@@ -64,15 +64,4 @@
   text-align: center;
   font-size: small;
   color: #A9A9A9;
-
-}
-
-.more-content {
-  display: flex;
-  margin-bottom: 3%;
-  justify-content: space-between;
-}
-
-.more-content .left {
-  color: black;
 }

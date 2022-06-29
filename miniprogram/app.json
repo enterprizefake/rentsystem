@@ -18,7 +18,8 @@
     "pages/me/message/index",
     "pages/me/root/index",
     "pages/me/root/check/index",
-    "pages/me/delrent/rentdetail/index"
+    "pages/me/delrent/rentdetail/index",
+    "pages/test/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
