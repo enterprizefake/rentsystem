@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  all_booking:null
+  all_booking:null,
+  reply:null
   },
 
   /**
@@ -46,6 +47,13 @@ Page({
       }
     })
   },
+  respond(e)
+  {
+    console.log(e.detail)
+  this.setData({
+    reply:e.detail
+  })
+  },
  book_agree(index){
   var app = getApp()
   var booking = index.currentTarget.dataset.name
@@ -59,14 +67,14 @@ Page({
       phone:booking.phone,
       booking_id:booking.booking_id,
       booking_state:'预约成功',
-      reply:'无',
+      reply:this.data.reply.value,
     },
     success: (res) => {
       var datas = res.data
       console.log(res)
      // console.log(datas)
       if (datas.sucess == 'no') {
-        console.log("h_id:"+this.data.house.h_id)
+        //console.log("h_id:"+this.data.house.h_id)
         console.log("???")
       }
       else
@@ -79,7 +87,7 @@ Page({
             phone:booking.phone,
             message_type:"看房预约成功通知",
             user_type:"租客",
-            content:'无', //回复
+            content:this.data.reply.value, //回复
             send_time:formatTime(new Date())
           }
         });
@@ -101,7 +109,7 @@ Page({
       phone:booking.phone,
       booking_id:booking.booking_id,
       booking_state:'预约失败',
-      reply:'无',
+      reply:this.data.reply.value,
     },
     success: (res) => {
       var datas = res.data
@@ -110,6 +118,20 @@ Page({
       if (datas.sucess == 'no') {
         console.log("h_id:"+this.data.house.h_id)
         console.log("???")
+      }
+      else{
+        wx.request({
+          url: 'http://127.0.0.1:8086/messages/send',
+          method: 'POST',
+          data:
+          {
+            phone:booking.phone,
+            message_type:"看房预约失败通知",
+            user_type:"租客",
+            content:this.data.reply.value, //回复
+            send_time:formatTime(new Date())
+          }
+        });
       }
     },
   }) 

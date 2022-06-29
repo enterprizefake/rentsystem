@@ -152,7 +152,10 @@ Page({
               content:'您的房子('+this.data.house.h_name+')已成功出租!详情请查看订单',
               send_time:formatTime(new Date())
             }
-          });
+          });  
+      wx.navigateBack({
+       delta: 1
+      })
         }
       }
 
