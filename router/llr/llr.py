@@ -943,6 +943,23 @@ def messages_send():
         return dic
 
 
+# 获取所有用户及类型
+
+
+@llr.route("/allusers", methods=["POST", 'GET'])
+def allusers():
+    dic = {'sucess': 'yes'}
+    try:
+
+        allusers=to_list(db.session.query(User).all())
+        
+        dic['allusers']=allusers
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
 
 # 计算距离优先
 def distance(jingduA, weiduA,jingduB, weiduB):
