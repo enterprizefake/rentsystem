@@ -66,8 +66,8 @@ Page({
           var n = res.data.house.slice(0)
           n.sort(
             (a, b) => {
-              if (a.public_time < b.public_time) return -1;
-              if (a.public_time > b.public_time) return 1;
+              if (a.public_time > b.public_time) return -1;
+              if (a.public_time < b.public_time) return 1;
               return 0;
             }
           )
