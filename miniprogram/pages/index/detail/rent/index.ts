@@ -101,6 +101,7 @@ Page({
   },
   //模态框确定
   modalConfirm:function(e) {
+
     wx.showToast({
       title: '提交成功',
       icon:'success',
@@ -119,7 +120,6 @@ Page({
       success: (res) => {
         var datas = res.data
          console.log(res)
-       // console.log(datas)
         if (datas.sucess == 'no') {
           console.log("h_id:"+this.data.house.h_id)
           console.log("???")

@@ -117,10 +117,9 @@ Page({
       url: "/pages/me/bookmanage/index"
     })
   },
-  jump7() {
-    // this.destoryconnect()
+  jump7(v) {
     wx.navigateTo({
-      url: "/pages/me/root/index"
+      url: "/pages/me/root/index?root_type="+v.currentTarget.dataset.name
     })
   },
   jump8() {
