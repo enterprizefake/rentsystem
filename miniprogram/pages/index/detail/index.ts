@@ -245,7 +245,7 @@ Page({
      
     for(var i=0;i<this.data.all_collections.length;i++)
     {
-    if(this.data.t_id==this.data.all_collections[i])
+    if(this.data.t_id==this.data.all_collections[i].h_id)
     {this.setData({
       iscollect:true
     })}
