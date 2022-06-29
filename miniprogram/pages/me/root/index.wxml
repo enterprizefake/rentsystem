@@ -3,28 +3,6 @@
   <view>
     <van-tabs bind:change="onChange" animated swipeable>
 
-      <van-tab wx:if="{{root_type=='小程序核心管理员'}}" title="成员管理">
-        <van-index-bar>
-
-        <view>小程序开发者</view>
-          <view>
-            <van-index-anchor>小程序开发者</van-index-anchor>
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-          </view>
-
-          <view wx:for="{{FirstPin}}" >
-            <van-index-anchor index="{{item}}">标题2</van-index-anchor>
-            <van-cell title="{{user_list[item]}}" />
-            <van-cell title="文本" />
-            <van-cell title="文本" />
-          </view>
-
-
-        </van-index-bar>
-      </van-tab>
-
       <van-tab title="审核房源">
         <view wx:for="{{audits}}" wx:item="item">
           <view class="card" bindtap="check" data-name="{{item}}">
@@ -65,7 +43,7 @@
               <!-- 卡片 -->
               <view class="{{ (item.audit_state=='已通过')?'card':'card1' }}" bindtap="check1" data-name="{{item}}">
                 <!-- 上 -->
-                <view class="card" bindtap="check" data-name="{{item}}">
+                <view class="card" bindtap="check1" data-name="{{item}}">
           <view class="page-header">
             <image mode="scaleToFill" src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg">
             </image>

@@ -6,35 +6,7 @@ Page({
   data: {
     audits: null,
     audited: null,
-    card: 'card',
-    root_type: null,
-    allusers: null,
-    FirstPin: [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "W",
-      "X",
-      "Y",
-      "Z"
-    ],
-    user_list:[]
-
+    card: 'card'
   },
   check(index) {
     wx.navigateTo({
@@ -47,38 +19,7 @@ Page({
     })
 
   },
-  onLoad(v) {
-    this.setData({
-      root_type: v.root_type
-    })
-
-    wx.request({
-      url: "http://127.0.0.1:8086/allusers",
-      method: "POST",
-      success: (res) => {
-        this.setData({
-          allusers: res.data.allusers
-        })
-        console.log(this.data.allusers)
-        var user_list=[]
-        this.data.FirstPin.forEach(item => {
-          // user_list.push({item:[]})
-          user_list[item] = [];
-          console.log(user_list)
-          var allusers=this.data.allusers
-          allusers.forEach(el => {
-            //对比开头字母是否对应
-            let first = el.user_name.substring(0, 1).toUpperCase();
-            if (first == item) {
-              user_list[item].push(el);
-            }
-          });
-        });
-        console.log(res.data.allusers)
-
-        console.log(user_list)
-      }
-    });
+  onLoad() {
     wx.request({
       url: "http://127.0.0.1:8086/root/audits",
       method: "POST",
