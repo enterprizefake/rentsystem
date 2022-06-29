@@ -58,7 +58,7 @@ Page({
               }
             })
           }
-        }, 3000)
+        }, 1000)
     })
   },
   destoryconnect()
@@ -75,48 +75,56 @@ Page({
     if (this.data.user) {
       this.createconnect()
     }
-
   },
   onHide() {
     this.destoryconnect()
   },
   jump1() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/myinfo/index"
     })
+
   },
   jump2() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/order/index?user_type=" + this.data.user_type
     })
   },
   jump3() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/collection/index"
     })
   },
   jump4() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/rent/index"
     })
 
   },
   jump5() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/delrent/index"
     })
   },
   jump6() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/bookmanage/index"
     })
   },
   jump7() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/root/index"
     })
   },
   jump8() {
+    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/message/index?user_type=" + this.data.user_type
     })
