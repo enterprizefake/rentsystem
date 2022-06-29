@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-submit-bar": "@vant/weapp/submit-bar/index"
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-stepper": "@vant/weapp/stepper/index"
   },
   "navigationBarTitleText": "租房订单提交"
 }

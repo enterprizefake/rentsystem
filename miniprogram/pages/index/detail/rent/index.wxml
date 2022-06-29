@@ -10,18 +10,18 @@
  </view>
   <view class='name'>
     <!-- <text>开始时间</text> -->
-    <picker mode="date" value="{{begindate}}" bindchange="bindbeginDateChange" >
+    <picker mode="date" 
+    value="{{begindate}}"
+    bindchange="bindbeginDateChange" >
     <view class="picker">
       选择起始日期: <view>{{begindate}}</view>
     </view>
   </picker>
   </view>
   <view class='phone'>
-    <picker mode="date" value="{{enddate}}" bindchange="bindendDateChange" start="{{begindate}}">
-    <view class="picker">
-      选择结束日期: <view>{{enddate}}</view>
+    <view mode="date" value="{{enddate}}" bindchange="bindendDateChange" start="{{begindate}}">
+      结束日期： <view>{{enddate}}</view>
     </view>
-  </picker>
   </view>
   <view class='phone'>
     <text>联系电话</text>
@@ -29,12 +29,13 @@
   </view>
   <view class='phone'>
     <text>出租时间</text>
-    <input bindchange="bindrenttime">{{renttime}}</input>
+    <van-stepper value="{{ renttime }}" bind:change="bindrenttime" min="0" max="{{house.max_renttime}}" />
+    <!-- <input bindchange="bindrenttime">{{renttime}}</input> -->
   </view>
 </view>
  
 <van-submit-bar
-  price="{{ house.price*100 }}"
+  price="{{ house.price*100*renttime }}"
   button-text="提交订单"
   bind:submit="formSubmit"
 />

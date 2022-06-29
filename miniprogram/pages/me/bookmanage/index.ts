@@ -1,3 +1,5 @@
+import { formatTime } from "../../../utils/util"
+
 // pages/me/bookmanage/index.ts
 Page({
 
@@ -66,6 +68,21 @@ Page({
       if (datas.sucess == 'no') {
         console.log("h_id:"+this.data.house.h_id)
         console.log("???")
+      }
+      else
+      {
+        wx.request({
+          url: 'http://127.0.0.1:8086/messages/send',
+          method: 'POST',
+          data:
+          {
+            phone:booking.phone,
+            message_type:"看房预约成功通知",
+            user_type:"租客",
+            content:'无', //回复
+            send_time:formatTime(new Date())
+          }
+        });
       }
     },
   })

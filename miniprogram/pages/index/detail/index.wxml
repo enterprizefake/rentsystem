@@ -90,10 +90,10 @@
   ></map>
 </view>
 
-
+<view wx:if="{{house.h_state=='未出租'}}">
 <view class="card2" style="position:fixed; bottom:0;">
   <van-goods-action style="width: 10%;margin-top: 50px;">
     <van-goods-action-button text="点击预约看房" type="warning" bind:click="jump2" data-name="{{house}}" />
     <van-goods-action-button text="立即购买" bind:click="jump3" data-name1="{{house}}" />
   </van-goods-action>
-</view>
+</view></view>

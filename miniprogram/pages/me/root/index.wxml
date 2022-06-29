@@ -6,7 +6,7 @@
     animated swipeable>
       <van-tab title="审核房源">
       <view wx:for="{{audits}}" wx:item="item">
-        <view class="card" bindtap="check1" data-name="{{item}}">
+        <view class="card" bindtap="check" data-name="{{item}}">
           <view class="page-header">
             <image mode="scaleToFill" src="http://127.0.0.1:8086/static/image/{{item.h_id}}/1.jpg">
             </image>
