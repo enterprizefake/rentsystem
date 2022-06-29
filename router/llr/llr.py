@@ -125,10 +125,15 @@ def index():
 
 
             for house in houses:
+                print(longitude,latitude,house['h_longitude'],house['h_latitude'])
                 house['distance']=distance(longitude,latitude,house['h_longitude'],house['h_latitude'])
+
+                print("house"+str(house))
+
             houses.sort(key=lambda x:x['distance'])
 
             for house in houses:
+                print(house)
                 if(house['distance']<1):
                     house['distance']="{}米".format( round(house['distance']*1000,2) )
                 else:
