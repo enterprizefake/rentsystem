@@ -7,7 +7,7 @@ Page({
    */
   data: {
     house: null,
-    t_id:null,
+    t_id: null,
     iscollect: false,
     all_collections: null,
     markers: null
@@ -28,7 +28,7 @@ Page({
             iconPath: '../../image/首页/详情/地图.png'
           }
         ],
-        t_id:house1.h_id
+        t_id: house1.h_id
       });
     wx.showLoading(
       {
@@ -218,16 +218,15 @@ Page({
           })
           console.log(this.data.house)
         }
-        wx.hideLoading()
       },
-    
+
     })
-    var app=getApp()
+    var app = getApp()
     wx.request({
-      url:"http://127.0.0.1:8086/tenants/collections",
-      method:"POST",
-      data:{
-      phone:app.globalData.user.phone
+      url: "http://127.0.0.1:8086/tenants/collections",
+      method: "POST",
+      data: {
+        phone: app.globalData.user.phone
       },
       success: (res) => {
         var datas = res.data
@@ -237,7 +236,7 @@ Page({
         }
         else {
           this.setData({
-            all_collections:datas.collections
+            all_collections: datas.collections
           })
           console.log(datas.collections)
         }
