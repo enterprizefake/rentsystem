@@ -1,4 +1,4 @@
-// pages/index/detail/rent/index.ts
+import{formatTime} from "../../../../utils/util"
 Page({
 
   /**
@@ -8,10 +8,10 @@ Page({
    house:null,
    information:[],
    modalHidden:true,
-   begindate:'点击选择开始日期',
-   enddate:'点击选择结束日期',
+   begindate:'请选择初始日期',
+   enddate:'2000-01-01',
    phone:null,
-   renttime:323
+   renttime:1
   },
 
   /**
@@ -52,8 +52,10 @@ Page({
   bindbeginDateChange: function(e) {
     //console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      begindate: e.detail.value
+      begindate: e.detail.value,
     })
+
+    // var year=begindate.
     //console.log("开始时间"+this.data.begindate)
   },
   bindendDateChange: function(e) {
@@ -66,8 +68,35 @@ Page({
   bindrenttime: function(e) {
     //console.log('picker发送选择改变，携带值1为', e.detail.value)
     this.setData({
-      renttime: e.detail.value
+      renttime: e.detail
     })
+    if(e.detail==12)
+    wx.showToast({
+      title: '不能超过最大值',
+      icon:'error',
+    })
+    console.log(this.data.renttime)
+    var date=this.data.begindate;
+    var result=date.match(/(\d+)*-(\d+)*-(\d+)*/)
+    var year=result[1]
+    var month=result[2]
+    var day=result[3]
+    var new_month=(Number(month)+this.data.renttime)%12;
+    var new_year=Math.floor((Number(month)+this.data.renttime)/12)+Number(year);
+   
+    if(new_month==0)
+    {
+      new_month=12
+      new_year=new_year-1
+    } console.log(new_year);
+    console.log(new_month);
+
+   var alter_month=new_month<10?'0'+String(new_month):String(new_month)
+   var alter_day=day<10?'0'+String(day):String(day)
+    this.setData({
+      enddate:String(new_year)+"-"+alter_month+"-"+String(day)
+    })
+    console.log(this.data.enddate)
    // console.log("结束时间"+this.data.enddate)
   },
   //模态框确定
@@ -78,7 +107,6 @@ Page({
     })
    console.log(this.data.information),
     wx.request({
-      // url: 'http://1.15.184.52:8086/index',
       url: 'http://127.0.0.1:8086/index/detail/pay',
       method: 'POST',
       data: {
@@ -98,6 +126,33 @@ Page({
 
           // var d=JSON.stringify
           console.log("this.data:"+JSON.stringify(this.data))
+        }
+        else
+        {
+          wx.request({
+            url: 'http://127.0.0.1:8086/messages/send',
+            method: 'POST',
+            data:
+            {
+              phone:this.data.phone,
+              message_type:"支付成功通知",
+              user_type:"租客",
+              content:'您已支付成功!实付款:'+this.data.house.price*this.data.house.renttime+"元",
+              send_time:formatTime(new Date())
+            }
+          });
+          wx.request({
+            url: 'http://127.0.0.1:8086/messages/send',
+            method: 'POST',
+            data:
+            {
+              phone:this.data.house.phone,
+              message_type:"租赁成功通知",
+              user_type:"房东",
+              content:'您的房子('+this.data.house.h_name+')已成功出租!详情请查看订单',
+              send_time:formatTime(new Date())
+            }
+          });
         }
       }
 
