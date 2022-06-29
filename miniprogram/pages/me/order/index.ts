@@ -43,9 +43,6 @@ Page({
 
   },
   to_detail(v) {
-    if (this.data.user_type == "landlord") {
-      v.currentTarget.dataset.name.phone=app.globalData.user.phone
-    }
     wx.navigateTo({
       url: "/pages/index/detail/index?house=" + encodeURIComponent(JSON.stringify(v.currentTarget.dataset.name))
     })
