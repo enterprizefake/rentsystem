@@ -43,6 +43,7 @@ Page({
 
   },
   to_detail(v) {
+    console.log(JSON.stringify(v.currentTarget.dataset.name))
     wx.navigateTo({
       url: "/pages/index/detail/index?house=" + encodeURIComponent(JSON.stringify(v.currentTarget.dataset.name))
     })
