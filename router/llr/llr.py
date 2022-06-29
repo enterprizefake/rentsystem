@@ -140,7 +140,7 @@ def index():
                     house['distance']="{}公里".format(round(house['distance'],2))
 
         except Exception as e:
-            traceback.print_exc()
+            # traceback.print_exc()
             pass
         
         dic['house'] = houses
