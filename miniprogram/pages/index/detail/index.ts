@@ -8,7 +8,7 @@ Page({
   data: {
     house: null,
     t_id:null,
-    iscollect: true,
+    iscollect: false,
     all_collections: null,
     markers: null
   },
@@ -222,12 +222,34 @@ Page({
       },
     
     })
+    var app=getApp()
     wx.request({
       url:"http://127.0.0.1:8086/tenants/collections",
       method:"POST",
       data:{
-        
-      }
+      phone:app.globalData.user.phone
+      },
+      success: (res) => {
+        var datas = res.data
+        if (datas.sucess == 'no') {
+          console.log(555)
+          console.log("???")
+        }
+        else {
+          this.setData({
+            all_collections:datas.collections
+          })
+          console.log(datas.collections)
+        }
+        wx.hideLoading()
+     
+    for(var i=0;i<this.data.all_collections.length;i++)
+    {
+    if(this.data.t_id==this.data.all_collections[i])
+    {this.setData({
+      iscollect:true
+    })}
+    } },
     })
   },
   /**
