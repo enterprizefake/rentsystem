@@ -184,7 +184,7 @@ def index_detail_pay():
         max_renttime = db.session.query(House).filter(
             House.h_id == data['h_id'])[0].max_renttime
 
-        if(max_renttime is None or data['rent_time'] <= max_renttime):
+        if(max_renttime is None or int(data['rent_time']) <= max_renttime):
             new_order = Order(
                 phone=data['phone'],
                 h_id=data['h_id'],
@@ -204,7 +204,7 @@ def index_detail_pay():
             dic = {'sucess': 'no'}
 
     except Exception as e:
-        # traceback.print_exc()
+        traceback.print_exc()
         # 返回错误信息
         dic = {'sucess': 'no'}
     finally:
