@@ -9,7 +9,7 @@
     </swiper-item>
   </block>
 </swiper>
-<view class="card1" style="height: 100px;"><text  decode="{{true}}">{{house.h_name}}&nbsp;{{house.address}}</text>
+<view class="card1" style="height: 100px;"><text  decode="{{true}}" style="margin-left: 5px;">{{house.h_name}}&nbsp;{{house.address}}</text>
  
 <view wx:if="{{iscollect==true}}">
 <view style="margin-left: 340px;margin-top: -20px;text-align: left;">
@@ -17,7 +17,7 @@
  </view>
  <view wx:else><view style="margin-left: 340px;margin-top: -20px;"><van-icon name="star-o"  style="font-size: 25px;"  bindtap="jump1"/><view style="font-size: 13px;">收藏</view></view> </view>
  <view>
- <text style="color: red;font-size: 18px;margin-left: 3%;">{{house.price}}/月</text>
+ <text style="color: red;font-size: 18px;margin-left: 1%;">{{house.price}}元/月</text>
  <text style="margin-left: 80px;">{{house.square}}m²</text>
  <text style="margin-left: 80px;">{{house.room}}</text>
  </view>
@@ -75,12 +75,10 @@
 </view>
 </view>
 </view>
-<view class="card6" style="height: auto;"><text style="margin-left: 20px;font-size: 18px;">房源介绍</text>
+<view class="card6" style="height: auto;"><text style="margin-left: 10px;font-size: 18px;">房源介绍</text>
 <view style="margin-top: 10px;margin-left: 10px;">{{house.h_detail}}</view>
-</view>
-<view class="card6" style="height: 300px;">
-<view style="margin-left: 20px;font-size: 18px;">地理位置</view>
-<text style="font-size: small;color: rgb(128,128,128);margin-left: 10px;">位置:</text><text style="font-size: 14px;">{{house.address}}</text>
+<view style="margin-left: 10px;font-size: 18px;margin-top: 10px;">地理位置</view>
+<text style="font-size: small;color: rgb(128,128,128);margin-left: 10px;margin-top: 10px;">位置:</text><text style="font-size: 14px;">{{house.address}}</text>
   <map 
   markers="{{markers}}"
   longitude="{{house.h_longitude}}" 

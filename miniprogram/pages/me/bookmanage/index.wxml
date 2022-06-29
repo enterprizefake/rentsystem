@@ -2,7 +2,7 @@
 <view class="container1">
 <view wx:for="{{all_booking}}" wx:item="item" >
 <view wx:if="{{item.booking_state=='预约已提交'}}">
-<view class="card3" >
+<view class="card3" style="height: 280px;" >
   <view class="title">
         {{item.booking_state}}
       </view>
@@ -48,7 +48,16 @@
 <view class="right">
   {{item.visit_number}}
 </view>
-</view>      
+</view>
+<view class="content">
+
+<view class="left">
+  输入回复：
+</view>
+
+<input class="right" value="{{item.reply}}" bind:change="respond">
+</input>
+</view>         
 <!-- <view>预约订单id：{{item.booking_id}}</view>
 <view>预约人电话：{{item.phone}}</view>
 <view>预约状态：{{item.booking_state}}</view>
@@ -59,7 +68,7 @@
 <button style="margin-right: 100px;width: 100px;margin-top: -40px;" bindtap="book_refuse" data-name="{{item}}" type="warn">拒绝</button></view>
 </view>
 <view wx:elif="{{item.booking_state=='预约失败'}}">
-  <view class="card3" style="height: 190px;" >
+  <view class="card3" style="height: 220px;" >
  
   <view class="title" style="color: red;">
         {{item.booking_state}}
@@ -106,9 +115,22 @@
 <view class="right">
   {{item.visit_number}}
 </view>
-</view>   </view></view>
+
+</view>
+<view class="content">
+
+<view class="left">
+  回复：
+</view>
+
+<view class="right">
+  {{item.reply}}
+</view>
+
+</view>  
+   </view></view>
 <view wx:else="{{item.booking_state}}">
-  <view class="card3" style="height: 190px;" >
+  <view class="card3" style="height: 220px;" >
   <view class="title" style="color: green;">
         {{item.booking_state}}
       </view>
@@ -154,6 +176,18 @@
 <view class="right">
   {{item.visit_number}}
 </view>
-</view>   </view></view>
+</view>
+<view class="content">
+
+<view class="left">
+  回复：
+</view>
+
+<view class="right">
+  {{item.reply}}
+</view>
+
+</view>    
+ </view></view>
 </view>
 </view>

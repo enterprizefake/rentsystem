@@ -7,6 +7,7 @@ Page({
    */
   data: {
     house: null,
+    t_id:null,
     iscollect: false,
     all_collections: null,
     markers: null
@@ -17,7 +18,6 @@ Page({
    */
   onLoad: function (option) {
     var house1 = JSON.parse(decodeURIComponent(option.house))
-
     this.setData
       ({
         markers: [
@@ -27,7 +27,8 @@ Page({
             latitude: house1.h_latitude,
             iconPath: '../../image/首页/详情/地图.png'
           }
-        ]
+        ],
+        t_id:house1.h_id
       });
     wx.showLoading(
       {
@@ -187,6 +188,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    console.log(this.data.t_id)
+    wx.request({
+      // url: 'http://1.15.184.52:8086/index',
+      url: 'http://127.0.0.1:8086/index/detail',
+      method: "POST",
+      data: {
+        h_id: this.data.t_id
+      },
+      success: (res) => {
+        var datas = res.data
+        this.setData
+          ({
+            markers: [
+              {
+                id: datas.house.h_id,
+                longitude: datas.house.h_longitude,
+                latitude: datas.house.h_latitude,
+                iconPath: '../../image/首页/详情/地图.png'
+              }
+            ]
+          });
+        if (datas.sucess == 'no') {
+          console.log("???")
+        }
+        else {
+          this.setData({
+            house: datas.house
+          })
+          console.log(this.data.house)
+        }
+        wx.hideLoading()
+      },
+    
+    })
   },
   /**
    * 生命周期函数--监听页面隐藏
