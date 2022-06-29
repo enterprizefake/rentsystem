@@ -8,7 +8,7 @@ Page({
   data: {
     house: null,
     t_id:null,
-    iscollect: false,
+    iscollect: true,
     all_collections: null,
     markers: null
   },
@@ -221,6 +221,13 @@ Page({
         wx.hideLoading()
       },
     
+    })
+    wx.request({
+      url:"http://127.0.0.1:8086/tenants/collections",
+      method:"POST",
+      data:{
+        
+      }
     })
   },
   /**
