@@ -10,16 +10,20 @@ Page({
    modalHidden:true,
    begindate:'点击选择开始日期',
    enddate:'点击选择结束日期',
+   phone:null,
+   renttime:323
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) { 
+    var app=getApp()
     var house=JSON.parse(option.house)
     // console.log(option)
     this.setData({
-      house: house
+      house: house,
+      phone:app.globalData.user.phone
     })
     
     // wx.request({
@@ -28,7 +32,7 @@ Page({
    console.log(this.data.house)
   },
   formSubmit(e){
-    //console.log(e);
+    console.log(e);
     var information= e.detail.value;
     this.setData({
       information: e.detail.value,
@@ -59,13 +63,20 @@ Page({
     })
    // console.log("结束时间"+this.data.enddate)
   },
+  bindrenttime: function(e) {
+    //console.log('picker发送选择改变，携带值1为', e.detail.value)
+    this.setData({
+      renttime: e.detail.value
+    })
+   // console.log("结束时间"+this.data.enddate)
+  },
   //模态框确定
   modalConfirm:function(e) {
     wx.showToast({
       title: '提交成功',
       icon:'success',
     })
-   console.log(this.data.information.rtime),
+   console.log(this.data.information),
     wx.request({
       // url: 'http://1.15.184.52:8086/index',
       url: 'http://127.0.0.1:8086/index/detail/pay',
@@ -74,8 +85,8 @@ Page({
         begin_date:this.data.begindate,
         end_date:this.data.enddate,
         h_id:this.data.house.h_id,
-        phone:this.data.information.phone,
-        rent_time:this.data.information.rtime
+        phone:this.data.phone,
+        rent_time:this.data.renttime
       },
       success: (res) => {
         var datas = res.data

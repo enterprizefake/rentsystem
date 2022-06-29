@@ -78,7 +78,7 @@
 <view class="card6" style="height: auto;"><text style="margin-left: 20px;font-size: 18px;">房源介绍</text>
 <view style="margin-top: 10px;margin-left: 10px;">{{house.h_detail}}</view>
 </view>
-<view class="card6" style="height: 300px;margin-top: 10px;">
+<view class="card6" style="height: 300px;">
 <view style="margin-left: 20px;font-size: 18px;">地理位置</view>
 <text style="font-size: small;color: rgb(128,128,128);margin-left: 10px;">位置:</text><text style="font-size: 14px;">{{house.address}}</text>
   <map 
