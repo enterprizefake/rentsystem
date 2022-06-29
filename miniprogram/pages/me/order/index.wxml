@@ -88,24 +88,9 @@
                   </view>
 
                   <view class="more-content">
-                    <view class="left">房东电话:</view>
-                    <view>{{item.phone}}</view>
-                  </view>
-
-                  <view class="more-content">
                     <view class="left">房屋详情:</view>
                     <view  data-name="{{item}}" bindtap="to_detail">点击查看</view>
                     <!-- <view>{{item.h_detail}}</view> -->
-                  </view>
-                  
-                  <view class="more-content">
-                    <view class="left">房屋面积:</view>
-                    <view>{{item.square}}m²</view>
-                  </view>
-
-                  <view class="more-content">
-                    <view class="left">房屋规格:</view>
-                    <view>{{item.room}}</view>
                   </view>
 
                 </van-collapse-item>
