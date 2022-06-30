@@ -71,10 +71,25 @@ Page({
               return 0;
             }
           )
+
           this.setData({
             list: p.slice(0).splice(0, 3),
             price_list: p,
             new_list: n
+          });
+          wx.request({
+            url: 'http://1.15.184.52:8086/index',
+            method: 'POST',
+            data:
+            {
+              longitude: this.data.user.longitude,
+              latitude: this.data.user.latitude
+            },
+            success: (res) => {
+              this.setData({
+                near_list: res.data.house
+              })
+            }
           });
 
         }
