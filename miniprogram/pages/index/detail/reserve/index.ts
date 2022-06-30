@@ -1,4 +1,4 @@
-// pages/index/detail/reserve/index.ts
+var app=getApp()
 Page({
 
   /**
@@ -9,19 +9,20 @@ Page({
        information:[],
        modalHidden:true,
        begindate:'请选择访问时间',
-       phone:null
+       phone:null,
+       name:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) { 
-    var app=getApp()
     var house=JSON.parse(option.house)
     // console.log(option)
     this.setData({
       house: house,
-      phone:app.globalData.user.phone
+      phone:app.globalData.user.phone,
+      name:app.globalData.user.user_name
     })
     // wx.request({
 

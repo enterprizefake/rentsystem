@@ -8,10 +8,10 @@ Page({
    house:null,
    information:[],
    modalHidden:true,
-   begindate:'请选择初始日期',
-   enddate:'2000-01-01',
+   begindate:formatTime(new Date()).split(" ")[0],
+   enddate:formatTime(new Date()).split(" ")[0],
    phone:null,
-   renttime:1
+   renttime:0
   },
 
   /**
@@ -54,9 +54,39 @@ Page({
     this.setData({
       begindate: e.detail.value,
     })
+    
+    if(this.data.house.max_renttime)
+    {
+      if(e.detail==this.data.house.max_renttime)
+      wx.showToast({
+        title: '不能超过最大值',
+        icon:'error',
+      })
+    }
+    console.log(this.data.renttime)
+    var date=this.data.begindate;
+    var result=date.match(/(\d+)*-(\d+)*-(\d+)*/)
+    var year=result[1]
+    var month=result[2]
+    var day=result[3]
+    var new_month=(Number(month)+this.data.renttime)%12;
+    var new_year=Math.floor((Number(month)+this.data.renttime)/12)+Number(year);
+   
+    if(new_month==0)
+    {
+      new_month=12
+      new_year=new_year-1
+    } 
+    console.log(new_year);
+    console.log(new_month);
 
-    // var year=begindate.
-    //console.log("开始时间"+this.data.begindate)
+   var alter_month=new_month<10?'0'+String(new_month):String(new_month)
+   var alter_day=day<10?'0'+String(day):String(day)
+    this.setData({
+      enddate:String(new_year)+"-"+alter_month+"-"+String(day)
+    })
+    console.log(this.data.enddate)
+
   },
   bindendDateChange: function(e) {
     //console.log('picker发送选择改变，携带值1为', e.detail.value)
