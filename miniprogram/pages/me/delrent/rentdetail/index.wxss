@@ -49,7 +49,10 @@ button{
   width: 100%;
 }
  
-
+.bt1
+{
+  text-align: center;
+}
 
 .modal view{
   text-align: center;

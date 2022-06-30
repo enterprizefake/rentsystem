@@ -6,7 +6,7 @@
   description="你还没有消息通知哟"
 />
 </view>
-<view wx:else style="background-color:rgb(222,222,222);">
+<view wx:else style="background-color:rgb(222,222,222);min-height: 100vh;">
 
   <view wx:for="{{messages}}">
 

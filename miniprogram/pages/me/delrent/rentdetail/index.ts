@@ -1,3 +1,5 @@
+import { formatTime } from "../../../../utils/util"
+
 // pages/me/delrent/rentdetail/index.ts
 Page({
 
@@ -308,9 +310,9 @@ Page({
             data:
             {
               phone: getApp().globalData.user.phone,
-              message_type: this.data.state == "租房信息修改成功通知",
+              message_type: "租房信息修改成功通知",
               user_type: "房东",
-              content: "您的房子("+kkk.h_name+")的信息已经成功更改,请等待管理员审核结果",
+              content: "您的房子(原名:"+this.data.rentde.h_name+")的信息已经成功更改,请等待管理员审核结果",
               send_time: formatTime(new Date())
             }
           });

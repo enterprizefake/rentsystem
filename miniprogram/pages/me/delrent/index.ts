@@ -67,9 +67,9 @@ Page({
             data:
             {
               phone: getApp().globalData.user.phone,
-              message_type: this.data.state == "取消租房通知",
+              message_type:"取消租房通知",
               user_type: "房东",
-              content: "您的房子("+kkk.h_name+")已经成功从市场下架",
+              content: "您的房子("+kkk.h_name+")已成功下架",
               send_time: formatTime(new Date())
             }
           });

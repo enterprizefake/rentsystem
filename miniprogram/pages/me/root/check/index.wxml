@@ -31,9 +31,10 @@
       </van-cell>
 
       <van-cell title="审核结果">
-        <input placeholder="请选择" value="{{state}}" 
-        disabled="{{type=='audited'?true:false}}"
-        bindtap="pop"></input>
+        <view  
+        bindtap="pop">
+        {{state?state:"请选择"}}
+        </view>
       </van-cell>
 
       <button bindtap="commit" hidden="{{type=='audited'?true:false}}">提交</button>

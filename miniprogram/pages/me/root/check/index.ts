@@ -14,6 +14,7 @@ Page({
     type: null
   },
   pop() {
+    if(this.data.type=="audited") return;
     if (this.data.type == 'audits') { this.setData({ show: true }); }
   },
   confirm(index) {
