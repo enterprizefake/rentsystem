@@ -608,6 +608,22 @@ def landlord_rentold():
                 house.audit_id=None
                 audited.delete()
 
+
+            collections=db.session.query(Collection).filter(Collection.h_id==data['h_id']).all()
+
+            for collection in collections:
+                phone=collection.phone
+                new_message=Message(
+                    phone=phone,
+                    user_type='租客',
+                    message_type='收藏失效通知',
+                    isread=0,
+                    content="您的收藏(房名:{})因发布者修改信息已失效".format(data['h_name']),
+                    send_time=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+                )
+                db.session.add(new_message)
+                db.session.delete(collection)
+
             db.session.commit()
         else:
             dic = {'sucess': 'no'}
