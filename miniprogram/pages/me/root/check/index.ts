@@ -59,7 +59,7 @@ Page({
                 content: this.data.state == '已通过' ? "您发布的房子(" + this.data.content.h_name + ")已成功通过审核!" : "您发布的房子(" + this.data.content.h_name + ")因未通过审核被驳回!",
                 send_time: formatTime(new Date())
               }
-            })
+            });
           }
           else {
             wx.showToast({

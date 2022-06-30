@@ -1,3 +1,5 @@
+import { formatTime } from "../../../utils/util"
+
 // pages/me/delrent/index.ts
 Page({
   data: {
@@ -42,7 +44,7 @@ Page({
   cancelrent(index) {
     var kkk = index.currentTarget.dataset.name
     //var kkk = JSON.stringify(index.currentTarget.dataset.name)
-    console.log(kkk.h_id)
+    console.log(kkk)
     wx.request({
       url: 'http://1.15.184.52:8086/landlord/deleteold',
       method: 'POST',
@@ -51,7 +53,6 @@ Page({
       },
       success: (res) => {
         var datas = res.data
-        // console.log(datas)
         if (datas.sucess == 'no') {
           console.log("???")
           wx.showToast({
@@ -60,10 +61,22 @@ Page({
           })
         }
         else {
+          wx.request({
+            url: 'http://1.15.184.52:8086/messages/send',
+            method: 'POST',
+            data:
+            {
+              phone: getApp().globalData.user.phone,
+              message_type: this.data.state == "取消租房通知",
+              user_type: "房东",
+              content: "您的房子("+kkk.h_name+")已经成功从市场下架",
+              send_time: formatTime(new Date())
+            }
+          });
           this.onShow()
         }
       }
-    })
+    });
   },
   reviserent(index) {
     /// console.log(index.currentTarget.dataset.name)
