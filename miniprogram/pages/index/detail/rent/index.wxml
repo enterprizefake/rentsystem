@@ -29,8 +29,14 @@
   </view>
   <view class='phone'>
     <text>出租时间</text>
-    <van-stepper value="{{ renttime }}" bind:change="bindrenttime" min="0" max="{{house.max_renttime}}" />
-    <!-- <input bindchange="bindrenttime">{{renttime}}</input> -->
+
+    <van-stepper wx:if="{{house.max_renttime}}" value="{{ renttime }}" bind:change="bindrenttime" 
+    min="0"
+    max="{{house.max_renttime}}" 
+    />
+
+    <van-stepper wx:else value="{{ renttime }}" bind:change="bindrenttime" min="0" />
+
   </view>
 </view>
  

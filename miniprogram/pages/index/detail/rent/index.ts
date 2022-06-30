@@ -66,15 +66,19 @@ Page({
    // console.log("结束时间"+this.data.enddate)
   },
   bindrenttime: function(e) {
-    //console.log('picker发送选择改变，携带值1为', e.detail.value)
+    console.log(e)
     this.setData({
       renttime: e.detail
     })
-    if(e.detail==12)
-    wx.showToast({
-      title: '不能超过最大值',
-      icon:'error',
-    })
+    if(this.data.house.max_renttime)
+    {
+      if(e.detail==this.data.house.max_renttime)
+      wx.showToast({
+        title: '不能超过最大值',
+        icon:'error',
+      })
+    }
+
     console.log(this.data.renttime)
     var date=this.data.begindate;
     var result=date.match(/(\d+)*-(\d+)*-(\d+)*/)
@@ -88,7 +92,8 @@ Page({
     {
       new_month=12
       new_year=new_year-1
-    } console.log(new_year);
+    } 
+    console.log(new_year);
     console.log(new_month);
 
    var alter_month=new_month<10?'0'+String(new_month):String(new_month)
