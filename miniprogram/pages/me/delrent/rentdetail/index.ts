@@ -295,8 +295,8 @@ Page({
         var datas = res.data
         if (datas.sucess == 'no') {
           wx.showToast({
-            title: '提交失败',
-            icon: 'none'
+            title:"房间已出租",
+            icon:"error"
           })
           console.log("???")
         }

@@ -54,6 +54,10 @@ Page({
         // console.log(datas)
         if (datas.sucess == 'no') {
           console.log("???")
+          wx.showToast({
+            title:"房间已出租",
+            icon:"error"
+          })
         }
         else {
           this.onShow()
