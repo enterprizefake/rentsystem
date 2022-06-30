@@ -1,6 +1,7 @@
 import base64
 import math
 import re
+import time
 
 
 
@@ -376,7 +377,7 @@ def tenants_collections():
 
         for collection in collections:
             house = to_dict(db.session.query(House).filter(
-                House.h_id == collection['h_id'])[0])
+                House.h_id == collection['h_id']).first())
             user = to_dict(db.session.query(User).filter(
                 User.phone == house['phone'])[0])
             collection.update(house)
@@ -631,12 +632,28 @@ def landlord_deleteold():
         house = db.session.query(House).filter(House.h_id == data['h_id'])[0]
         if(house.h_state == '未出租'):
 
+
             audit_id = house.audit_id
 
             if(audit_id):
                 audited = db.session.query(Audit).filter(Audit.audit_id == audit_id)
                 house.audit_id=None
                 audited.delete()
+            
+            collections=db.session.query(Collection).filter(Collection.h_id==data['h_id']).all()
+
+            for collection in collections:
+                phone=collection.phone
+                new_message=Message(
+                    phone=phone,
+                    user_type='租客',
+                    message_type='收藏失效通知',
+                    isread=0,
+                    content="您的收藏(房名:{})因发布者删除已失效".format(house.h_name),
+                    send_time=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+                )
+                db.session.add(new_message)
+                db.session.delete(collection)
             
             print(house)
             db.session.delete(house)
