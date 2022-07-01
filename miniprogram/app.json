@@ -23,14 +23,14 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#008000",
+    "navigationBarBackgroundColor":"#7FFFD4",
     "navigationBarTitleText": "房屋招租",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#000000",
     "selectedColor": "#000000",
-    "backgroundColor": "#008000",
+    "backgroundColor": "#7FFFD4",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -52,7 +52,6 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "permission": {
     "scope.userLocation": {
