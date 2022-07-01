@@ -6,8 +6,8 @@
         <van-cell title="房屋地址" required value="{{ new_address?new_address:'请选择' }}" class="van-multi-ellipsis--l2" is-link bindtap="map" />
         <van-field value="{{ new_detail }}" label="详细描述" placeholder="请输入该房屋的详细描述" autosize clearable required bind:change="getdetail" />
         <van-field label="审核状态" value="{{ audit_state }}" type="textarea" autosize clearable required disabled bind:change="getmax_relettime" />
-        <van-field label="房屋的最大出租时间" value="{{ max_renttime }}" placeholder="不限" type="textarea" autosize clearable required bind:change="getmax_renttime" />
-        <van-field label="出租价格(月)" value="{{ new_price }}" placeholder="输入价格" type="textarea" autosize clearable input-class="textarea" required bind:change="getprice" />
+        <van-field label="房屋的最大出租时间" value="{{ max_renttime }}" placeholder="不限" type="number" autosize clearable required bind:change="getmax_renttime" />
+        <van-field label="出租价格(月)" value="{{ new_price }}" placeholder="输入价格" type="number" autosize clearable input-class="textarea" required bind:change="getprice" />
         <van-field label="联系电话" value="{{ phone }}" disabled placeholder="输入电话" type="textarea" autosize clearable input-class="textarea" required bind:change="getphone" />
         <van-field label="房屋面积(m²)" value="{{ new_square }}" placeholder="输入面积" type="number" autosize clearable input-class="textarea" required bind:change="getsquare" />
 

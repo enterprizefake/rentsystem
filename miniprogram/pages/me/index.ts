@@ -58,7 +58,7 @@ Page({
               }
             })
           }
-        }, 300)
+        }, 1000)
     })
   },
   destoryconnect()
@@ -123,7 +123,6 @@ Page({
     })
   },
   jump8() {
-    // this.destoryconnect()
     wx.navigateTo({
       url: "/pages/me/message/index?user_type=" + this.data.user_type
     })
