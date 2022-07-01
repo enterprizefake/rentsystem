@@ -67,7 +67,7 @@
 </view>
 </view>
 <view wx:elif="{{item.booking_state=='预约失败'}}">
-  <view class="card3" style="height: 220px;" >
+  <view class="card3"  >
  
   <view class="title" style="color: red;">
         {{item.booking_state}}
@@ -129,7 +129,7 @@
 </view>  
    </view></view>
 <view wx:else="{{item.booking_state}}">
-  <view class="card3" style="height: 220px;" >
+  <view class="card3" >
   <view class="title" style="color: green;">
         {{item.booking_state}}
       </view>
