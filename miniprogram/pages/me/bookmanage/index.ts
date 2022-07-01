@@ -85,7 +85,7 @@ Page({
             phone:booking.phone,
             message_type:"看房预约成功通知",
             user_type:"租客",
-            content:this.data.reply.value, //回复
+            content:"您的预约已成功!(房东回复:"+this.data.reply.value+")", //回复
             send_time:formatTime(new Date())
           }
         });
@@ -126,7 +126,7 @@ Page({
             phone:booking.phone,
             message_type:"看房预约失败通知",
             user_type:"租客",
-            content:this.data.reply.value, //回复
+            content:"您的预约已失败!(房东回复:"+this.data.reply.value+")", //回复
             send_time:formatTime(new Date())
           }
         });

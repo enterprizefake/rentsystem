@@ -58,14 +58,13 @@
 <input class="right" value="{{item.reply}}" bind:change="respond">
 </input>
 </view>         
-<!-- <view>预约订单id：{{item.booking_id}}</view>
-<view>预约人电话：{{item.phone}}</view>
-<view>预约状态：{{item.booking_state}}</view>
-<view>访问时间：{{item.visit_time}}</view>
-<view>访问人数：{{item.visit_number}}</view>
-回复：<input name="reply" style="margin-top: 5px;border-color: black;box-shadow: black;" type="text"/> -->
-<button style="margin-left: 10px;width: 100px;margin-top: 20px;" bindtap="book_agree" data-name="{{item}}">同意</button>
-<button style="margin-right: 100px;width: 100px;margin-top: -40px;" bindtap="book_refuse" data-name="{{item}}" type="warn">拒绝</button></view>
+
+<view style="display: flex;">
+  <button style="margin-left: 10px;width: 100px;margin-top: 20rpx;" bindtap="book_agree" data-name="{{item}}">同意</button>
+<button style="margin-right: 100px;width: 100px;margin-top: 20rpx;" bindtap="book_refuse" data-name="{{item}}" type="warn">拒绝</button>
+</view>
+
+</view>
 </view>
 <view wx:elif="{{item.booking_state=='预约失败'}}">
   <view class="card3" style="height: 220px;" >

@@ -22,9 +22,9 @@
         </text>
       </view>
 
-      <!-- 消息通知和切换 -->
-      <view class="v3">
-        <text bindtap="change">切换</text>
+      <!-- 切换 -->
+      <view class="v3" bindtap="change">
+        <text>切换</text>
       </view>
     </view>
 

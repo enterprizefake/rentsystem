@@ -173,11 +173,6 @@ Page({
       show: false
     });
   },
-  onChange(event) {
-    this.setData({
-      result: event.detail,
-    });
-  },
   haslift() {
     if (this.data.new_haslift == '是') {
       this.setData({
