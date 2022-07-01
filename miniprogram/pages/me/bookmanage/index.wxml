@@ -2,7 +2,7 @@
 <view class="container1">
 <view wx:for="{{all_booking}}" wx:item="item" >
 <view wx:if="{{item.booking_state=='预约已提交'}}">
-<view class="card3" style="height: 280px;" >
+<view class="card3" style="height: 580rpx;">
   <view class="title">
         {{item.booking_state}}
       </view>
@@ -60,12 +60,14 @@
 </view>         
 
 <view style="display: flex;">
-  <button style="margin-left: 10px;width: 100px;margin-top: 20rpx;" bindtap="book_agree" data-name="{{item}}">同意</button>
+<button style="margin-left: 10px;width: 100px;margin-top: 20rpx;" bindtap="book_agree" data-name="{{item}}">同意</button>
 <button style="margin-right: 100px;width: 100px;margin-top: 20rpx;" bindtap="book_refuse" data-name="{{item}}" type="warn">拒绝</button>
 </view>
 
 </view>
 </view>
+
+
 <view wx:elif="{{item.booking_state=='预约失败'}}">
   <view class="card3"  >
  
