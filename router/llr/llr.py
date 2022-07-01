@@ -28,7 +28,6 @@ def login():
     dic = {'sucess': 'yes'}
     try:
         # all = db.session.query(User).all()
-
         data = request.get_json()
         print(data)
         phone = data['phone']
