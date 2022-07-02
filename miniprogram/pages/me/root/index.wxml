@@ -3,118 +3,6 @@
   <view>
     <van-tabs animated swipeable>
 
-      <van-tab title="用户管理">
-
-        <view style="display: flex;justify-content: space-between;">
-
-          <!-- 左 -->
-          <scroll-view scroll-into-view="{{now_index}}" 
-          scroll-y 
-          style="height: 100vh;width: 100%;" 
-          >
-
-            <view>
-
-              <!-- 我 -->
-              <view>
-                <view id="me" style="padding: 3%;color:gray;background-color:rgb(222, 222, 222)">
-                  我
-                </view>
-                <!-- 单元格 -->
-                <view style="align-items: center;display: flex;">
-                  <image src="{{me.avatar}}" class="avatar"></image>
-                  <view wx:if="{{ me.type=='小程序管理员'}}">
-                    <van-tag type="primary" style="margin-right: 1%;">管理员</van-tag>
-                  </view>
-                  <view>{{me.user_nickname}}</view>
-                </view>
-              </view>
-
-              <!-- 管理员 -->
-              <view wx:if="{{roots.length}}" id="roots">
-                <view style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
-                  管理员({{roots.length}}人)
-                </view>
-
-              </view>
-              <view wx:for="{{roots}}">
-
-                <!-- 单元格 -->
-                <view style="align-items: center;display: flex;" bindlongpress="">
-                  <image src="{{item.avatar}}" class="avatar"></image>
-                  <van-tag type="primary" style="margin-right: 1%;">管理员</van-tag>
-                  <view style="width: 50%;">{{item.user_nickname}}</view>
-                  <van-icon name="clear" 
-                  data-name="{{index}}"
-                  bindtap="minus"
-                  size="20px" 
-                  style="color: red;font-weight: bolder;"></van-icon>
-                </view>
-
-
-
-
-              </view>
-
-              <!-- 用户 -->
-              <view wx:for="{{user_list}}">
-
-                <view  wx:if="{{user_list[index].length}}">
-                <view 
-                id="{{index}}"
-                style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
-                {{index}}({{user_list[index].length}}人)
-                </view>
-                </view>
-                <view wx:for="{{user_list[index]}}" wx:for-item="data" 
-                wx:for-index="i">
-
-                  <!-- 单元格 -->
-                  <view style="align-items: center;display: flex;">
-                    <image src="{{data.avatar}}" class="avatar"></image>
-                    <view style="width: 65%;">{{data.user_nickname}}</view>
-                    <van-icon 
-                    bindtap="add"
-                    data-index1="{{index}}"
-                    data-index2="{{i}}"
-                    name="add" 
-                    size="20px"
-                    style="color: green;"></van-icon>
-                  </view>
-
-                </view>
-
-
-              </view>
-
-            </view>
-
-          </scroll-view>
-
-          <!-- 右 -->
-          <view style="right: 0;position:fixed;">
-            <view>
-              <icon type="info" size="small" bindtap="turn" data-name="me"></icon>
-            </view>
-
-            <view>
-              <icon type="search" size="small" bindtap="turn" data-name="roots"></icon>
-            </view>
-
-            <view wx:for="{{user_list}}">
-              <view bindtap="turn" bindtap="turn" data-name="{{index}}">
-                <view>{{index}}</view>
-              </view>
-
-            </view>
-
-          </view>
-
-        </view>
-
-
-      </van-tab>
-
       <van-tab title="审核房源">
 
         <view wx:if="{{audits.length==0}}">
@@ -193,7 +81,101 @@
         </view>
       </van-tab>
 
+      <van-tab title="用户管理">
 
+        <view style="display: flex;justify-content: space-between;">
+
+          <!-- 左 -->
+          <scroll-view scroll-into-view="{{now_index}}" scroll-y style="height: 100vh;width: 100%;">
+
+            <view>
+
+              <!-- 我 -->
+              <view>
+                <view id="me" style="padding: 3%;color:gray;background-color:rgb(222, 222, 222)">
+                  我
+                </view>
+                <!-- 单元格 -->
+                <view style="align-items: center;display: flex;">
+                  <image src="{{me.avatar}}" class="avatar"></image>
+                  <view wx:if="{{ me.type=='小程序管理员'}}">
+                    <van-tag type="primary" style="margin-right: 1%;">管理员</van-tag>
+                  </view>
+                  <view>{{me.user_nickname}}</view>
+                </view>
+              </view>
+
+              <!-- 管理员 -->
+              <view wx:if="{{roots.length}}" id="roots">
+                <view style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
+                  管理员({{roots.length}}人)
+                </view>
+
+              </view>
+              <view wx:for="{{roots}}">
+
+                <!-- 单元格 -->
+                <view style="align-items: center;display: flex;" bindlongpress="">
+                  <image src="{{item.avatar}}" class="avatar"></image>
+                  <van-tag type="primary" style="margin-right: 1%;">管理员</van-tag>
+                  <view style="width: 50%;">{{item.user_nickname}}</view>
+                  <van-icon name="clear" data-name="{{index}}" bindtap="minus" size="20px" style="color: red;font-weight: bolder;"></van-icon>
+                </view>
+
+
+
+
+              </view>
+
+              <!-- 用户 -->
+              <view wx:for="{{user_list}}">
+
+                <view wx:if="{{user_list[index].length}}">
+                  <view id="{{index}}" style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
+                    {{index}}({{user_list[index].length}}人)
+                  </view>
+                </view>
+                <view wx:for="{{user_list[index]}}" wx:for-item="data" wx:for-index="i">
+
+                  <!-- 单元格 -->
+                  <view style="align-items: center;display: flex;">
+                    <image src="{{data.avatar}}" class="avatar"></image>
+                    <view style="width: 65%;">{{data.user_nickname}}</view>
+                    <van-icon bindtap="add" data-index1="{{index}}" data-index2="{{i}}" name="add" size="20px" style="color: green;"></van-icon>
+                  </view>
+
+                </view>
+
+
+              </view>
+
+            </view>
+
+          </scroll-view>
+
+          <!-- 右 -->
+          <view style="right: 0;position:fixed;">
+            <view>
+              <icon type="info" size="small" bindtap="turn" data-name="me"></icon>
+            </view>
+
+            <view>
+              <icon type="search" size="small" bindtap="turn" data-name="roots"></icon>
+            </view>
+
+            <view wx:for="{{user_list}}">
+              <view bindtap="turn" bindtap="turn" data-name="{{index}}">
+                <view>{{index}}</view>
+              </view>
+
+            </view>
+
+          </view>
+
+        </view>
+
+
+      </van-tab>
 
     </van-tabs>
   </view>
