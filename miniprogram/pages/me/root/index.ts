@@ -6,7 +6,11 @@ Page({
   data: {
     audits: null,
     audited: null,
-    card: 'card'
+    card: 'card',
+    user_list: null,
+    roots: null,
+    me: null,
+    now_index: null
   },
   check(index) {
     wx.navigateTo({
@@ -44,41 +48,81 @@ Page({
         console.log("audited:" + res.data)
       }
 
+    });
+
+    wx.request({
+      url: "http://1.15.184.52:8086/root/allusers",
+      method: "POST",
+      data: {
+        phone: app.globalData.user.phone
+      },
+      success: (res) => {
+        console.log(res.data)
+        var list = res.data.user_list;
+        var temp = list['#'];
+        delete list['#']
+        list['#'] = temp
+        this.setData({
+          user_list: list,
+          me: res.data.me,
+          roots: res.data.roots
+        })
+      }
+
+    });
+  },
+  turn(v) {
+    console.log(v.currentTarget.dataset.name)
+    this.setData({
+      now_index: v.currentTarget.dataset.name
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
+  add(v) {
+    console.log(v.currentTarget.dataset)
+    var index1 = v.currentTarget.dataset.index1;
+    var index2 = v.currentTarget.dataset.index2;
+    var ls = this.data.user_list;
+    var root = ls[index1][index2];
+    var temp_roots = this.data.roots;
+    temp_roots.push(root);
+    ls[index1].splice(index2, 1);
+    this.setData({
+      user_list:ls
+    });
+    wx.request({
+      url:"http://1.15.184.52:8086/root/alterroots",
+      method:'POST',
+      data:
+      {
+        roots:temp_roots
+      },
+      success:(res)=>
+      {
+        console.log(res.data)
+        this.onShow()
+      }
+    });
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  minus(v) {
+    var i = v.currentTarget.dataset.name;
+    var ls = this.data.roots;
+    ls.splice(i, 1);
+    this.setData({
+      roots: ls
+    })
+    wx.request({
+      url:"http://1.15.184.52:8086/root/alterroots",
+      method:'POST',
+      data:
+      {
+        roots:this.data.roots
+      },
+      success:(res)=>
+      {
+        console.log(res.data)
+        this.onShow();
+      }
+    });
   }
 })

@@ -80,3 +80,11 @@ image{
   align-items: center;
   margin-top: 40px;
 }
+
+.avatar
+{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin: 1%;
+}
