@@ -994,7 +994,7 @@ def root_allusers():
         
         
         if (me in developers):    
-            roots=db.session.query(User).filter(User.type=="小程序开发者").filter(User.phone != phone).all()
+            developers=db.session.query(User).filter(User.type=="小程序开发者").filter(User.phone != phone).all()
         elif(me in roots): 
             roots=db.session.query(User).filter(User.type=="小程序管理员").filter(User.phone != phone).all()
         else:
