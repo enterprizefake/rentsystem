@@ -985,18 +985,23 @@ def root_allusers():
         me=db.session.query(User).filter(User.phone==phone).first()
 
         allusers=db.session.query(User)
+
+        developers=allusers.filter(User.type=="小程序开发者").all()
+
         roots=allusers.filter(User.type=="小程序管理员").all()
         
         users=allusers.filter(User.type=="小程序使用者").all()
         
         
-        if (me in roots):    
+        if (me in developers):    
+            roots=db.session.query(User).filter(User.type=="小程序开发者").filter(User.phone != phone).all()
+        elif(me in roots): 
             roots=db.session.query(User).filter(User.type=="小程序管理员").filter(User.phone != phone).all()
-        else: 
+        else:
             users=db.session.query(User).filter(User.type=="小程序使用者").filter(User.phone != phone).all()
             
         
-
+        developers=to_list(developers)
         roots=to_list(roots)
         users=to_list(users)
 
@@ -1021,6 +1026,7 @@ def root_allusers():
 
         dic['me']=to_dict(me)
         dic['roots']=roots
+        dic['developers']=developers
         dic['user_list']=user_list
     except Exception as e:
         dic = {'sucess': 'no'}
@@ -1037,16 +1043,27 @@ def root_alterroots():
     dic = {'sucess': 'yes'}
     try:     
         data=request.get_json()
+        myphone=data['myphone']
+
+        developers=data['developers']
+
         roots=data['roots']
-        phones=[root['phone'] for root in roots]
-        phones.append(data['phone'])
+
+        developers_phones=[developer['phone'] for developer in developers]
+
+        roots_phones=[root['phone'] for root in roots]
+
         allusers=db.session.query(User).all()
 
         for user in allusers:
-            if(user.phone in phones):
+            if(user.phone in roots_phones):
                 user.type=['小程序管理员']
+            elif(user.phone in developers_phones):
+                user.type='小程序开发者'
+            elif(user.phone==myphone):
+                pass
             else:
-                user.type='小程序使用者'
+                user.type="小程序使用者"
         db.session.commit()
         
     except Exception as e:
