@@ -94,7 +94,8 @@ Page({
       method:'POST',
       data:
       {
-        roots:temp_roots
+        roots:temp_roots,
+        phone:this.data.me.phone
       },
       success:(res)=>
       {
@@ -116,7 +117,8 @@ Page({
       method:'POST',
       data:
       {
-        roots:this.data.roots
+        roots:this.data.roots,
+        phone:this.data.me.phone
       },
       success:(res)=>
       {
