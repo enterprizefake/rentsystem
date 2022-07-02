@@ -56,7 +56,23 @@ Page({
                   })
                 }
               }
-            })
+            });
+            wx.request({
+              url: "http://1.15.184.52:8086/login",
+              method: 'POST',
+              data: this.data.user,
+              success: (res) => {
+                var user=this.data.user;
+                if (res.data.sucess == "yes") {
+                  user.type = res.data.type
+                  wx.setStorageSync("user", user)
+                  app.globalData.user = user
+                  this.setData({
+                    user:user
+                  });
+                }
+              }
+            });
           }
         }, 1000)
     })
