@@ -1,7 +1,86 @@
 <view>
 
   <view>
-    <van-tabs animated swipeable>
+    <van-tabs animated swipeable bind:change="show_list">
+
+
+      <van-tab title="审核房源">
+
+        <view wx:if="{{audits.length==0}}">
+          <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无审核房源" />
+        </view>
+        <view wx:else>
+          <view wx:for="{{audits}}" wx:item="item">
+            <view class="card" bindtap="check" data-name="{{item}}">
+              <view class="page-header">
+                <image mode="scaleToFill" src="http://1.15.184.52:8086/static/image/{{item.h_id}}/1.jpg">
+                </image>
+              </view>
+              <view class="page-body">
+                <view class="page-body-title">{{item.address}}</view>
+                <view class="page-body-info">{{item.h_detail}}</view>
+              </view>
+              <view class="page-bottom">
+                <view class="price">
+                  <view class="info">￥{{item.price}}</view>
+                  <view class="bigtitle">价格</view>
+                </view>
+                <view class="scale">
+                  <view class="info">{{item.room}}</view>
+                  <view class="bigtitle">规格</view>
+                </view>
+                <view class="size">
+                  <view class="info">{{item.square}}</view>
+                  <view class="bigtitle">面积</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </van-tab>
+
+      <van-tab title="我审核的">
+        <view>
+          <view wx:if="{{audited.length==0}}">
+            <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无审核记录" />
+          </view>
+
+          <view wx:else>
+            <view wx:for="{{audited}}">
+              <!-- 卡片 -->
+              <view class="{{ (item.audit_state=='已通过')?'card':'card1' }}">
+                <!-- 上 -->
+                <view class="card" bindtap="check1" data-name="{{item}}">
+                  <view class="page-header">
+                    <image mode="scaleToFill" src="http://1.15.184.52:8086/static/image/{{item.h_id}}/1.jpg">
+                    </image>
+                  </view>
+                  <view class="page-body">
+                    <view class="page-body-title">{{item.address}}</view>
+                    <view class="page-body-info">{{item.h_detail}}</view>
+                  </view>
+                  <view class="page-bottom">
+                    <view class="price">
+                      <view class="info">￥{{item.price}}</view>
+                      <view class="bigtitle">价格</view>
+                    </view>
+                    <view class="scale">
+                      <view class="info">{{item.room}}</view>
+                      <view class="bigtitle">规格</view>
+                    </view>
+                    <view class="size">
+                      <view class="info">{{item.square}}</view>
+                      <view class="bigtitle">面积</view>
+                    </view>
+                  </view>
+                </view>
+
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </van-tab>
 
       <van-tab title="用户管理">
 
@@ -96,7 +175,7 @@
           </scroll-view>
 
           <!-- 右 -->
-          <view style="right: 0;position:fixed;">
+          <view style="right: 0;position:fixed;" wx:if="{{show_list}}">
             <view>
               <icon type="info" size="small" bindtap="turn" data-name="me"></icon>
             </view>
@@ -118,86 +197,6 @@
 
 
       </van-tab>
-
-      <van-tab title="审核房源">
-
-        <view wx:if="{{audits.length==0}}">
-          <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无审核房源" />
-        </view>
-        <view wx:else>
-          <view wx:for="{{audits}}" wx:item="item">
-            <view class="card" bindtap="check" data-name="{{item}}">
-              <view class="page-header">
-                <image mode="scaleToFill" src="http://1.15.184.52:8086/static/image/{{item.h_id}}/1.jpg">
-                </image>
-              </view>
-              <view class="page-body">
-                <view class="page-body-title">{{item.address}}</view>
-                <view class="page-body-info">{{item.h_detail}}</view>
-              </view>
-              <view class="page-bottom">
-                <view class="price">
-                  <view class="info">￥{{item.price}}</view>
-                  <view class="bigtitle">价格</view>
-                </view>
-                <view class="scale">
-                  <view class="info">{{item.room}}</view>
-                  <view class="bigtitle">规格</view>
-                </view>
-                <view class="size">
-                  <view class="info">{{item.square}}</view>
-                  <view class="bigtitle">面积</view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </van-tab>
-
-      <van-tab title="我审核的">
-        <view>
-          <view wx:if="{{audited.length==0}}">
-            <van-empty class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无审核记录" />
-          </view>
-
-          <view wx:else>
-            <view wx:for="{{audited}}">
-              <!-- 卡片 -->
-              <view class="{{ (item.audit_state=='已通过')?'card':'card1' }}">
-                <!-- 上 -->
-                <view class="card" bindtap="check1" data-name="{{item}}">
-                  <view class="page-header">
-                    <image mode="scaleToFill" src="http://1.15.184.52:8086/static/image/{{item.h_id}}/1.jpg">
-                    </image>
-                  </view>
-                  <view class="page-body">
-                    <view class="page-body-title">{{item.address}}</view>
-                    <view class="page-body-info">{{item.h_detail}}</view>
-                  </view>
-                  <view class="page-bottom">
-                    <view class="price">
-                      <view class="info">￥{{item.price}}</view>
-                      <view class="bigtitle">价格</view>
-                    </view>
-                    <view class="scale">
-                      <view class="info">{{item.room}}</view>
-                      <view class="bigtitle">规格</view>
-                    </view>
-                    <view class="size">
-                      <view class="info">{{item.square}}</view>
-                      <view class="bigtitle">面积</view>
-                    </view>
-                  </view>
-                </view>
-
-              </view>
-
-            </view>
-          </view>
-        </view>
-      </van-tab>
-
-
 
     </van-tabs>
   </view>

@@ -11,7 +11,8 @@ Page({
     developers:null,
     roots: null,
     me: null,
-    now_index: null
+    now_index: null,
+    show_list:false
   },
   check(index) {
     wx.navigateTo({
@@ -129,5 +130,20 @@ Page({
         this.onShow();
       }
     });
+  },
+  show_list(v)
+  {
+    if(v.detail.index==2)
+    {
+      this.setData({
+        show_list:true
+      })
+    }
+    else
+    {
+      this.setData({
+        show_list:false
+      })
+    }
   }
 })
