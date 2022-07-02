@@ -1030,7 +1030,7 @@ def root_allusers():
         return dic
 
 
-# 获取所有用户及索引
+# 修改用户权限
 
 @llr.route("/root/alterroots", methods=["POST", 'GET'])
 def root_alterroots():
@@ -1039,7 +1039,7 @@ def root_alterroots():
         data=request.get_json()
         roots=data['roots']
         phones=[root['phone'] for root in roots]
-
+        phones.append(data['phone'])
         allusers=db.session.query(User).all()
 
         for user in allusers:
