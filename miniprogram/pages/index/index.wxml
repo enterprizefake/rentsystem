@@ -6,11 +6,13 @@
     </swiper-item>
   </block>
 </swiper>
+<!-- 搜索框 -->
+<van-search  placeholder="请输入搜索关键词" bind:change="search"/>
 <!-- 标签栏 -->
 <van-tabs bind:change="onChange">
   <van-tab title="价格优先">
     <view>
-      <view wx:for="{{price_list}}">
+      <view wx:for="{{price_list1}}">
         <view class="card" bindtap="to_detail" data-name="{{item}}">
 
           <view class="left">
@@ -41,7 +43,7 @@
   </van-tab>
   <van-tab title="最新发布">
     <view>
-      <view wx:for="{{new_list}}">
+      <view wx:for="{{new_list1}}">
         <view class="card" bindtap="to_detail" data-name="{{item}}">
 
           <view class="left">
@@ -74,7 +76,7 @@
   </van-tab>
   <van-tab title="离我最近" disabled="{{!user}}">
     <view>
-      <view wx:for="{{near_list}}">
+      <view wx:for="{{near_list1}}">
         <view class="card" bindtap="to_detail" data-name="{{item}}">
 
           <view class="left">

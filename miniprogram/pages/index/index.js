@@ -11,7 +11,10 @@ Page({
     price_list: null,
     new_list: null,
     near_list: null,
-    user: null
+    user: null,
+    price_list1: null,
+    new_list1: null,
+    near_list1: null,
   },
   onChange(v) {
     var index = v.detail.index
@@ -41,6 +44,48 @@ Page({
     wx.navigateTo({
       url: "/pages/index/detail/index?house=" + encodeURIComponent(JSON.stringify(index.currentTarget.dataset.name))
     })
+  },
+  search(v) {
+    var price_list = this.data.price_list.slice();
+    var near_list = this.data.near_list.slice();
+    var new_list = this.data.new_list.slice();
+    var c = v.detail;
+    var pattern =RegExp(c,'i')
+    if (c!='') {
+      for (var i = 0; i < price_list.length; i++) {
+        if ( !pattern.test(price_list[i].h_name) ) {
+          price_list.splice(i, 1);
+          i--;
+        }
+      };
+
+      for (var i = 0; i < near_list.length; i++) {
+        if (!pattern.test(near_list[i].h_name)) {
+          near_list.splice(i, 1);
+          i--;
+        }
+      };
+      for (var i = 0; i < new_list.length; i++) {
+        if (!pattern.test(new_list[i].h_name)) {
+          new_list.splice(i, 1);
+          i--;
+        }
+      };
+      this.setData({
+        price_list1: price_list,
+        near_list1: near_list,
+        new_list1: new_list
+      })
+    }
+    else
+    {
+      this.setData({
+        price_list1: price_list,
+        near_list1: near_list,
+        new_list1: new_list
+      })
+      console.log(this.data.price_list1+"45645")
+    }
   },
   onShow() {
     wx.showLoading(
@@ -88,6 +133,13 @@ Page({
             success: (res) => {
               this.setData({
                 near_list: res.data.house
+              })
+              
+              // 搜索结果数组
+              this.setData({
+                price_list1:this.data.price_list,
+                near_list1:this.data.near_list,
+                new_list1:this.data.new_list
               })
             }
           });
