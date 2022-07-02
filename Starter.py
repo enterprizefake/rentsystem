@@ -100,7 +100,9 @@ from flask_socketio import SocketIO
 socketio = SocketIO(app,ping_interval=25,cors_allowed_origins="*")
 # socketio.on_namespace(MonitorSocket("/monsocket"))
 
-
+#设置logger
+import logging
+app.logger.setLevel(logging.ERROR)
 
 
 
