@@ -8,6 +8,7 @@ Page({
     audited: null,
     card: 'card',
     user_list: null,
+    developers:null,
     roots: null,
     me: null,
     now_index: null
@@ -65,14 +66,14 @@ Page({
         this.setData({
           user_list: list,
           me: res.data.me,
-          roots: res.data.roots
+          roots: res.data.roots,
+          developers:res.data.developers
         })
       }
 
     });
   },
   turn(v) {
-    console.log(v.currentTarget.dataset.name)
     this.setData({
       now_index: v.currentTarget.dataset.name
     })
@@ -95,7 +96,8 @@ Page({
       data:
       {
         roots:temp_roots,
-        phone:this.data.me.phone
+        myphone:this.data.me.phone,
+        developers:this.data.developers
       },
       success:(res)=>
       {
@@ -118,7 +120,8 @@ Page({
       data:
       {
         roots:this.data.roots,
-        phone:this.data.me.phone
+        myphone:this.data.me.phone,
+        developers:this.data.developers
       },
       success:(res)=>
       {

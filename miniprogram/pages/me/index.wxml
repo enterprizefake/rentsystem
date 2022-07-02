@@ -46,7 +46,7 @@
   </view>
 
   <!-- 管理员部分 -->
-  <view wx:if="{{ (user.type=='小程序管理员')||(user.type=='小程序核心管理员') }}">
+  <view wx:if="{{ (user.type=='小程序管理员')||(user.type=='小程序开发者') }}">
     <van-cell title="管理中心(管理员)" is-link
      bindtap="jump7" 
      data-name="{{user.type}}"></van-cell>
