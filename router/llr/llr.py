@@ -1,8 +1,7 @@
 import base64
 import math
-import re
 import time
-
+from pypinyin import lazy_pinyin
 
 
 from router.llr.dict import *
@@ -975,17 +974,81 @@ def messages_send():
         return dic
 
 
-# 获取所有用户及类型(暂时未用)
+# 获取所有用户及索引
 
-
-@llr.route("/allusers", methods=["POST", 'GET'])
-def allusers():
+@llr.route("/root/allusers", methods=["POST", 'GET'])
+def root_allusers():
     dic = {'sucess': 'yes'}
     try:
+        data=request.get_json()
+        phone=data['phone']
+        me=db.session.query(User).filter(User.phone==phone).first()
 
-        allusers=to_list(db.session.query(User).all())
+        allusers=db.session.query(User)
+        roots=allusers.filter(User.type=="小程序管理员").all()
         
-        dic['allusers']=allusers
+        users=allusers.filter(User.type=="小程序使用者").all()
+        
+        
+        if (me in roots):    
+            roots=db.session.query(User).filter(User.type=="小程序管理员").filter(User.phone != phone).all()
+        else: 
+            users=db.session.query(User).filter(User.type=="小程序使用者").filter(User.phone != phone).all()
+            
+        
+
+        roots=to_list(roots)
+        users=to_list(users)
+
+
+        dic['roots']=roots
+
+        # 对小程序使用者进行字母排序
+        index=['A', 'B', 'C', 'D', 'E', 'F', 'G',
+         'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 
+         'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','#']
+        user_list={ key:[] for key in index }
+
+        users.sort(key=lambda item: lazy_pinyin(item['user_nickname'])[0][0].upper())
+        for user in users:
+            first=lazy_pinyin(user['user_nickname'])[0][0].upper()
+            if first in index:
+                user_list[first].append(user)
+            else:
+                user_list['#'].append(user)
+
+        
+
+        dic['me']=to_dict(me)
+        dic['roots']=roots
+        dic['user_list']=user_list
+    except Exception as e:
+        dic = {'sucess': 'no'}
+
+    finally:
+        db.session.close()
+        return dic
+
+
+# 获取所有用户及索引
+
+@llr.route("/root/alterroots", methods=["POST", 'GET'])
+def root_alterroots():
+    dic = {'sucess': 'yes'}
+    try:     
+        data=request.get_json()
+        roots=data['roots']
+        phones=[root['phone'] for root in roots]
+
+        allusers=db.session.query(User).all()
+
+        for user in allusers:
+            if(user.phone in phones):
+                user.type=['小程序管理员']
+            else:
+                user.type='小程序使用者'
+        db.session.commit()
+        
     except Exception as e:
         dic = {'sucess': 'no'}
 
@@ -1007,3 +1070,4 @@ def distance(jingduA, weiduA,jingduB, weiduB):
     # 单位是千米
 
     return L
+
