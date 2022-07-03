@@ -102,8 +102,8 @@ socketio = SocketIO(app,ping_interval=25,cors_allowed_origins="*")
 
 #设置logger
 import logging
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+# log = logging.getLogger('werkzeug')
+# log.setLevel(logging.ERROR)
 # app.logger.setLevel(logging.ERROR)
 
 
