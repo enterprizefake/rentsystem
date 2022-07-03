@@ -50,7 +50,7 @@ def login():
             db.session.commit()
         print(dic)
     except Exception as e:
-        # traceback.print_exc()
+        traceback.print_exc()
         # 返回错误信息
         dic = {'sucess': 'no'}
     finally:
