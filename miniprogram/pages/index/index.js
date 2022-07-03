@@ -25,6 +25,9 @@ Page({
       wx.request({
         url: 'http://1.15.184.52:8086/index',
         method: 'POST',
+        header:{  
+          'content-type':'application/json'
+        },
         data:
         {
           longitude: this.data.user.longitude,
@@ -99,6 +102,9 @@ Page({
     wx.request({
       url: 'http://1.15.184.52:8086/index',
       method: 'GET',
+      header:{  
+        'content-type':'application/json'
+      },
       success: (res) => {
         if (res.data.sucess == 'no') {
           console.log("???")
@@ -125,6 +131,9 @@ Page({
           wx.request({
             url: 'http://1.15.184.52:8086/index',
             method: 'POST',
+            header:{  
+              'content-type':'application/json'
+            },
             data:
             {
               longitude: this.data.user.longitude,

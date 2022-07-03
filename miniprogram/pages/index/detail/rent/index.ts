@@ -26,9 +26,7 @@ Page({
       phone:app.globalData.user.phone
     })
     
-    // wx.request({
 
-    // })
    console.log(this.data.house)
   },
   formSubmit(e){
@@ -145,6 +143,9 @@ Page({
     wx.request({
       url: 'http://1.15.184.52:8086/index/detail/pay',
       method: 'POST',
+      header:{  
+        'content-type':'application/json'
+      },
       data: {
         begin_date:this.data.begindate,
         end_date:this.data.enddate,
@@ -167,6 +168,9 @@ Page({
           wx.request({
             url: 'http://1.15.184.52:8086/messages/send',
             method: 'POST',
+            header:{  
+              'content-type':'application/json'
+            },
             data:
             {
               phone:this.data.phone,
@@ -179,6 +183,9 @@ Page({
           wx.request({
             url: 'http://1.15.184.52:8086/messages/send',
             method: 'POST',
+            header:{  
+              'content-type':'application/json'
+            },
             data:
             {
               phone:this.data.house.phone,

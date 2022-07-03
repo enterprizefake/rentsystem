@@ -26,10 +26,7 @@ Page({
       phone: app.globalData.user.phone,
       name: app.globalData.user.user_name
     })
-    // wx.request({
 
-    // })
-    //   console.log(option.house_id)
   },
   bindbeginDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -67,6 +64,9 @@ Page({
       wx.request({
         url: 'http://1.15.184.52:8086/index/detail/book',
         method: 'POST',
+        header:{  
+          'content-type':'application/json'
+        },
         data: {
           h_id: this.data.house.h_id,
           phone: this.data.information.phone,
@@ -86,6 +86,9 @@ Page({
             wx.request({
               url: 'http://1.15.184.52:8086/messages/send',
               method: 'POST',
+              header:{  
+                'content-type':'application/json'
+              },
               data: {
                 content: "您的房子(" + this.data.house.h_name + ")有新的预约,详情请到租客预约管理查看。",
                 message_type: "租客看房预约通知",

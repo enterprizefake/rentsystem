@@ -1,5 +1,5 @@
-import { formatTime } from "../../../utils/util"
-var app = getApp()
+import { formatTime } from "../../../utils/util";
+var app = getApp();
 Page({
   data: {
     active: 0,
@@ -14,20 +14,20 @@ Page({
     max_renttime: null,
     show: false,
     new_square: null,
-    new_hasparking: '否',
-    new_haslift: '否',
-    new_haswc: '否',
-    new_shared_housing: '否',
+    new_hasparking: "否",
+    new_haslift: "否",
+    new_haswc: "否",
+    new_shared_housing: "否",
     new_room: null,
     room_options: [
       {
-        values: ['一室', '两室', '三室', '四室', '五室']
+        values: ["一室", "两室", "三室", "四室", "五室"],
       },
       {
-        values: ['一厅', '两厅', '三厅']
+        values: ["一厅", "两厅", "三厅"],
       },
     ],
-    new_picture: []
+    new_picture: [],
   },
   map() {
     wx.chooseLocation({
@@ -35,36 +35,38 @@ Page({
         this.setData({
           new_address: res.address,
           new_longitude: res.longitude,
-          new_latitude: res.latitude
-        })
-        console.log(res)
-      }
-    })
-
+          new_latitude: res.latitude,
+        });
+        console.log(res);
+      },
+    });
   },
   getmax_relettime(index) {
-    console.log(index.detail)
+    console.log(index.detail);
     this.setData({
-      max_relettime: index.detail
-    })
+      max_relettime: index.detail,
+    });
   },
   getmax_renttime(index) {
-    console.log(index.detail)
+    console.log(index.detail);
     this.setData({
-      max_renttime: index.detail
-    })
+      max_renttime: index.detail,
+    });
   },
   rentnew(index) {
-    var temp_pictures = this.data.new_picture
+    var temp_pictures = this.data.new_picture;
     for (var i = 0; i < temp_pictures.length; i++) {
-      var url = temp_pictures[i].url
-      console.log(url)
-      temp_pictures[i] = wx.getFileSystemManager().readFileSync(url, 'base64', 0)
+      var url = temp_pictures[i].url;
+      console.log(url);
+      temp_pictures[i] = wx
+        .getFileSystemManager()
+        .readFileSync(url, "base64", 0);
     }
 
     wx.request({
-      url: 'http://1.15.184.52:8086/landlord/rentnew',
-      method: 'POST',
+      url: "http://1.15.184.52:8086/landlord/rentnew",
+      method: "POST",
+      header: { "content-type": "application/json" },
       data: {
         address: this.data.new_address,
         h_detail: this.data.new_detail,
@@ -75,32 +77,31 @@ Page({
         max_renttime: this.data.max_renttime,
         phone: this.data.new_phone,
         price: this.data.new_price,
-        square:this.data.new_square,
-        room:this.data.new_room,
-        haslift:this.data.new_haslift,
-        hasparking:this.data.new_hasparking,
-        haswc:this.data.new_haswc,
-        shared_housing:this.data.new_shared_housing,
-        public_time:formatTime(new Date()),
-        pictures: temp_pictures
+        square: this.data.new_square,
+        room: this.data.new_room,
+        haslift: this.data.new_haslift,
+        hasparking: this.data.new_hasparking,
+        haswc: this.data.new_haswc,
+        shared_housing: this.data.new_shared_housing,
+        public_time: formatTime(new Date()),
+        pictures: temp_pictures,
       },
       success: (res) => {
-        var datas = res.data
-        if (datas.sucess == 'no') {
-          console.log(formatTime(new Date()))
+        var datas = res.data;
+        if (datas.sucess == "no") {
+          console.log(formatTime(new Date()));
           wx.showToast({
-            title: '提交失败',
-            icon: 'none'
-          })
-          console.log("???")
-        }
-        else {
-          console.log(formatTime(new Date()))
-          console.log("ok")
+            title: "提交失败",
+            icon: "none",
+          });
+          console.log("???");
+        } else {
+          console.log(formatTime(new Date()));
+          console.log("ok");
           wx.showToast({
-            title: '提交成功',
-            icon: 'none'
-          })
+            title: "提交成功",
+            icon: "none",
+          });
           this.setData({
             new_address: null,
             new_detail: null,
@@ -116,160 +117,147 @@ Page({
             new_haswc: null,
             new_shared_housing: null,
             new_room: null,
-            new_picture: []
-          })
+            new_picture: [],
+          });
           // console.log(this.data.all_collections[1].h_id)
         }
       },
-    })
+    });
   },
   getphone(index) {
     this.setData({
-      new_phone: index.detail
-    })
+      new_phone: index.detail,
+    });
   },
   getaddress(index) {
     this.setData({
-      new_address: index.detail
-    })
+      new_address: index.detail,
+    });
   },
   getdetail(index) {
     this.setData({
-      new_detail: index.detail
-    })
+      new_detail: index.detail,
+    });
   },
   getname(index) {
     this.setData({
-      new_name: index.detail
-    })
+      new_name: index.detail,
+    });
   },
   getprice(index) {
     this.setData({
-      new_price: index.detail
-    })
+      new_price: index.detail,
+    });
   },
   getsquare(index) {
     this.setData({
-      new_square: index.detail
+      new_square: index.detail,
     });
   },
   getroom(index) {
     this.setData({
-      show: true
+      show: true,
     });
   },
   room_confirm(index) {
-    var v = index.detail.value
-    var s = v[0] + v[1]
-    console.log(s)
+    var v = index.detail.value;
+    var s = v[0] + v[1];
+    console.log(s);
     this.setData({
       new_room: s,
-      show: false
-    })
-
+      show: false,
+    });
   },
   room_cancel(index) {
     this.setData({
-      show: false
+      show: false,
     });
   },
   haslift() {
-    if (this.data.new_haslift == '是') {
+    if (this.data.new_haslift == "是") {
       this.setData({
-        new_haslift: '否'
-      })
-    }
-    else
-    {
+        new_haslift: "否",
+      });
+    } else {
       this.setData({
-        new_haslift: '是'
-      })
-
+        new_haslift: "是",
+      });
     }
   },
   haswc() {
-    if (this.data.new_haswc == '是') {
+    if (this.data.new_haswc == "是") {
       this.setData({
-        new_haswc: '否'
-      })
-    }
-    else
-    {
+        new_haswc: "否",
+      });
+    } else {
       this.setData({
-        new_haswc: '是'
-      })
-
+        new_haswc: "是",
+      });
     }
   },
   hasparking() {
-    if (this.data.new_hasparking == '是') {
+    if (this.data.new_hasparking == "是") {
       this.setData({
-        new_hasparking: '否'
-      })
-    }
-    else
-    {
+        new_hasparking: "否",
+      });
+    } else {
       this.setData({
-        new_hasparking: '是'
-      })
-
+        new_hasparking: "是",
+      });
     }
   },
   shared_housing() {
-    if (this.data.new_shared_housing == '是') {
+    if (this.data.new_shared_housing == "是") {
       this.setData({
-        new_shared_housing: '否'
-      })
-    }
-    else
-    {
+        new_shared_housing: "否",
+      });
+    } else {
       this.setData({
-        new_shared_housing: '是'
-      })
-
+        new_shared_housing: "是",
+      });
     }
   },
   afterRead(file) {
-    console.log("file:" + JSON.stringify(file))
+    console.log("file:" + JSON.stringify(file));
     var pl = file.detail.file;
     var temp_picture = this.data.new_picture;
     for (var i = 0; i < pl.length; i++) {
-      var img = pl[i].url
-      temp_picture.push({ url: img })
-      console.log(temp_picture)
+      var img = pl[i].url;
+      temp_picture.push({ url: img });
+      console.log(temp_picture);
     }
     this.setData({
-      new_picture: temp_picture
-    })
+      new_picture: temp_picture,
+    });
   },
   delete(file) {
-    var index = file.detail.index
-    var temp_picture = this.data.new_picture
-    temp_picture.splice(index, 1)
-    console.log(temp_picture)
+    var index = file.detail.index;
+    var temp_picture = this.data.new_picture;
+    temp_picture.splice(index, 1);
+    console.log(temp_picture);
     this.setData({
-      new_picture: temp_picture
-    })
+      new_picture: temp_picture,
+    });
   },
   getpicture(index) {
     wx.chooseMedia({
       count: 9,
-      mediaType: ['image'],
-      sourceType: ['album', 'camera'],
-      camera: 'back',
+      mediaType: ["image"],
+      sourceType: ["album", "camera"],
+      camera: "back",
       success(res) {
-        console.log(res.tempFiles.tempFilePath)
-        console.log(res.tempFiles.size)
-      }
-    })
+        console.log(res.tempFiles.tempFilePath);
+        console.log(res.tempFiles.size);
+      },
+    });
 
     this.setData({
-      new_picture: index.detail
-    })
+      new_picture: index.detail,
+    });
   },
   onLoad() {
     this.setData({
-      new_phone: app.globalData.user.phone
-    })
-  }
-})
+      new_phone: app.globalData.user.phone,
+    });
+  },
+});

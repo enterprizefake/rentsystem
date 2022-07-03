@@ -41,6 +41,7 @@ Page({
       // url: 'http://1.15.184.52:8086/index',
       url: 'http://1.15.184.52:8086/tenants/collections',
       method:"POST",
+      header: { "content-type": "application/json" },
       data: {
       phone:app.globalData.user.phone
       },
@@ -62,23 +63,6 @@ Page({
         console.log(e)
       }
     })
-    // wx.request({
-    //   url: 'http://1.15.184.52:8086/index/detail',
-    //   method:"POST",
-    //   data: {
-    //   h_id:this.data.all_collections.h_id
-    //   },
-    //   success: (res) => {
-    //     var datas = res.data
-    //     console.log(datas)
-    //     if (datas.sucess == 'no') {
-    //       console.log("???")
-    //     }
-    //     else {
-    //     }
-    //     wx.hideLoading()
-    //   },
-    // })
   },
   /**
    * 生命周期函数--监听页面隐藏

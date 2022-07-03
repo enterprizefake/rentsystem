@@ -57,6 +57,9 @@ Page({
       wx.request({
         url: "http://1.15.184.52:8086/login",
         method: 'POST',
+        header:{  
+          'content-type':'application/json'
+        },
         data: app.globalData.temp_user,
         success: (res) => {
           if (res.data.sucess == "yes") {

@@ -31,6 +31,9 @@ App<IAppOption>({
       wx.request({
         url: "http://1.15.184.52:8086/login",
         method: 'POST',
+        header:{  
+          'content-type':'application/json'
+        },
         data: user,
         success: (res) => {
           if (res.data.sucess == "yes") {

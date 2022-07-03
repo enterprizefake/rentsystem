@@ -38,9 +38,11 @@ Page({
     console.log(house1.h_id)
     var app = getApp()
     wx.request({
-      // url: 'http://1.15.184.52:8086/index',
       url: 'http://1.15.184.52:8086/index/detail',
       method: "POST",
+      header:{  
+        'content-type':'application/json'
+      },
       data: {
         h_id: house1.h_id
       },
@@ -72,10 +74,7 @@ Page({
         console.log(e)
       }
     })
-    // wx.request({
 
-    // })
-    //   console.log(option.house_id)
   },
   jump1() {
     var app = getApp()
@@ -103,6 +102,9 @@ Page({
       wx.request({
         url: 'http://1.15.184.52:8086/index/detail/collection',
         method: 'POST',
+        header:{  
+          'content-type':'application/json'
+        },
         data: {
           h_id: this.data.house.h_id,
           phone: app.globalData.user.phone
@@ -122,6 +124,9 @@ Page({
       wx.request({
         url: 'http://1.15.184.52:8086/index/detail/cancelcollection',
         method: 'POST',
+        header:{  
+          'content-type':'application/json'
+        },
         data: {
           h_id: this.data.house.h_id,
           phone: app.globalData.user.phone
@@ -193,6 +198,9 @@ Page({
       // url: 'http://1.15.184.52:8086/index',
       url: 'http://1.15.184.52:8086/index/detail',
       method: "POST",
+      header:{  
+        'content-type':'application/json'
+      },
       data: {
         h_id: this.data.t_id
       },
@@ -225,6 +233,9 @@ Page({
     wx.request({
       url: "http://1.15.184.52:8086/tenants/collections",
       method: "POST",
+      header:{  
+        'content-type':'application/json'
+      },
       data: {
         phone: app.globalData.user.phone
       },

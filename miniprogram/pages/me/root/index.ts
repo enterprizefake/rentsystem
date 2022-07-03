@@ -29,6 +29,7 @@ Page({
     wx.request({
       url: "http://1.15.184.52:8086/root/audits",
       method: "POST",
+      header: { "content-type": "application/json" },
       success: (res) => {
         this.setData({
           audits: res.data.audits
@@ -40,6 +41,7 @@ Page({
     wx.request({
       url: "http://1.15.184.52:8086/root/audited",
       method: "POST",
+      header: { "content-type": "application/json" },
       data: {
         phone: app.globalData.user.phone
       },
@@ -55,6 +57,7 @@ Page({
     wx.request({
       url: "http://1.15.184.52:8086/root/allusers",
       method: "POST",
+      header: { "content-type": "application/json" },
       data: {
         phone: app.globalData.user.phone
       },
@@ -94,6 +97,7 @@ Page({
     wx.request({
       url:"http://1.15.184.52:8086/root/alterroots",
       method:'POST',
+      header: { "content-type": "application/json" },
       data:
       {
         roots:temp_roots,
@@ -118,6 +122,7 @@ Page({
     wx.request({
       url:"http://1.15.184.52:8086/root/alterroots",
       method:'POST',
+      header: { "content-type": "application/json" },
       data:
       {
         roots:this.data.roots,
