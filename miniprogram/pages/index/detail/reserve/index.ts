@@ -60,7 +60,9 @@ Page({
       title: '提交成功',
       icon: 'success',
     })
- 
+  
+    if(this.data.information.vnumber&&this.data.begindate!='请选择访问时间')
+    {
       wx.request({
         url: 'http://1.15.184.52:8086/index/detail/book',
         method: 'POST',
@@ -100,7 +102,13 @@ Page({
           }
         },
       });
-
+}
+else{
+  wx.showToast({
+    title:"输入人数和时间",
+    icon:"error"
+  })
+}
     this.setData({
       modalHidden: true
     })
