@@ -1,5 +1,6 @@
 import base64
 import math
+import re
 import time
 from pypinyin import lazy_pinyin
 
