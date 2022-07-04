@@ -35,6 +35,7 @@ Page({
       this.setData({
         top: res[0].top
       })
+      console.log(res[0].top)
     });
     wx.request({
       url: "http://1.15.184.52:8086/root/audits",
@@ -44,7 +45,6 @@ Page({
         this.setData({
           audits: res.data.audits
         })
-        // console.log(res.data.audits)
       }
     });
 
@@ -162,6 +162,7 @@ Page({
     query.selectViewport().scrollOffset()
     return new Promise((resolve) => {
       query.exec((res) => {
+        console.log(res);
           if ((res[0].top - this.data.top <= 0) && (res[0].bottom - this.data.top >= 0)) {
             resolve(true);
           }
@@ -171,16 +172,17 @@ Page({
       });
     })
   },
-  async scroll(v) {
+  async scroll() {
     if (await this.inid('me')) {
       this.setData({
         top_index: 'me'
       })
     }
-    else if (await this.inid('roots')) {
-      this.setData({
-        top_index: 'roots'
-      })
+    else if(this.data.roots.length && await this.inid('roots')) 
+    {
+        this.setData({
+          top_index: 'roots'
+        })
     }
     else {
       for (var i in this.data.user_list) {
