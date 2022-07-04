@@ -1,8 +1,10 @@
 <view>
 
   <view>
-    <van-tabs animated swipeable bind:change="show_list">
-
+    <van-tabs animated 
+    custom-class="position:fixed;"
+    swipeable bind:change="show_list" 
+    >
 
       <van-tab title="审核房源">
 
@@ -82,18 +84,31 @@
         </view>
       </van-tab>
 
-      <van-tab title="用户管理">
+      <van-tab title="用户管理" id="top">
 
         <view style="display: flex;justify-content: space-between;">
 
           <!-- 左 -->
-          <scroll-view scroll-into-view="{{now_index}}" scroll-y style="height: 100vh;width: 100%;">
+          <scroll-view scroll-into-view="{{now_index}}" scroll-y bindscroll="scroll" style="height: 93vh;width: 100%;">
 
             <view>
 
+              <!-- 顶部固定 -->
+              <view class="left-top">
+                <view wx:if="{{top_index=='me'}}">
+                  我
+                </view>
+                <view wx:elif="{{top_index=='roots'}}">
+                  开发者、管理员({{roots.length}}人)
+                </view>
+                <view wx:else="{{top_index=='me'}}">
+                  {{top_index}}({{user_list[top_index].length}}人)
+                </view>
+              </view>
+
               <!-- 我 -->
-              <view>
-                <view id="me" style="padding: 3%;color:gray;background-color:rgb(222, 222, 222)">
+              <view id="me">
+                <view style="padding: 3%;color:gray;background-color:rgb(222, 222, 222)">
                   我
                 </view>
                 <!-- 单元格 -->
@@ -110,7 +125,7 @@
               </view>
 
               <!-- 开发者、管理员 -->
-              <view wx:if="{{roots.length||developers.length}}" id="roots">
+              <view id="roots" wx:if="{{roots.length||developers.length}}">
                 <view style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
                   开发者、管理员({{roots.length+developers.length}}人)
                 </view>
@@ -146,13 +161,10 @@
                 </view>
               </view>
 
-
-
               <!-- 用户 -->
-              <view wx:for="{{user_list}}">
-
+              <view wx:for="{{user_list}}" id="{{ index=='#'?'all':index }}">
                 <view wx:if="{{user_list[index].length}}">
-                  <view id="{{index}}" style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
+                  <view style="padding: 3%;color:gray;background-color: rgb(222, 222, 222);">
                     {{index}}({{user_list[index].length}}人)
                   </view>
                 </view>
@@ -166,35 +178,40 @@
                   </view>
 
                 </view>
-
-
               </view>
-
             </view>
 
           </scroll-view>
 
           <!-- 右 -->
-          <view style="right: 0;position:fixed;" wx:if="{{show_list}}">
+          <view style="right: 0;position:fixed;z-index: 2;" wx:if="{{show_list}}">
+            <!-- 我 -->
             <view>
-              <icon type="info" size="small" bindtap="turn" data-name="me"></icon>
+              <icon type="info" size="small" bindtap="turn" wx:if="{{top_index=='me'}}" data-name="me"></icon>
+              <icon type="info" size="small" bindtap="turn" wx:else color="gray" data-name="me"></icon>
             </view>
 
+            <!-- 管理员 -->
             <view>
-              <icon type="search" size="small" bindtap="turn" data-name="roots"></icon>
+              <icon type="search" size="small" bindtap="turn" wx:if="{{top_index=='roots'}}" color="rgb(16,174,255)" data-name="roots"></icon>
+              <icon type="search" size="small" bindtap="turn" wx:else data-name="roots"></icon>
             </view>
 
+            <!-- 用户 -->
             <view wx:for="{{user_list}}">
-              <view bindtap="turn" bindtap="turn" data-name="{{index}}">
+
+              <view bindtap="turn" bindtap="turn" data-name="{{index}}" style="color: rgb(16,174,255);" wx:if="{{top_index==index}}">
                 <view>{{index}}</view>
               </view>
 
+              <view wx:else bindtap="turn" bindtap="turn" data-name="{{index}}">
+                <view>{{index}}</view>
+              </view>
             </view>
 
           </view>
 
         </view>
-
 
       </van-tab>
 

@@ -1,4 +1,4 @@
-.page-header{
+.page-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,18 +6,18 @@
   height: 400rpx;
 }
 
-image{
+image {
   border-radius: 10px;
   width: 100%;
 }
 
-.page-body{
+.page-body {
   display: flex;
   flex-direction: column;
   width: 95%;
 }
 
-.page-body-title{
+.page-body-title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,51 +25,58 @@ image{
   margin-top: 35px;
   color: #22a3d6;
 }
-.page-body-info{
+
+.page-body-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: smaller;
-  margin: 20px 15px ;
+  margin: 20px 15px;
   color: gray;
 }
-.page-bottom{
+
+.page-bottom {
   display: flex;
   background-color: rgb(4, 170, 247);
   height: 80px;
   width: 100%;
   border-radius: 10px;
 }
-.price{
+
+.price {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 240rpx;
-  color:#fff;
+  color: #fff;
 }
-.bigtitle{
+
+.bigtitle {
   font-size: 15px;
 }
-.info{
+
+.info {
   font-size: 20px;
   margin-top: 10px;
 }
-.scale{
+
+.scale {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 240rpx;
-  color:#fff;
-}
-.size{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 240rpx;
-  color:#fff;
+  color: #fff;
 }
 
-.card{
+.size {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 240rpx;
+  color: #fff;
+}
+
+.card {
   width: 700rpx;
   background-color: #efefef;
   border-radius: 10px;
@@ -81,10 +88,18 @@ image{
   margin-top: 40px;
 }
 
-.avatar
-{
+.avatar {
   width: 100rpx;
   height: 100rpx;
   border-radius: 50%;
   margin: 2%;
+}
+
+.left-top {
+  padding: 3%;
+  width: 100%;
+  color: gray;
+  background-color: rgb(222, 222, 222);
+  position: fixed;
+  z-index: 1;
 }
